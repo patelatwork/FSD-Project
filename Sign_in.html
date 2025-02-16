@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f8f8f8;
+        }
+
+        .login-container {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 350px;
+        }
+
+        h2 {
+            font-size: 24px;
+            font-weight: 700; /* Bold text */
+            margin-bottom: 5px;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .login-container p {
+            font-size: 14px;
+            color: gray;
+        }
+
+        .login-container p a {
+            color: #7a21d3;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .input-group {
+            text-align: left;
+            margin-top: 15px;
+            position: relative;
+        }
+
+        .input-group label {
+            font-size: 14px;
+            font-weight: 500;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 12px;
+            font-size: 14px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            outline: none;
+        }
+
+        .error {
+            color: red;
+            font-size: 12px;
+            margin-top: 5px;
+            display: none; 
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+
+        .checkbox-group a {
+            text-decoration: none;
+            color: #7a21d3;
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        .checkbox-group input {
+            margin-right: 5px;
+        }
+
+        .login-btn {
+            width: 100%;
+            background: #7a21d3;
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+
+        .login-btn:hover {
+            background: #6a1ab9;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="login-container">
+        <h2>Welcome back</h2>
+        <p>Don't have an account? <a href="#">Sign up</a></p>
+
+        <form id="loginForm">
+            <div class="input-group">
+                <label for="email">Email address</label>
+                <input type="email" id="email" placeholder="Enter your email">
+                <div class="error" id="emailError">Please enter a valid email address.</div>
+            </div>
+
+            <div class="input-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="Enter your password">
+                <div class="error" id="passwordError">Password must be at least 6 characters long.</div>
+            </div>
+
+            <div class="checkbox-group">
+                <div>
+                    <input type="checkbox" id="remember">
+                    <label for="remember">Remember me</label>
+                </div>
+                <a href="#">Forgot your password?</a>
+            </div>
+
+            <button type="submit" class="login-btn">Sign in →</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById("loginForm").addEventListener("submit", function(event) {
+            event.preventDefault(); 
+
+            let email = document.getElementById("email").value.trim();
+            let password = document.getElementById("password").value.trim();
+            let emailError = document.getElementById("emailError");
+            let passwordError = document.getElementById("passwordError");
+
+            let valid = true;
+
+           
+            if (!email.match(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/)) {
+                emailError.style.display = "block";
+                valid = false;
+            } else {
+                emailError.style.display = "none";
+            }
+
+       
+            if (password.length < 6) {
+                passwordError.style.display = "block";
+                valid = false;
+            } else {
+                passwordError.style.display = "none";
+            }
+
+           
+            if (valid) {
+                alert("Login successful!");
+                
+            }
+        });
+    </script>
+
+</body>
+</html>
