@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Page</title>
+    <title>Sign In</title>
     <style>
         * {
             margin: 0;
@@ -17,40 +17,69 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background-color: #f8f8f8;
+            background-color: #e8e8da;
         }
 
+        .wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 80%;
+            max-width: 900px;
+            height: 80vh;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 12px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .container {
+            display: flex;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Left Side - Image */
+        .image-container {
+            width: 50%;
+            background: url("escape_your_limits.jpg") no-repeat center center/cover;
+        }
+
+        /* Right Side - Login Form */
         .login-container {
+            width: 50%;
             background: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .login-box {
+            width: 320px;
             text-align: center;
-            width: 350px;
         }
 
         h2 {
             font-size: 24px;
-            font-weight: 700; /* Bold text */
-            margin-bottom: 5px;
-            font-family: Arial, Helvetica, sans-serif;
+            font-weight: 700;
+            margin-bottom: 10px;
         }
 
-        .login-container p {
+        .login-box p {
             font-size: 14px;
             color: gray;
         }
 
-        .login-container p a {
-            color: #7a21d3;
+        .login-box p a {
+            color: #3f8554;
             text-decoration: none;
             font-weight: 500;
         }
 
         .input-group {
             text-align: left;
-            margin-top: 15px;
-            position: relative;
+            margin-top: 12px;
         }
 
         .input-group label {
@@ -62,7 +91,7 @@
 
         .input-group input {
             width: 100%;
-            padding: 12px;
+            padding: 10px;
             font-size: 14px;
             border-radius: 6px;
             border: 1px solid #ccc;
@@ -73,7 +102,7 @@
             color: red;
             font-size: 12px;
             margin-top: 5px;
-            display: none; 
+            display: none;
         }
 
         .checkbox-group {
@@ -85,20 +114,16 @@
 
         .checkbox-group a {
             text-decoration: none;
-            color: #7a21d3;
+            color: #3f8554;
             font-size: 13px;
             font-weight: 500;
         }
 
-        .checkbox-group input {
-            margin-right: 5px;
-        }
-
         .login-btn {
             width: 100%;
-            background: #7a21d3;
+            background: #3f8554;
             color: white;
-            padding: 12px;
+            padding: 10px;
             border: none;
             border-radius: 6px;
             font-size: 16px;
@@ -108,39 +133,70 @@
         }
 
         .login-btn:hover {
-            background: #6a1ab9;
+            background: #367348;
+        }
+
+        /* Responsive for Smaller Screens */
+        @media screen and (max-width: 768px) {
+            .wrapper {
+                height: auto;
+                width: 90%;
+                flex-direction: column;
+            }
+            .container {
+                flex-direction: column;
+                width: 100%;
+            }
+            .image-container {
+                width: 100%;
+                height: 200px;
+            }
+            .login-container {
+                width: 100%;
+                padding: 2rem;
+            }
         }
     </style>
 </head>
 <body>
 
-    <div class="login-container">
-        <h2>Welcome back</h2>
-        <p>Don't have an account? <a href="#">Sign up</a></p>
+    <div class="wrapper">
+        <div class="container">
+            <!-- Left Side (Image) -->
+            <div class="image-container"></div>
 
-        <form id="loginForm">
-            <div class="input-group">
-                <label for="email">Email address</label>
-                <input type="email" id="email" placeholder="Enter your email">
-                <div class="error" id="emailError">Please enter a valid email address.</div>
-            </div>
+            <!-- Right Side (Sign-in Form) -->
+            <div class="login-container">
+                <div class="login-box">
+                    <h2>Welcome Back</h2>
+                    <p>Don't have an account? <a href="#">Sign up</a></p>
 
-            <div class="input-group">
-                <label for="password">Password</label>
-                <input type="password" id="password" placeholder="Enter your password">
-                <div class="error" id="passwordError">Password must be at least 6 characters long.</div>
-            </div>
+                    <form id="loginForm">
+                        <div class="input-group">
+                            <label for="email">Email address</label>
+                            <input type="email" id="email" placeholder="Enter your email">
+                            <div class="error" id="emailError">Please enter a valid email address.</div>
+                        </div>
 
-            <div class="checkbox-group">
-                <div>
-                    <input type="checkbox" id="remember">
-                    <label for="remember">Remember me</label>
+                        <div class="input-group">
+                            <label for="password">Password</label>
+                            <input type="password" id="password" placeholder="Enter your password">
+                            <div class="error" id="passwordError">Password must be at least 6 characters long.</div>
+                        </div>
+
+                        <div class="checkbox-group">
+                            <div>
+                                <input type="checkbox" id="remember">
+                                <label for="remember">Remember me</label>
+                            </div>
+                            <a href="#">Forgot your password?</a>
+                        </div>
+
+                        <button type="submit" class="login-btn">Sign in →</button>
+                    </form>
                 </div>
-                <a href="#">Forgot your password?</a>
             </div>
-
-            <button type="submit" class="login-btn">Sign in →</button>
-        </form>
+        </div>
     </div>
 
     <script>
@@ -154,7 +210,6 @@
 
             let valid = true;
 
-           
             if (!email.match(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/)) {
                 emailError.style.display = "block";
                 valid = false;
@@ -162,7 +217,6 @@
                 emailError.style.display = "none";
             }
 
-       
             if (password.length < 6) {
                 passwordError.style.display = "block";
                 valid = false;
@@ -170,10 +224,8 @@
                 passwordError.style.display = "none";
             }
 
-           
             if (valid) {
                 alert("Login successful!");
-                
             }
         });
     </script>

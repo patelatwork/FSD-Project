@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fitness & Wellness Blog</title>
+    <style>
+         nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; 
+  padding: 1rem 5%;
+  background-color: #fffff0;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+}
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: #333;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-right: auto;
+        }
+
+        .logo svg {
+            width: 24px;
+            height: 24px;
+            margin-right: 8px;
+            fill: #4fb16d;
+        }
+
+        .nav-links {
+       display: flex;
+       align-items: center;
+       gap: 2rem;
+       list-style: none;
+      }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #666;
+            font-size: 1rem;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #4fb16d;
+        }
+
+        .sign-in {
+            background-color: #3f8554;
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background-color 0.3s ease;
+            margin-left: 2rem;
+        }
+
+        .sign-in:hover {
+            background-color: #12642b;
+        }
+
+        .gradient-bar {
+            height: 4px;
+            background: linear-gradient(180deg, #ede8d0, #ede8d0);
+            position: fixed; 
+            top: 71px;       
+            left: 0;
+            right: 0;
+            z-index: 999;    
+        }
+
+        .nav-group {
+  display: flex;
+  align-items: center;
+  gap: 2rem; 
+            }
+            .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+
+  .dropdown > a {
+    display: inline-block;
+    padding: 0.5rem 0;
+  }
+
+  .dropdown-content {
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    background-color: #fffff0;
+    min-width: 200px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+    border-radius: 4px;
+    padding: 0.5rem 0;
+    z-index: 1001;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 0.5rem;
+    transition: all 0.3s ease;
+  }
+
+  .dropdown-content::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: 0;
+    right: 0;
+    height: 10px;
+    background: transparent;
+  }
+
+  .dropdown:hover .dropdown-content {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  .dropdown-content a {
+    color: #666;
+    padding: 0.75rem 1.5rem;
+    text-decoration: none;
+    display: block;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  .dropdown-content a:hover {
+    background-color: #f5f5f5;
+    color: #4fb16d;
+  }
+
+  .dropdown > a::after {
+    content: '▼';
+    font-size: 0.7em;
+    margin-left: 0.5em;
+    display: inline-block;
+    vertical-align: middle;
+  }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            padding-top: 75px;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 2rem;
+        }
+
+        .categories {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+        }
+
+        .category-btn {
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            border: none;
+            cursor: pointer;
+            background-color: #f3f4f6;
+            transition: background-color 0.3s;
+        }
+
+        .category-btn.active {
+            background-color: #3f8554;
+            color: white;
+        }
+
+        .category-btn:hover {
+            background-color: #e5e7eb;
+        }
+
+        .featured-post {
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            margin-bottom: 3rem;
+            overflow: hidden;
+        }
+
+        .featured-image {
+            width: 100%;
+            height: 400px;
+            background-color: #e5e7eb;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .featured-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .featured-content {
+            padding: 2rem;
+        }
+
+        .post-meta {
+            display: flex;
+            gap: 1rem;
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        .tag {
+            background-color: #3f8554;
+            color: white;
+            padding: 0.25rem 1rem;
+            border-radius: 25px;
+            font-size: 0.875rem;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+
+        .featured-post h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .recent-posts {
+            margin-top: 2rem;
+        }
+
+        .recent-posts h2 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .posts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .post-card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .post-image {
+            width: 100%;
+            height: 200px;
+            background-color: #e5e7eb;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .post-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .post-content {
+            padding: 1.5rem;
+        }
+
+        .post-card h3 {
+            font-size: 1.25rem;
+            margin: 1rem 0;
+        }
+
+        .post-card p {
+            color: #666;
+            margin-bottom: 1rem;
+            line-height: 1.5;
+        }
+
+        .image-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #e5e7eb;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .featured-post h2 {
+                font-size: 1.5rem;
+            }
+
+            .featured-image {
+                height: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="#" class="logo">
+            <svg viewBox="0 0 24 24">
+                <path d="M20.57 14.86L22 13.43 20.57 12 17 15.57 8.43 7 12 3.43 10.57 2 9.14 3.43 7.71 2 5.57 4.14 4.14 2.71 2.71 4.14l1.43 1.43L2 7.71l1.43 1.43L2 10.57 3.43 12 7 8.43 15.57 17 12 20.57 13.43 22l1.43-1.43L16.29 22l2.14-2.14 1.43 1.43 1.43-1.43-1.43-1.43L22 16.29z"/>
+            </svg>
+            RevibeFit
+        </a>
+        <div class="nav-group">
+            <ul class="nav-links">
+                <li><a href="homepage.html">Home</a></li>
+                <li><a href="#">Workouts</a></li>
+                <li class="dropdown">
+                    <a href="#">Trainers</a>
+                    <div class="dropdown-content">
+                      <a href="#">Get a Coach</a>
+                      <a href="#">Live Classes</a>
+                      <a href="#">Trainer Directory</a>
+                    </div>
+                  </li>
+                <li><a href="#">Nutrition</a></li>
+                <li><a href="#">Care</a></li>
+                <li><a href="#">Blog</a></li>
+            </ul>
+            <a href="Sign_in.html" class="sign-in">Sign In</a>
+        </div>
+    </nav>
+    <div class="gradient-bar"></div>
+    <div class="container">
+        
+        <header class="header">
+            <h1>Fitness & Wellness Blog</h1>
+            <p>Expert insights to support your fitness journey</p>
+            
+                <button class="category-btn active">All</button>
+                <button class="category-btn">Training</button>
+                <button class="category-btn">Nutrition</button>
+                <button class="category-btn">Wellness</button>
+                <button class="category-btn">Success Stories</button>
+                <button class="category-btn">Tips</button>
+            
+        </header>
+
+        
+        <article class="featured-post">
+            <div class="featured-image">
+                <img src="Fitness.jpeg">
+                <div class="image-placeholder">Featured Image (800 x 400)</div>
+            </div>
+            <div class="featured-content">
+                <span class="tag">Training</span>
+                <h2>The Science Behind Effective Weight Training</h2>
+                <div class="post-meta">
+                    <span>Dr. Sarah Johnson</span>
+                    <span>March 15, 2024</span>
+                </div>
+            </div>
+        </article>
+
+      
+        <section class="recent-posts">
+            <h2>Recent Articles</h2>
+            <div class="posts-grid">
+                
+                <article class="post-card">
+                    <div class="post-image">
+                        <img src="nutrition.jpeg" alt="Nutrition">
+                        <div class="image-placeholder">Image (400 x 200)</div>
+                    </div>
+                    <div class="post-content">
+                        <span class="tag">Nutrition</span>
+                        <h3>Nutrition Myths Debunked</h3>
+                        <p>Separating fact from fiction in the world of nutrition and dietary supplements.</p>
+                        <div class="post-meta">
+                            <span>Mike Thompson</span>
+                            <span>March 14, 2024</span>
+                        </div>
+                    </div>
+                </article>
+
+              
+                <article class="post-card">
+                    <div class="post-image">
+                        <img src="wellness.jpg" alt="Wellness">
+                        <div class="image-placeholder">Image (400 x 200)</div>
+                    </div>
+                    <div class="post-content">
+                        <span class="tag">Wellness</span>
+                        <h3>Mindfulness and Exercise</h3>
+                        <p>How combining mindfulness practices with your workout routine can enhance results.</p>
+                        <div class="post-meta">
+                            <span>Emma Davis</span>
+                            <span>March 13, 2024</span>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+    </div>
+</body>
+</html>

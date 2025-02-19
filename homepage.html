@@ -10,17 +10,18 @@
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
   }
   nav {
-    display: flex;
-    align-items: center;
-    padding: 1rem 5%;
-    background-color: white;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    position: fixed;  
-    top: 0;          
-    left: 0;        
-    right: 0;        
-    z-index: 1000;   
-  }
+  display: flex;
+  align-items: center;
+  justify-content: space-between; 
+  padding: 1rem 5%;
+  background-color: #fffff0;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+}
 
   .logo {
     display: flex;
@@ -36,7 +37,7 @@
     width: 24px;
     height: 24px;
     margin-right: 8px;
-    fill: #8A2BE2;
+    fill: #4fb16d;
   }
 
   .nav-links {
@@ -45,6 +46,76 @@
     list-style: none;
   }
 
+
+  .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+
+  .dropdown > a {
+    display: inline-block;
+    padding: 0.5rem 0;
+  }
+
+  .dropdown-content {
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    background-color: #fffff0;
+    min-width: 200px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+    border-radius: 4px;
+    padding: 0.5rem 0;
+    z-index: 1001;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 0.5rem;
+    transition: all 0.3s ease;
+  }
+
+  .dropdown-content::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: 0;
+    right: 0;
+    height: 10px;
+    background: transparent;
+  }
+
+  .dropdown:hover .dropdown-content {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  .dropdown-content a {
+    color: #666;
+    padding: 0.75rem 1.5rem;
+    text-decoration: none;
+    display: block;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  .dropdown-content a:hover {
+    background-color: #f5f5f5;
+    color: #4fb16d;
+  }
+
+  .dropdown > a::after {
+    content: '▼';
+    font-size: 0.7em;
+    margin-left: 0.5em;
+    display: inline-block;
+    vertical-align: middle;
+  }
+  
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  list-style: none;
+}
   .nav-links a {
     text-decoration: none;
     color: #666;
@@ -53,11 +124,11 @@
   }
 
   .nav-links a:hover {
-    color: #8A2BE2;
+    color: #4fb16d;
   }
 
   .sign-in {
-    background-color: #8A2BE2;
+    background-color: #3f8554;
     color: white;
     padding: 0.5rem 1.5rem;
     border-radius: 4px;
@@ -68,12 +139,12 @@
   }
 
   .sign-in:hover {
-    background-color: #7B1FA2;
+    background-color:#12642b;
   }
 
   .gradient-bar {
     height: 4px;
-    background: linear-gradient(90deg, #8A2BE2, #9B4BFF);
+    background: linear-gradient(180deg, #ede8d0, #ede8d0);
     position: fixed; 
     top: 71px;       
     left: 0;
@@ -82,9 +153,10 @@
   }
 
   .nav-group {
-    display: flex;
-    align-items: center;
-  }
+  display: flex;
+  align-items: center;
+  gap: 2rem; 
+}
 
   .hero {
     position: relative;
@@ -102,7 +174,11 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(135deg, rgba(138, 43, 226, 0.85), rgba(155, 75, 255, 0.85));
+    background: linear-gradient(to right, 
+        rgba(217, 217, 182, 0.92) 0%,
+        rgba(217, 217, 182, 0.92) 40%,
+        rgba(255, 255, 255, 0) 100%
+    );
     z-index: 1;
   }
 
@@ -118,7 +194,7 @@
 
   .hero-content {
     max-width: 800px;
-    color: white;
+    color: rgb(19, 13, 13);
     z-index: 2;
     position: relative;
   }
@@ -152,21 +228,22 @@
   }
 
   .button.primary {
-    background-color: #8A2BE2;
+    background-color: #3f8554;
     color: white;
   }
 
   .button.primary:hover {
-    background-color: #7B1FA2;
+    background-color: #12642b;
   }
 
   .button.secondary {
-    background-color: white;
-    color: #8A2BE2;
+    background-color: rgba(238, 238, 228, 0.258);
+    color: #367348;
+    border-color: #000000;  
   }
 
   .button.secondary:hover {
-    background-color: #f0f0f0;
+    background-color: #c1953d;
   }
 
   .button svg {
@@ -179,11 +256,10 @@
     padding-top: 75px;  
   }
 
-  /* New styles for features section */
   .features {
     padding: 5rem 5%;
     text-align: center;
-    background-color: #f8f9fa;
+    background-color: #f7f7f7;
   }
 
   .features h2 {
@@ -217,7 +293,7 @@
   .feature-icon {
     width: 64px;
     height: 64px;
-    background-color: #8A2BE2;
+    background-color: #367348;
     border-radius: 12px;
     padding: 1rem;
     margin-bottom: 1rem;
@@ -253,10 +329,17 @@
       <ul class="nav-links">
         <li><a href="homepage.html">Home</a></li>
         <li><a href="#">Workouts</a></li>
-        <li><a href="#">Trainers</a></li>
+        <li class="dropdown">
+          <a href="#">Trainers</a>
+          <div class="dropdown-content">
+            <a href="#">Get a Coach</a>
+            <a href="#">Live Classes</a>
+            <a href="#">Trainer Directory</a>
+          </div>
+        </li>
         <li><a href="#">Nutrition</a></li>
         <li><a href="#">Care</a></li>
-        <li><a href="#">Blog</a></li>
+        <li><a href="blogs_client_side.html">Blog</a></li>
       </ul>
       <a href="Sign_in.html" class="sign-in">Sign In</a>
     </div>
@@ -264,10 +347,10 @@
   <div class="gradient-bar"></div>
   
   <section class="hero">
-    <img src="Group-Fitness-Class-Performing-A-Variety-Of-Exercises-1.webp" alt="Gym workout scene" class="hero-background">
+    <img src="Fitness.jpeg" alt="Gym workout scene" class="hero-background">
     <div class="hero-content">
       <h1>Transform Your Life Through Fitness</h1>
-      <p>Join RevibeFit and get access to personalized workout plans, expert trainers, and a supportive community to help you achieve your fitness goals.</p>
+      <p style="color: #367348;">Join RevibeFit and get access to personalized workout plans, expert trainers, and a supportive community to help you achieve your fitness goals.</p>
       <div class="hero-buttons">
         <a href="client_signup.html" class="button primary">
           Get Started

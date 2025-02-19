@@ -17,7 +17,7 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background-color: #f8f8f8;
+            background-color: #f4f4f4;
         }
 
         .signup-container {
@@ -26,13 +26,14 @@
             border-radius: 10px;
             box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
             text-align: center;
-            width: 400px;
+            width: 100%;
+            max-width: 400px;
         }
 
         h2 {
             font-size: 24px;
             font-weight: bold;
-            margin-bottom: 5px;
+            margin-bottom: 10px;
         }
 
         p a {
@@ -54,6 +55,7 @@
             border: none;
             cursor: pointer;
             font-weight: 500;
+            transition: 0.3s;
         }
 
         .active {
@@ -73,7 +75,9 @@
             margin-bottom: 5px;
         }
 
-        .input-group input, .input-group textarea, .input-group select {
+        .input-group input, 
+        .input-group textarea, 
+        .input-group select {
             width: 100%;
             padding: 10px;
             font-size: 14px;
@@ -99,6 +103,7 @@
             font-weight: 600;
             cursor: pointer;
             margin-top: 15px;
+            transition: 0.3s;
         }
 
         .signup-btn:hover {
@@ -140,11 +145,12 @@
                 <input type="password" id="password" placeholder="Create a password">
                 <div class="error" id="passwordError"></div>
             </div>
+
             <div class="input-group">
                 <label for="goals">Fitness Goals</label>
                 <textarea id="goals" placeholder="What are your fitness goals?"></textarea>
             </div>
-    
+
             <div class="input-group">
                 <label for="level">Current Fitness Level</label>
                 <select id="level">
@@ -153,6 +159,7 @@
                     <option>Advanced</option>
                 </select>
             </div>
+
             <button type="submit" class="signup-btn">Create Account</button>
         </form>
     </div>
@@ -162,7 +169,7 @@
             this.classList.add('active');
             document.getElementById('trainerBtn').classList.remove('active');
         });
-        
+
         document.getElementById('trainerBtn').addEventListener('click', function() {
             this.classList.add('active');
             document.getElementById('fitnessBtn').classList.remove('active');
@@ -170,7 +177,7 @@
 
         document.getElementById('signupForm').addEventListener('submit', function(event) {
             let valid = true;
-            
+
             const fullName = document.getElementById('fullname');
             const email = document.getElementById('email');
             const phone = document.getElementById('phone');
@@ -178,32 +185,32 @@
 
             const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             const phonePattern = /^[0-9]{10}$/;
-            
+
             document.getElementById('fullnameError').textContent = "";
             document.getElementById('emailError').textContent = "";
             document.getElementById('phoneError').textContent = "";
             document.getElementById('passwordError').textContent = "";
-            
+
             if (fullName.value.trim() === '') {
                 document.getElementById('fullnameError').textContent = "Full name is required.";
                 valid = false;
             }
-            
+
             if (!emailPattern.test(email.value)) {
                 document.getElementById('emailError').textContent = "Enter a valid email address.";
                 valid = false;
             }
-            
+
             if (!phonePattern.test(phone.value)) {
                 document.getElementById('phoneError').textContent = "Enter a valid 10-digit phone number.";
                 valid = false;
             }
-            
+
             if (password.value.length < 6) {
                 document.getElementById('passwordError').textContent = "Password must be at least 6 characters long.";
                 valid = false;
             }
-            
+
             if (!valid) {
                 event.preventDefault();
             }
