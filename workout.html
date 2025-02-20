@@ -5,252 +5,259 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FitHealth</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
-        }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+}
 
-        body {
-            background-color: #1a1a1a;
-            color: white;
-            padding-top: 75px;  
-        }
+body {
+    background-color: #ffffff;
+    color: white;
+    padding-top: 75px;  
+}
 
-        nav {
-            display: flex;
-            align-items: center;
-            justify-content: space-between; 
-            padding: 1rem 5%;
-            background-color: #fffff0;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-        }
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; 
+    padding: 1rem 5%;
+    background-color: #fffff0;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+}
 
-        .logo {
-            display: flex;
-            align-items: center;
-            text-decoration: none;
-            color: #333;
-            font-size: 1.5rem;
-            font-weight: bold;
-            margin-right: auto;
-        }
+.logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #333;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-right: auto;
+}
 
-        .logo svg {
-            width: 24px;
-            height: 24px;
-            margin-right: 8px;
-            fill: #4fb16d;
-        }
+.logo svg {
+    width: 24px;
+    height: 24px;
+    margin-right: 8px;
+    fill: #4fb16d;
+}
 
-        .nav-links {
-            display: flex;
-            align-items: center;
-            gap: 2rem;
-            list-style: none;
-        }
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    list-style: none;
+}
 
-        .dropdown {
-            position: relative;
-            display: inline-block;
-        }
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
 
-        .dropdown > a {
-            display: inline-block;
-            padding: 0.5rem 0;
-        }
+.dropdown > a {
+    display: inline-block;
+    padding: 0.5rem 0;
+}
 
-        .dropdown-content {
-            visibility: hidden;
-            opacity: 0;
-            position: absolute;
-            background-color: #fffff0;
-            min-width: 200px;
-            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
-            border-radius: 4px;
-            padding: 0.5rem 0;
-            z-index: 1001;
-            top: 100%;
-            left: 50%;
-            transform: translateX(-50%);
-            margin-top: 0.5rem;
-            transition: all 0.3s ease;
-        }
+.dropdown-content {
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    background-color: #fffff0;
+    min-width: 200px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+    border-radius: 4px;
+    padding: 0.5rem 0;
+    z-index: 1001;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 0.5rem;
+    transition: all 0.3s ease;
+}
 
-        .dropdown-content::before {
-            content: '';
-            position: absolute;
-            top: -10px;
-            left: 0;
-            right: 0;
-            height: 10px;
-            background: transparent;
-        }
+.dropdown-content::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: 0;
+    right: 0;
+    height: 10px;
+    background: transparent;
+}
 
-        .dropdown:hover .dropdown-content {
-            visibility: visible;
-            opacity: 1;
-        }
+.dropdown:hover .dropdown-content {
+    visibility: visible;
+    opacity: 1;
+}
 
-        .dropdown-content a {
-            color: #666;
-            padding: 0.75rem 1.5rem;
-            text-decoration: none;
-            display: block;
-            transition: background-color 0.3s ease, color 0.3s ease;
-        }
+.dropdown-content a {
+    color: #666;
+    padding: 0.75rem 1.5rem;
+    text-decoration: none;
+    display: block;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
 
-        .dropdown-content a:hover {
-            background-color: #f5f5f5;
-            color: #4fb16d;
-        }
+.dropdown-content a:hover {
+    background-color: #f5f5f5;
+    color: #4fb16d;
+}
 
-        .dropdown > a::after {
-            content: '▼';
-            font-size: 0.7em;
-            margin-left: 0.5em;
-            display: inline-block;
-            vertical-align: middle;
-        }
+.dropdown > a::after {
+    content: '▼';
+    font-size: 0.7em;
+    margin-left: 0.5em;
+    display: inline-block;
+    vertical-align: middle;
+}
 
-        .nav-links a {
-            text-decoration: none;
-            color: #666;
-            font-size: 1rem;
-            transition: color 0.3s ease;
-        }
+.nav-links a {
+    text-decoration: none;
+    color: #666;
+    font-size: 1rem;
+    transition: color 0.3s ease;
+}
 
-        .nav-links a:hover {
-            color: #4fb16d;
-        }
+.nav-links a:hover {
+    color: #4fb16d;
+}
 
-        .sign-in {
-            background-color: #3f8554;
-            color: white;
-            padding: 0.5rem 1.5rem;
-            border-radius: 4px;
-            text-decoration: none;
-            font-weight: 500;
-            transition: background-color 0.3s ease;
-            margin-left: 2rem;
-        }
+.sign-in {
+    background-color: #3f8554;
+    color: white;
+    padding: 0.5rem 1.5rem;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+    margin-left: 2rem;
+}
 
-        .sign-in:hover {
-            background-color:#12642b;
-        }
+.sign-in:hover {
+    background-color:#12642b;
+}
 
-        .gradient-bar {
-            height: 4px;
-            background: linear-gradient(180deg, #ede8d0, #ede8d0);
-            position: fixed; 
-            top: 71px;       
-            left: 0;
-            right: 0;
-            z-index: 999;    
-        }
+.gradient-bar {
+    height: 4px;
+    background: linear-gradient(180deg, #ede8d0, #ede8d0);
+    position: fixed; 
+    top: 71px;       
+    left: 0;
+    right: 0;
+    z-index: 999;    
+}
 
-        .nav-group {
-            display: flex;
-            align-items: center;
-            gap: 2rem; 
-        }
+.nav-group {
+    display: flex;
+    align-items: center;
+    gap: 2rem; 
+}
 
-        .section {
-            padding: 2rem;
-        }
+.section {
+    padding: 2rem;
+}
 
-        .section-title {
-            font-size: 1.8rem;
-            margin-bottom: 1.5rem;
-            color: white;
-        }
+.section-title {
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    color:#212a34 ;
+}
 
-        .button-group {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-            margin-bottom: 2rem;
-        }
+.button-group {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+}
 
-        .category-button {
-            padding: 0.8rem 1.5rem;
-            border: none;
-            border-radius: 25px;
-            background-color: #2a2a2a;
-            color: white;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
+.category-button {
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 25px;
+    background-color: #f3f4f6;
+    color: black;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
 
-        .category-button:hover {
-            background-color: #3a3a3a;
-        }
+.category-button:hover {
+    background-color: #eeeef1;
+}
 
-        .workout-cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
+.category-button.active {
+    background-color: #3b845c;
+    color: white;
+}
 
-        .workout-card {
-            background-color: #2a2a2a;
-            border-radius: 10px;
-            overflow: hidden;
-        }
+.workout-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
 
-        .workout-card img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-        }
+.workout-card {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    overflow: hidden;
+}
 
-        .card-content {
-            padding: 1rem;
-        }
+.workout-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
 
-        .difficulty {
-            display: inline-block;
-            padding: 0.2rem 0.5rem;
-            border-radius: 4px;
-            font-size: 0.9rem;
-            margin-bottom: 0.5rem;
-        }
+.card-content {
+    padding: 1rem;
+}
 
-        .intermediate {
-            background-color: #ffa500;
-            color: black;
-        }
+.difficulty {
+    display: inline-block;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+}
 
-        .beginner {
-            background-color: #00ff00;
-            color: black;
-        }
+.intermediate {
+    background-color: #ffa500;
+    color: black;
+    border-radius: 25px;
+}
 
-        .workout-title {
-            font-size: 1.2rem;
-            margin-bottom: 0.5rem;
-            color: white;
-        }
+.beginner {
+    background-color: #00ff00;
+    color: black;
+    border-radius: 25px;
+}
 
-        .instructor {
-            color: #888;
-            font-size: 0.9rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
+.workout-title {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    color: black;
+}
 
-        .workout-type {
-            color: #888;
-        }
-    </style>
+.instructor {
+    color: #888;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.workout-type {
+    color: #888;
+}    </style>
 </head>
 <body>
     <nav>
@@ -281,137 +288,558 @@
       </nav>
       <div class="gradient-bar"></div>
 
+    <!-- GYM Workouts Section -->
     <section class="section">
         <h2 class="section-title">GYM Workouts</h2>
         <div class="button-group">
-            <button class="category-button">Arms</button>
-            <button class="category-button">Chest</button>
-            <button class="category-button">Back</button>
-            <button class="category-button">Shoulders</button>
-            <button class="category-button">Legs</button>
-            <button class="category-button">Core</button>
+            <button class="category-button" data-filter="all">All</button>
+            <button class="category-button" data-filter="arms">Arms</button>
+            <button class="category-button" data-filter="chest">Chest</button>
+            <button class="category-button" data-filter="back">Back</button>
+            <button class="category-button" data-filter="shoulders">Shoulders</button>
+            <button class="category-button" data-filter="legs">Legs</button>
+            <button class="category-button" data-filter="core">Core</button>
         </div>
 
         <div class="workout-cards">
-            <div class="workout-card">
-                <img src="/api/placeholder/400/320" alt="Strength Training">
+            <!-- Arms Workouts -->
+            <div class="workout-card" data-category="arms">
+                <img src="./homepics/home1.jpg" alt="Arms Workout">
                 <div class="card-content">
                     <span class="difficulty intermediate">Intermediate</span>
-                    <h3 class="workout-title">10 min Bodyweight Strength</h3>
+                    <h3 class="workout-title">10 min Arm Strength</h3>
                     <div class="instructor">
-                        Adrian Williams • <span class="workout-type">Strength</span>
+                        Adrian Williams • <span class="workout-type">Arms</span>
                     </div>
                 </div>
             </div>
-            <div class="workout-card">
-                <img src="/api/placeholder/400/320" alt="Strength Training">
+            <div class="workout-card" data-category="arms">
+                <img src="./homepics/home2.jpg" alt="Arms Workout">
                 <div class="card-content">
-                    <span class="difficulty intermediate">Intermediate</span>
-                    <h3 class="workout-title">10 min Bodyweight Strength</h3>
+                    <span class="difficulty beginner">Beginner</span>
+                    <h3 class="workout-title">Beginner Arm Routine</h3>
                     <div class="instructor">
-                        Adrian Williams • <span class="workout-type">Strength</span>
+                        John Smith • <span class="workout-type">Arms</span>
                     </div>
                 </div>
             </div>
-            <div class="workout-card">
-                <img src="/api/placeholder/400/320" alt="Weight Training">
+            <div class="workout-card" data-category="arms">
+                <img src="./homepics/home3.jpg" alt="Arms Workout">
                 <div class="card-content">
                     <span class="difficulty intermediate">Intermediate</span>
-                    <h3 class="workout-title">30 min Full Body Strength</h3>
+                    <h3 class="workout-title">Advanced Arm Workout</h3>
                     <div class="instructor">
-                        John Smith • <span class="workout-type">Strength</span>
+                        Mike Johnson • <span class="workout-type">Arms</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chest Workouts -->
+            <div class="workout-card" data-category="chest">
+                <img src="./homepics/home1.jpg" alt="Chest Workout">
+                <div class="card-content">
+                    <span class="difficulty intermediate">Intermediate</span>
+                    <h3 class="workout-title">Chest Building Routine</h3>
+                    <div class="instructor">
+                        Adrian Williams • <span class="workout-type">Chest</span>
+                    </div>
+                </div>
+            </div>
+            <div class="workout-card" data-category="chest">
+                <img src="./homepics/home2.jpg" alt="Chest Workout">
+                <div class="card-content">
+                    <span class="difficulty beginner">Beginner</span>
+                    <h3 class="workout-title">Beginner Chest Workout</h3>
+                    <div class="instructor">
+                        John Smith • <span class="workout-type">Chest</span>
+                    </div>
+                </div>
+            </div>
+            <div class="workout-card" data-category="chest">
+                <img src="./homepics/home3.jpg" alt="Chest Workout">
+                <div class="card-content">
+                    <span class="difficulty intermediate">Intermediate</span>
+                    <h3 class="workout-title">Advanced Chest Routine</h3>
+                    <div class="instructor">
+                        Mike Johnson • <span class="workout-type">Chest</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Back Workouts -->
+            <div class="workout-card" data-category="back">
+                <img src="./homepics/home1.jpg" alt="Back Workout">
+                <div class="card-content">
+                    <span class="difficulty intermediate">Intermediate</span>
+                    <h3 class="workout-title">Back Strength Training</h3>
+                    <div class="instructor">
+                        Adrian Williams • <span class="workout-type">Back</span>
+                    </div>
+                </div>
+            </div>
+            <div class="workout-card" data-category="back">
+                <img src="./homepics/home2.jpg" alt="Back Workout">
+                <div class="card-content">
+                    <span class="difficulty beginner">Beginner</span>
+                    <h3 class="workout-title">Beginner Back Routine</h3>
+                    <div class="instructor">
+                        John Smith • <span class="workout-type">Back</span>
+                    </div>
+                </div>
+            </div>
+            <div class="workout-card" data-category="back">
+                <img src="./homepics/home3.jpg" alt="Back Workout">
+                <div class="card-content">
+                    <span class="difficulty intermediate">Intermediate</span>
+                    <h3 class="workout-title">Advanced Back Workout</h3>
+                    <div class="instructor">
+                        Mike Johnson • <span class="workout-type">Back</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Shoulders Workouts -->
+            <div class="workout-card" data-category="shoulders">
+                <img src="./homepics/home1.jpg" alt="Shoulders Workout">
+                <div class="card-content">
+                    <span class="difficulty intermediate">Intermediate</span>
+                    <h3 class="workout-title">Shoulder Strength Training</h3>
+                    <div class="instructor">
+                        Adrian Williams • <span class="workout-type">Shoulders</span>
+                    </div>
+                </div>
+            </div>
+            <div class="workout-card" data-category="shoulders">
+                <img src="./homepics/home2.jpg" alt="Shoulders Workout">
+                <div class="card-content">
+                    <span class="difficulty beginner">Beginner</span>
+                    <h3 class="workout-title">Beginner Shoulder Routine</h3>
+                    <div class="instructor">
+                        John Smith • <span class="workout-type">Shoulders</span>
+                    </div>
+                </div>
+            </div>
+            <div class="workout-card" data-category="shoulders">
+                <img src="./homepics/home3.jpg" alt="Shoulders Workout">
+                <div class="card-content">
+                    <span class="difficulty intermediate">Intermediate</span>
+                    <h3 class="workout-title">Advanced Shoulder Workout</h3>
+                    <div class="instructor">
+                        Mike Johnson • <span class="workout-type">Shoulders</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Legs Workouts -->
+            <div class="workout-card" data-category="legs">
+                <img src="./homepics/home1.jpg" alt="Legs Workout">
+                <div class="card-content">
+                    <span class="difficulty intermediate">Intermediate</span>
+                    <h3 class="workout-title">Leg Day Strength</h3>
+                    <div class="instructor">
+                        Adrian Williams • <span class="workout-type">Legs</span>
+                    </div>
+                </div>
+            </div>
+            <div class="workout-card" data-category="legs">
+                <img src="./homepics/home2.jpg" alt="Legs Workout">
+                <div class="card-content">
+                    <span class="difficulty beginner">Beginner</span>
+                    <h3 class="workout-title">Beginner Leg Routine</h3>
+                    <div class="instructor">
+                        John Smith • <span class="workout-type">Legs</span>
+                    </div>
+                </div>
+            </div>
+            <div class="workout-card" data-category="legs">
+                <img src="./homepics/home3.jpg" alt="Legs Workout">
+                <div class="card-content">
+                    <span class="difficulty intermediate">Intermediate</span>
+                    <h3 class="workout-title">Advanced Leg Workout</h3>
+                    <div class="instructor">
+                        Mike Johnson • <span class="workout-type">Legs</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Core Workouts -->
+            <div class="workout-card" data-category="core">
+                <img src="./homepics/home1.jpg" alt="Core Workout">
+                <div class="card-content">
+                    <span class="difficulty intermediate">Intermediate</span>
+                    <h3 class="workout-title">Core Strength Training</h3>
+                    <div class="instructor">
+                        Adrian Williams • <span class="workout-type">Core</span>
+                    </div>
+                </div>
+            </div>
+            <div class="workout-card" data-category="core">
+                <img src="./homepics/home2.jpg" alt="Core Workout">
+                <div class="card-content">
+                    <span class="difficulty beginner">Beginner</span>
+                    <h3 class="workout-title">Beginner Core Routine</h3>
+                    <div class="instructor">
+                        John Smith • <span class="workout-type">Core</span>
+                    </div>
+                </div>
+            </div>
+            <div class="workout-card" data-category="core">
+                <img src="./homepics/home3.jpg" alt="Core Workout">
+                <div class="card-content">
+                    <span class="difficulty intermediate">Intermediate</span>
+                    <h3 class="workout-title">Advanced Core Workout</h3>
+                    <div class="instructor">
+                        Mike Johnson • <span class="workout-type">Core</span>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- Yoga Section -->
     <section class="section">
         <h2 class="section-title">Yoga</h2>
         <div class="button-group">
-            <button class="category-button">Daily Meditation</button>
-            <button class="category-button">Body Parts Focused</button>
-            <button class="category-button">Health Care</button>
-            <button class="category-button">Mindfulness</button>
-            <button class="category-button">Flexibility</button>
+            <button class="category-button" data-filter="all">All</button>
+            <button class="category-button" data-filter="meditation">Daily Meditation</button>
+            <button class="category-button" data-filter="body-parts">Body Parts Focused</button>
+            <button class="category-button" data-filter="mindfulness">Mindfulness</button>
+            <button class="category-button" data-filter="flexibility">Flexibility</button>
         </div>
 
         <div class="workout-cards">
-            <div class="workout-card">
-                <img src="/api/placeholder/400/320" alt="Strength Training">
+            <!-- Meditation Workouts -->
+            <div class="workout-card" data-category="meditation">
+                <img src="./yogapics/yoga3.jpg" alt="Meditation">
                 <div class="card-content">
                     <span class="difficulty intermediate">Intermediate</span>
-                    <h3 class="workout-title">10 min Bodyweight Strength</h3>
+                    <h3 class="workout-title">Morning Meditation</h3>
                     <div class="instructor">
-                        Adrian Williams • <span class="workout-type">Strength</span>
+                        Sarah Lee • <span class="workout-type">Meditation</span>
                     </div>
                 </div>
             </div>
-            <div class="workout-card">
-                <img src="/api/placeholder/400/320" alt="Pop Pilates">
-                <div class="card-content">
-                    <span class="difficulty intermediate">Intermediate</span>
-                    <h3 class="workout-title">20 min Pop Pilates</h3>
-                    <div class="instructor">
-                        Kristen McGee • <span class="workout-type">Strength</span>
-                    </div>
-                </div>
-            </div>
-            <div class="workout-card">
-                <img src="/api/placeholder/400/320" alt="Yoga Flow">
+            <div class="workout-card" data-category="meditation">
+                <img src="./yogapics/yoga2.jpg" alt="Meditation">
                 <div class="card-content">
                     <span class="difficulty beginner">Beginner</span>
-                    <h3 class="workout-title">15 min Morning Yoga</h3>
+                    <h3 class="workout-title">Evening Relaxation</h3>
                     <div class="instructor">
-                        Sarah Lee • <span class="workout-type">Yoga</span>
+                        Kristen McGee • <span class="workout-type">Meditation</span>
+                    </div>
+                </div>
+            </div>
+            <div class="workout-card" data-category="meditation">
+                <img src="./yogapics/yoga1.jpg" alt="Meditation">
+                <div class="card-content">
+                    <span class="difficulty intermediate">Intermediate</span>
+                    <h3 class="workout-title">Deep Breathing</h3>
+                    <div class="instructor">
+                        Sarah Lee • <span class="workout-type">Meditation</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Body Parts Focused Workouts -->
+            <div class="workout-card" data-category="body-parts">
+                <img src="./yogapics/yoga3.jpg" alt="Body Parts Focused">
+                <div class="card-content">
+                    <span class="difficulty intermediate">Intermediate</span>
+                    <h3 class="workout-title">Hip Opening Flow</h3>
+                    <div class="instructor">
+                        Kristen McGee • <span class="workout-type">Body Parts</span>
+                    </div>
+                </div>
+            </div>
+            <div class="workout-card" data-category="body-parts">
+                <img src="./yogapics/yoga2.jpg" alt="Body Parts Focused">
+                <div class="card-content">
+                    <span class="difficulty beginner">Beginner</span>
+                    <h3 class="workout-title">Shoulder Stretch</h3>
+                    <div class="instructor">
+                        Sarah Lee • <span class="workout-type">Body Parts</span>
+                    </div>
+                </div>
+            </div>
+            <div class="workout-card" data-category="body-parts">
+                <img src="./yogapics/yoga1.jpg" alt="Body Parts Focused">
+                <div class="card-content">
+                    <span class="difficulty intermediate">Intermediate</span>
+                    <h3 class="workout-title">Back Strengthening</h3>
+                    <div class="instructor">
+                        Kristen McGee • <span class="workout-type">Body Parts</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mindfulness Workouts -->
+            <div class="workout-card" data-category="mindfulness">
+                <img src="./yogapics/yoga3.jpg" alt="Mindfulness">
+                <div class="card-content">
+                    <span class="difficulty intermediate">Intermediate</span>
+                    <h3 class="workout-title">Mindful Breathing</h3>
+                    <div class="instructor">
+                        Sarah Lee • <span class="workout-type">Mindfulness</span>
+                    </div>
+                </div>
+            </div>
+            <div class="workout-card" data-category="mindfulness">
+                <img src="./yogapics/yoga2.jpg" alt="Mindfulness">
+                <div class="card-content">
+                    <span class="difficulty beginner">Beginner</span>
+                    <h3 class="workout-title">Guided Relaxation</h3>
+                    <div class="instructor">
+                        Kristen McGee • <span class="workout-type">Mindfulness</span>
+                    </div>
+                </div>
+            </div>
+            <div class="workout-card" data-category="mindfulness">
+                <img src="./yogapics/yoga1.jpg" alt="Mindfulness">
+                <div class="card-content">
+                    <span class="difficulty intermediate">Intermediate</span>
+                    <h3 class="workout-title">Stress Relief</h3>
+                    <div class="instructor">
+                        Sarah Lee • <span class="workout-type">Mindfulness</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Flexibility Workouts -->
+            <div class="workout-card" data-category="flexibility">
+                <img src="./yogapics/yoga3.jpg" alt="Flexibility">
+                <div class="card-content">
+                    <span class="difficulty intermediate">Intermediate</span>
+                    <h3 class="workout-title">Flexibility Flow</h3>
+                    <div class="instructor">
+                        Kristen McGee • <span class="workout-type">Flexibility</span>
+                    </div>
+                </div>
+            </div>
+            <div class="workout-card" data-category="flexibility">
+                <img src="./yogapics/yoga2.jpg" alt="Flexibility">
+                <div class="card-content">
+                    <span class="difficulty beginner">Beginner</span>
+                    <h3 class="workout-title">Beginner Stretching</h3>
+                    <div class="instructor">
+                        Sarah Lee • <span class="workout-type">Flexibility</span>
+                    </div>
+                </div>
+            </div>
+            <div class="workout-card" data-category="flexibility">
+                <img src="./yogapics/yoga1.jpg" alt="Flexibility">
+                <div class="card-content">
+                    <span class="difficulty intermediate">Intermediate</span>
+                    <h3 class="workout-title">Advanced Flexibility</h3>
+                    <div class="instructor">
+                        Kristen McGee • <span class="workout-type">Flexibility</span>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- Home Workouts Section -->
     <section class="section">
         <h2 class="section-title">Home Workouts</h2>
         <div class="button-group">
-            <button class="category-button">No Equipment</button>
-            <button class="category-button">Minimal Equipment</button>
-            <button class="category-button">HIIT</button>
-            <button class="category-button">Cardio</button>
-            <button class="category-button">Strength Training</button>
+            <button class="category-button" data-filter="all">All</button>
+            <button class="category-button" data-filter="no-equipment">No Equipment</button>
+            <button class="category-button" data-filter="minimal-equipment">Minimal Equipment</button>
+            <button class="category-button" data-filter="hiit">HIIT</button>
+            <button class="category-button" data-filter="cardio">Cardio</button>
+            <button class="category-button" data-filter="strength">Strength Training</button>
         </div>
 
         <div class="workout-cards">
-            <div class="workout-card">
-                <img src="/api/placeholder/400/320" alt="Strength Training">
+            <!-- No Equipment Workouts -->
+            <div class="workout-card" data-category="no-equipment">
+                <img src="./gympics/gym1.jpg" alt="No Equipment Workout">
                 <div class="card-content">
                     <span class="difficulty intermediate">Intermediate</span>
-                    <h3 class="workout-title">10 min Bodyweight Strength</h3>
+                    <h3 class="workout-title">Bodyweight Workout</h3>
                     <div class="instructor">
-                        Adrian Williams • <span class="workout-type">Strength</span>
+                        Adrian Williams • <span class="workout-type">No Equipment</span>
                     </div>
                 </div>
             </div>
-            <div class="workout-card">
-                <img src="/api/placeholder/400/320" alt="Seated Adaptive">
+            <div class="workout-card" data-category="no-equipment">
+                <img src="./gympics/gym2.jpg" alt="No Equipment Workout">
                 <div class="card-content">
                     <span class="difficulty beginner">Beginner</span>
-                    <h3 class="workout-title">20 min Seated Adaptive: Bodyweight</h3>
+                    <h3 class="workout-title">Beginner Bodyweight</h3>
                     <div class="instructor">
-                        Logan Aldridge • <span class="workout-type">Strength</span>
+                        John Smith • <span class="workout-type">No Equipment</span>
                     </div>
                 </div>
             </div>
-            <div class="workout-card">
-                <img src="/api/placeholder/400/320" alt="HIIT Workout">
+            <div class="workout-card" data-category="no-equipment">
+                <img src="./gympics/gym3.jpg" alt="No Equipment Workout">
+                <div class="card-content">
+                    <span class="difficulty intermediate">Intermediate</span>
+                    <h3 class="workout-title">Advanced Bodyweight</h3>
+                    <div class="instructor">
+                        Mike Johnson • <span class="workout-type">No Equipment</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Minimal Equipment Workouts -->
+            <div class="workout-card" data-category="minimal-equipment">
+                <img src="./gympics/gym1.jpg" alt="Minimal Equipment Workout">
+                <div class="card-content">
+                    <span class="difficulty intermediate">Intermediate</span>
+                    <h3 class="workout-title">Dumbbell Routine</h3>
+                    <div class="instructor">
+                        Adrian Williams • <span class="workout-type">Minimal Equipment</span>
+                    </div>
+                </div>
+            </div>
+            <div class="workout-card" data-category="minimal-equipment">
+                <img src="./gympics/gym2.jpg" alt="Minimal Equipment Workout">
+                <div class="card-content">
+                    <span class="difficulty beginner">Beginner</span>
+                    <h3 class="workout-title">Resistance Band Workout</h3>
+                    <div class="instructor">
+                        John Smith • <span class="workout-type">Minimal Equipment</span>
+                    </div>
+                </div>
+            </div>
+            <div class="workout-card" data-category="minimal-equipment">
+                <img src="./gympics/gym3.jpg" alt="Minimal Equipment Workout">
+                <div class="card-content">
+                    <span class="difficulty intermediate">Intermediate</span>
+                    <h3 class="workout-title">Kettlebell Flow</h3>
+                    <div class="instructor">
+                        Mike Johnson • <span class="workout-type">Minimal Equipment</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- HIIT Workouts -->
+            <div class="workout-card" data-category="hiit">
+                <img src="./gympics/gym1.jpg" alt="HIIT Workout">
                 <div class="card-content">
                     <span class="difficulty intermediate">Intermediate</span>
                     <h3 class="workout-title">30 min HIIT Cardio</h3>
+                    <div class="instructor">
+                        Adrian Williams • <span class="workout-type">HIIT</span>
+                    </div>
+                </div>
+            </div>
+            <div class="workout-card" data-category="hiit">
+                <img src="./gympics/gym2.jpg" alt="HIIT Workout">
+                <div class="card-content">
+                    <span class="difficulty beginner">Beginner</span>
+                    <h3 class="workout-title">Beginner HIIT</h3>
+                    <div class="instructor">
+                        John Smith • <span class="workout-type">HIIT</span>
+                    </div>
+                </div>
+            </div>
+            <div class="workout-card" data-category="hiit">
+                <img src="./gympics/gym3.jpg" alt="HIIT Workout">
+                <div class="card-content">
+                    <span class="difficulty intermediate">Intermediate</span>
+                    <h3 class="workout-title">Advanced HIIT</h3>
+                    <div class="instructor">
+                        Mike Johnson • <span class="workout-type">HIIT</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cardio Workouts -->
+            <div class="workout-card" data-category="cardio">
+                <img src="./gympics/gym1.jpg" alt="Cardio Workout">
+                <div class="card-content">
+                    <span class="difficulty intermediate">Intermediate</span>
+                    <h3 class="workout-title">Cardio Blast</h3>
+                    <div class="instructor">
+                        Adrian Williams • <span class="workout-type">Cardio</span>
+                    </div>
+                </div>
+            </div>
+            <div class="workout-card" data-category="cardio">
+                <img src="./gympics/gym2.jpg" alt="Cardio Workout">
+                <div class="card-content">
+                    <span class="difficulty beginner">Beginner</span>
+                    <h3 class="workout-title">Beginner Cardio</h3>
+                    <div class="instructor">
+                        John Smith • <span class="workout-type">Cardio</span>
+                    </div>
+                </div>
+            </div>
+            <div class="workout-card" data-category="cardio">
+                <img src="./gympics/gym3.jpg" alt="Cardio Workout">
+                <div class="card-content">
+                    <span class="difficulty intermediate">Intermediate</span>
+                    <h3 class="workout-title">Advanced Cardio</h3>
                     <div class="instructor">
                         Mike Johnson • <span class="workout-type">Cardio</span>
                     </div>
                 </div>
             </div>
+
+            <!-- Strength Training Workouts -->
+            <div class="workout-card" data-category="strength">
+                <img src="./gympics/gym1.jpg" alt="Strength Training">
+                <div class="card-content">
+                    <span class="difficulty intermediate">Intermediate</span>
+                    <h3 class="workout-title">Full Body Strength</h3>
+                    <div class="instructor">
+                        Adrian Williams • <span class="workout-type">Strength</span>
+                    </div>
+                </div>
+            </div>
+            <div class="workout-card" data-category="strength">
+                <img src="./gympics/gym2.jpg" alt="Strength Training">
+                <div class="card-content">
+                    <span class="difficulty beginner">Beginner</span>
+                    <h3 class="workout-title">Beginner Strength</h3>
+                    <div class="instructor">
+                        John Smith • <span class="workout-type">Strength</span>
+                    </div>
+                </div>
+            </div>
+            <div class="workout-card" data-category="strength">
+                <img src="./gympics/gym3.jpg" alt="Strength Training">
+                <div class="card-content">
+                    <span class="difficulty intermediate">Intermediate</span>
+                    <h3 class="workout-title">Advanced Strength</h3>
+                    <div class="instructor">
+                        Mike Johnson • <span class="workout-type">Strength</span>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
+
+    <!-- JavaScript for Filtering -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.category-button').forEach(button => {
+                button.addEventListener('click', function() {
+                    const section = this.closest('.section');
+                    const workoutCards = section.querySelector('.workout-cards');
+                    const filterValue = this.dataset.filter;
+                    const isActive = this.classList.contains('active');
+
+                    // Remove active class from all buttons in the group
+                    this.parentElement.querySelectorAll('.category-button').forEach(btn => {
+                        btn.classList.remove('active');
+                    });
+
+                    // Toggle cards based on filter
+                    workoutCards.querySelectorAll('.workout-card').forEach(card => {
+                        if (filterValue === 'all' || card.dataset.category === filterValue) {
+                            card.style.display = 'block';
+                            this.classList.add('active');
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            });
+        });
+    </script>
 </body>
 </html>
