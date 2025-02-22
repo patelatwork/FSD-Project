@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FitHealth</title>
-    <style>/* styles.css */
+    <style>/* Reset and Base Styles */
         * {
             margin: 0;
             padding: 0;
@@ -12,124 +12,364 @@
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
         }
         
+        /* Enhanced Background & Global Styles */
         body {
-            background-color: #ffffff;
-            color: white;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e8edf5 100%);
             padding-top: 75px;
+            color: #2d3748;
         }
         
+        /* Navigation Styles */
         nav {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 1rem 5%;
-            background-color: #fffff0;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-        }
+    display: flex;
+    align-items: center;
+    justify-content: space-between; 
+    padding: 1rem 5%;
+    background-color: #fffff0;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #333;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-right: auto;
+  }
+
+  .logo svg {
+    width: 24px;
+    height: 24px;
+    margin-right: 8px;
+    fill: #4fb16d;
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+
+  .dropdown > a {
+    display: inline-block;
+    padding: 0.5rem 0;
+  }
+
+  .dropdown-content {
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    background-color: #fffff0;
+    min-width: 200px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+    border-radius: 4px;
+    padding: 0.5rem 0;
+    z-index: 1001;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 0.5rem;
+    transition: all 0.3s ease;
+  }
+
+  .dropdown-content::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: 0;
+    right: 0;
+    height: 10px;
+    background: transparent;
+  }
+
+  .dropdown:hover .dropdown-content {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  .dropdown-content a {
+    color: #666;
+    padding: 0.75rem 1.5rem;
+    text-decoration: none;
+    display: block;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  .dropdown-content a:hover {
+    background-color: #f5f5f5;
+    color: #4fb16d;
+  }
+
+  .dropdown > a::after {
+    content: '▼';
+    font-size: 0.7em;
+    margin-left: 0.5em;
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  .nav-links a {
+    text-decoration: none;
+    color: #666;
+    font-size: 1rem;
+    transition: color 0.3s ease;
+  }
+
+  .nav-links a:hover {
+    color: #4fb16d;
+  }
+
+  .sign-in {
+    background-color: #3f8554;
+    color: white;
+    padding: 0.5rem 1.5rem;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+    margin-left: 2rem;
+  }
+
+  .sign-in:hover {
+    background-color:#12642b;
+  }
+
+  .gradient-bar {
+    height: 4px;
+    background: linear-gradient(180deg, #ede8d0, #ede8d0);
+    position: fixed; 
+    top: 71px;       
+    left: 0;
+    right: 0;
+    z-index: 999;    
+  }
+
+  .nav-group {
+    display: flex;
+    align-items: center;
+    gap: 2rem; 
+  }
         
-        .logo {
-            display: flex;
-            align-items: center;
-            text-decoration: none;
-            color: #333;
-            font-size: 1.5rem;
-            font-weight: bold;
-            margin-right: auto;
-        }
-        
-        .logo svg {
-            width: 24px;
-            height: 24px;
-            margin-right: 8px;
-            fill: #4fb16d;
-        }
-        
-        .nav-links {
-            display: flex;
-            align-items: center;
-            gap: 2rem;
-            list-style: none;
-        }
-        
-        .dropdown {
-            position: relative;
-            display: inline-block;
-        }
-        
-        .dropdown > a {
-            display: inline-block;
-            padding: 0.5rem 0;
-        }
-        
-        .dropdown-content {
-            visibility: hidden;
+        /* Enhanced Card Styles */
+        .workout-card {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
             opacity: 0;
-            position: absolute;
-            background-color: #fffff0;
-            min-width: 200px;
-            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
-            border-radius: 4px;
-            padding: 0.5rem 0;
-            z-index: 1001;
-            top: 100%;
-            left: 50%;
-            transform: translateX(-50%);
-            margin-top: 0.5rem;
+            transform: translateY(20px);
+            animation: fadeInUp 1s ease forwards;
+        }
+        
+        .workout-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.15);
+        }
+        
+        .workout-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 16px 16px 0 0;
             transition: all 0.3s ease;
         }
         
-        .dropdown-content::before {
+        .workout-card:hover img {
+            filter: brightness(1.05);
+        }
+        
+        /* Enhanced Grid Layout */
+        .workout-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 2.5rem;
+            padding: 2rem 0;
+        }
+        
+        /* Featured Workout Section */
+        .featured-workout {
+            grid-column: 1 / -1;
+            margin-bottom: 2rem;
+        }
+        
+        .featured-workout .workout-card {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr;
+            gap: 2rem;
+            padding: 1.5rem;
+        }
+        
+        .featured-workout img {
+            height: 100%;
+            object-fit: cover;
+            border-radius: 12px;
+        }
+        
+        /* Enhanced Button Styles */
+        .category-button {
+            background: white;
+            color: #4a5568;
+            padding: 0.8rem 1.8rem;
+            border-radius: 25px;
+            border: 2px solid transparent;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+        
+        .category-button:hover {
+            background: #3b845c;
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        .category-button.active {
+            background: #3b845c;
+            color: white;
+            box-shadow: 0 4px 12px rgba(59, 132, 92, 0.3);
+        }
+        
+        /* Section Styles */
+        .section {
+            padding: 3rem 5%;
+            margin-bottom: 2rem;
+        }
+        
+        .section-title {
+            font-size: 2.2rem;
+            color: #2d3748;
+            margin-bottom: 2rem;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+        
+        .section-title::after {
             content: '';
             position: absolute;
-            top: -10px;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: #3b845c;
+            border-radius: 2px;
+        }
+        
+        /* Button Groups */
+        .button-group {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+        }
+        
+        /* Difficulty Badges */
+        .difficulty {
+            padding: 0.4rem 1rem;
+            font-weight: 500;
+            font-size: 0.85rem;
+            letter-spacing: 0.5px;
+            border-radius: 20px;
+            display: inline-block;
+        }
+        
+        .beginner {
+            background-color: #00ff00;
+            color: black;
+        }
+        
+        .intermediate {
+            background-color: #ffa500;
+            color: black;
+        }
+        
+        .Advanced {
+            background-color: #ff0000;
+            color: black;
+        }
+        
+        /* Card Content */
+        .card-content {
+            padding: 1.5rem;
+        }
+        
+        .workout-title {
+            font-size: 1.3rem;
+            margin: 0.8rem 0;
+            color: #2d3748;
+        }
+        
+        .instructor {
+            color: #718096;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.95rem;
+        }
+        
+        /* Show More Button */
+        .show-more-btn {
+            background: #3b845c;
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 30px;
+            border: none;
+            font-weight: 500;
+            margin: 2rem auto;
+            display: block;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .show-more-btn:hover {
+            background: #2d6847;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(59, 132, 92, 0.3);
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Utility Classes */
+        .hidden {
+            display: none !important;
+        }
+        
+        /* Gradient Bar */
+        .gradient-bar {
+            height: 4px;
+            background: linear-gradient(180deg, #ede8d0, #ede8d0);
+            position: fixed;
+            top: 71px;
             left: 0;
             right: 0;
-            height: 10px;
-            background: transparent;
+            z-index: 999;
         }
         
-        .dropdown:hover .dropdown-content {
-            visibility: visible;
-            opacity: 1;
-        }
-        
-        .dropdown-content a {
-            color: #666;
-            padding: 0.75rem 1.5rem;
-            text-decoration: none;
-            display: block;
-            transition: background-color 0.3s ease, color 0.3s ease;
-        }
-        
-        .dropdown-content a:hover {
-            background-color: #f5f5f5;
-            color: #4fb16d;
-        }
-        
-        .dropdown > a::after {
-            content: '▼';
-            font-size: 0.7em;
-            margin-left: 0.5em;
-            display: inline-block;
-            vertical-align: middle;
-        }
-        
-        .nav-links a {
-            text-decoration: none;
-            color: #666;
-            font-size: 1rem;
-            transition: color 0.3s ease;
-        }
-        
-        .nav-links a:hover {
-            color: #4fb16d;
-        }
-        
+        /* Sign In Button */
         .sign-in {
             background-color: #3f8554;
             color: white;
@@ -142,147 +382,23 @@
         }
         
         .sign-in:hover {
-            background-color:#12642b;
+            background-color: #12642b;
         }
         
-        .gradient-bar {
-            height: 4px;
-            background: linear-gradient(180deg, #ede8d0, #ede8d0);
-            position: fixed;
-            top: 71px;
-            left: 0;
-            right: 0;
-            z-index: 999;
-        }
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .workout-cards {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 1.5rem;
+            }
         
-        .nav-group {
-            display: flex;
-            align-items: center;
-            gap: 2rem;
-        }
+            .section {
+                padding: 2rem 3%;
+            }
         
-        .section {
-            padding: 2rem;
-        }
-        
-        .section-title {
-            font-size: 1.8rem;
-            margin-bottom: 1.5rem;
-            color:#212a34;
-        }
-        
-        .button-group {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-            margin-bottom: 2rem;
-        }
-        
-        .category-button {
-            padding: 0.8rem 1.5rem;
-            border: none;
-            border-radius: 25px;
-            background-color: #f3f4f6;
-            color: black;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-        
-        .category-button:hover {
-            background-color: #eeeef1;
-        }
-        
-        .category-button.active {
-            background-color: #3b845c;
-            color: white;
-        }
-        
-        .workout-cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-            gap: 3rem;
-            margin-top: 3rem;
-        }
-        
-        .workout-card {
-            background-color: white;
-            border-radius: 10px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            overflow: hidden;
-        }
-        
-        .workout-card img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-        }
-        
-        .card-content {
-            padding: 1rem;
-        }
-        
-        .difficulty {
-            display: inline-block;
-            padding: 0.2rem 0.5rem;
-            border-radius: 4px;
-            font-size: 0.9rem;
-            margin-bottom: 0.5rem;
-        }
-        
-        .intermediate {
-            background-color: #ffa500;
-            color: black;
-            border-radius: 25px;
-        }
-        
-        .beginner {
-            background-color: #00ff00;
-            color: black;
-            border-radius: 25px;
-        }
-        
-        .Advanced {
-            background-color: #ff0000;
-            color: black;
-            border-radius: 25px;
-        }
-        
-        .workout-title {
-            font-size: 1.2rem;
-            margin-bottom: 0.5rem;
-            color: black;
-        }
-        
-        .instructor {
-            color: #888;
-            font-size: 0.9rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        
-        .workout-type {
-            color: #888;
-        }
-        
-        .show-more-btn {
-            display: block;
-            margin: 2rem auto;
-            padding: 0.8rem 1.5rem;
-            border: none;
-            border-radius: 25px;
-            background-color: #3b845c;
-            color: white;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-        
-        .show-more-btn:hover {
-            background-color: #2d6847;
-        }
-        
-        .workout-card.hidden {
-            display: none !important;
+            .featured-workout .workout-card {
+                grid-template-columns: 1fr;
+            }
         }</style>
 </head>
 <body>
@@ -829,107 +945,175 @@
     </section>
 
     <!-- JavaScript for Filtering -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            document.querySelectorAll('.category-button').forEach(button => {
-                button.addEventListener('click', function() {
-                    const section = this.closest('.section');
-                    const workoutCards = section.querySelector('.workout-cards');
-                    const filterValue = this.dataset.filter;
-                    const isActive = this.classList.contains('active');
-
-                    // Remove active class from all buttons in the group
-                    this.parentElement.querySelectorAll('.category-button').forEach(btn => {
-                        btn.classList.remove('active');
-                    });
-
-                    // Toggle cards based on filter
-                    workoutCards.querySelectorAll('.workout-card').forEach(card => {
-                        if (filterValue === 'all' || card.dataset.category === filterValue) {
-                            card.style.display = 'block';
-                            this.classList.add('active');
-                        } else {
-                            card.style.display = 'none';
-                        }
-                    });
-                });
-            });
-        });        document.addEventListener('DOMContentLoaded', function() {
-            // Initialize all sections
-            document.querySelectorAll('.section').forEach(section => {
-                const workoutCards = section.querySelector('.workout-cards');
-                const cards = workoutCards.querySelectorAll('.workout-card');
-                
-                // Only add show more button if there are more than 3 cards
-                if (cards.length > 3) {
-                    // Initially hide cards after first 3
-                    cards.forEach((card, index) => {
-                        if (index >= 3) {
-                            card.classList.add('hidden');
-                        }
-                    });
+    <script>document.addEventListener('DOMContentLoaded', function() {
+        // Initialize all sections
+        initializeSections();
         
-                    // Create and add show more button
-                    const showMoreBtn = document.createElement('button');
-                    showMoreBtn.className = 'show-more-btn';
-                    showMoreBtn.textContent = 'Show More';
-                    workoutCards.insertAdjacentElement('afterend', showMoreBtn);
+        // Initialize animations
+        initializeAnimations();
         
-                    // Add click event for show more/less
-                    showMoreBtn.addEventListener('click', function() {
-                        const isShowingMore = showMoreBtn.textContent === 'Show Less';
-                        cards.forEach((card, index) => {
-                            if (index >= 3) {
-                                if (isShowingMore) {
-                                    card.classList.add('hidden');
-                                } else {
-                                    card.classList.remove('hidden');
-                                }
-                            }
-                        });
-                        showMoreBtn.textContent = isShowingMore ? 'Show More' : 'Show Less';
-                    });
-                }
-            });
+        // Initialize category filtering
+        initializeCategoryFilters();
         
-            // Category filtering
-            document.querySelectorAll('.category-button').forEach(button => {
-                button.addEventListener('click', function() {
-                    const section = this.closest('.section');
-                    const workoutCards = section.querySelector('.workout-cards');
-                    const filterValue = this.dataset.filter;
-                    const showMoreBtn = section.querySelector('.show-more-btn');
-        
-                    // Remove active class from all buttons
-                    this.parentElement.querySelectorAll('.category-button').forEach(btn => {
-                        btn.classList.remove('active');
-                    });
-                    this.classList.add('active');
-        
-                    // Filter and show/hide cards
-                    let visibleCount = 0;
-                    workoutCards.querySelectorAll('.workout-card').forEach((card, index) => {
-                        if (filterValue === 'all' || card.dataset.category === filterValue) {
-                            visibleCount++;
-                            if (visibleCount <= 3) {
-                                card.style.display = 'block';
-                                card.classList.remove('hidden');
-                            } else {
-                                card.classList.add('hidden');
-                            }
-                        } else {
-                            card.style.display = 'none';
-                        }
-                    });
-        
-                    // Update show more button
-                    if (showMoreBtn) {
-                        showMoreBtn.style.display = visibleCount > 3 ? 'block' : 'none';
-                        showMoreBtn.textContent = 'Show More';
+        // Initialize smooth scroll
+        initializeSmoothScroll();
+    });
+    
+    function initializeSections() {
+        document.querySelectorAll('.section').forEach(section => {
+            const workoutCards = section.querySelector('.workout-cards');
+            const cards = workoutCards.querySelectorAll('.workout-card');
+            
+            // Only add show more button if there are more than 3 cards
+            if (cards.length > 3) {
+                // Initially hide cards after first 3
+                cards.forEach((card, index) => {
+                    if (index >= 3) {
+                        card.classList.add('hidden');
                     }
                 });
+    
+                // Create and add show more button
+                const showMoreBtn = document.createElement('button');
+                showMoreBtn.className = 'show-more-btn';
+                showMoreBtn.textContent = 'Show More';
+                workoutCards.insertAdjacentElement('afterend', showMoreBtn);
+    
+                // Add click event for show more/less
+                showMoreBtn.addEventListener('click', handleShowMoreClick);
+            }
+        });
+    }
+    
+    function initializeAnimations() {
+        // Staggered card animation on load
+        const cards = document.querySelectorAll('.workout-card');
+        cards.forEach((card, index) => {
+            card.style.animationDelay = `${index * 0.1}s`;
+        });
+    
+        // Add hover animations to buttons
+        document.querySelectorAll('.category-button').forEach(button => {
+            button.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-2px)';
+            });
+            button.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
             });
         });
-    </script>
+    }
+    
+    function initializeCategoryFilters() {
+        document.querySelectorAll('.category-button').forEach(button => {
+            button.addEventListener('click', function() {
+                const section = this.closest('.section');
+                const workoutCards = section.querySelector('.workout-cards');
+                const filterValue = this.dataset.filter;
+                const showMoreBtn = section.querySelector('.show-more-btn');
+    
+                // Handle button active states
+                this.parentElement.querySelectorAll('.category-button').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                this.classList.add('active');
+    
+                // Filter and animate cards
+                let visibleCount = 0;
+                workoutCards.querySelectorAll('.workout-card').forEach((card, index) => {
+                    if (filterValue === 'all' || card.dataset.category === filterValue) {
+                        visibleCount++;
+                        animateCardVisibility(card, true, index, visibleCount <= 3);
+                    } else {
+                        animateCardVisibility(card, false, index);
+                    }
+                });
+    
+                // Update show more button visibility
+                if (showMoreBtn) {
+                    showMoreBtn.style.display = visibleCount > 3 ? 'block' : 'none';
+                    showMoreBtn.textContent = 'Show More';
+                }
+            });
+        });
+    }
+    
+    function animateCardVisibility(card, show, index, forceShow = false) {
+        setTimeout(() => {
+            if (show) {
+                card.style.display = 'block';
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                
+                if (!forceShow) {
+                    card.classList.add('hidden');
+                } else {
+                    card.classList.remove('hidden');
+                }
+    
+                requestAnimationFrame(() => {
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                });
+            } else {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                setTimeout(() => {
+                    card.style.display = 'none';
+                }, 300);
+            }
+        }, index * 50);
+    }
+    
+    function handleShowMoreClick() {
+        const section = this.closest('.section');
+        const hiddenCards = section.querySelectorAll('.workout-card.hidden');
+        const isShowingMore = this.textContent === 'Show Less';
+    
+        if (isShowingMore) {
+            // Hide cards with animation
+            hiddenCards.forEach((card, index) => {
+                setTimeout(() => {
+                    card.style.opacity = '0';
+                    card.style.transform = 'translateY(20px)';
+                    setTimeout(() => card.classList.add('hidden'), 300);
+                }, index * 100);
+            });
+            this.textContent = 'Show More';
+        } else {
+            // Show cards with animation
+            hiddenCards.forEach((card, index) => {
+                setTimeout(() => {
+                    card.classList.remove('hidden');
+                    setTimeout(() => {
+                        card.style.opacity = '1';
+                        card.style.transform = 'translateY(0)';
+                    }, 50);
+                }, index * 100);
+            });
+            this.textContent = 'Show Less';
+        }
+    }
+    
+    function initializeSmoothScroll() {
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                if (this.getAttribute('href').startsWith('#')) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                }
+            });
+        });
+    }
+    
+    // Prevent hover effects on touch devices
+    if ('ontouchstart' in window) {
+        document.body.classList.add('touch-device');
+    }</script>
 </body>
 </html>
