@@ -2,26 +2,29 @@
 <html>
 <head>
   <title>RevibeFit</title>
+  <link rel="stylesheet" href="style_2.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <style>
-  * {
+ * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
   }
   nav {
-  display: flex;
-  align-items: center;
-  justify-content: space-between; 
-  padding: 1rem 5%;
-  background-color: #fffff0;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 1000;
-}
+    display: flex;
+    align-items: center;
+    justify-content: space-between; 
+    padding: 1rem 5%;
+    background-color: #fffff0;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+  }
 
   .logo {
     display: flex;
@@ -42,10 +45,10 @@
 
   .nav-links {
     display: flex;
+    align-items: center;
     gap: 2rem;
     list-style: none;
   }
-
 
   .dropdown {
     position: relative;
@@ -109,22 +112,39 @@
     display: inline-block;
     vertical-align: middle;
   }
-  
-.nav-links {
-  display: flex;
-  align-items: center;
-  gap: 2rem;
-  list-style: none;
-}
+
   .nav-links a {
     text-decoration: none;
     color: #666;
     font-size: 1rem;
     transition: color 0.3s ease;
+    position: relative;
+    padding-bottom: 5px;
   }
 
   .nav-links a:hover {
     color: #4fb16d;
+  }
+
+  /* New underline hover effect */
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #4fb16d;
+    transition: width 0.3s ease;
+  }
+
+  .nav-links a:hover::after {
+    width: 100%;
+  }
+
+  /* For dropdown items */
+  .dropdown-content a::after {
+    bottom: -2px;
   }
 
   .sign-in {
@@ -136,27 +156,38 @@
     font-weight: 500;
     transition: background-color 0.3s ease;
     margin-left: 2rem;
+    position: relative;
   }
 
   .sign-in:hover {
     background-color:#12642b;
   }
 
-  .gradient-bar {
-    height: 4px;
-    background: linear-gradient(180deg, #ede8d0, #ede8d0);
-    position: fixed; 
-    top: 71px;       
+  /* Adding hover effect to sign-in button as well */
+  .sign-in::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -3px;
     left: 0;
-    right: 0;
-    z-index: 999;    
+    background-color: #4fb16d;
+    transition: width 0.3s ease;
+  }
+
+  .sign-in:hover::after {
+    width: 100%;
   }
 
   .nav-group {
-  display: flex;
-  align-items: center;
-  gap: 2rem; 
-}
+    display: flex;
+    align-items: center;
+    gap: 2rem; 
+  }
+
+  body {
+    padding-top: 75px;  
+  }
 
   .hero {
     position: relative;
@@ -309,42 +340,55 @@
     font-size: 1.5rem;
     color: #333;
     margin-bottom: 0.5rem;
-  }
-
-  .feature-description {
+  } .feature-description {
     color: #666;
     line-height: 1.6;
+  }
+  
+  /* Questions section styles */
+  .questions-section {
+    text-align: center;
+    padding: 4rem 0;
+    background-color: #fff;
+  }
+  
+  .questions-section h2 {
+    font-size: 2.5rem;
+    color: #333;
+    margin-bottom: 1rem;
+  }
+  
+  .questions-section p {
+    font-size: 1.2rem;
+    color: #666;
+    margin-bottom: 2rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .contact-button {
+    display: inline-block;
+    background-color: #3f8554;
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+  }
+  
+  .contact-button:hover {
+    background-color: #12642b;
   }
 </style>
 </head>
 <body>
   <nav>
-    <a href="#" class="logo">
-      <svg viewBox="0 0 24 24">
-        <path d="M20.57 14.86L22 13.43 20.57 12 17 15.57 8.43 7 12 3.43 10.57 2 9.14 3.43 7.71 2 5.57 4.14 4.14 2.71 2.71 4.14l1.43 1.43L2 7.71l1.43 1.43L2 10.57 3.43 12 7 8.43 15.57 17 12 20.57 13.43 22l1.43-1.43L16.29 22l2.14-2.14 1.43 1.43 1.43-1.43-1.43-1.43L22 16.29z"/>
-      </svg>
-      RevibeFit
-    </a>
-    <div class="nav-group">
-      <ul class="nav-links">
-        <li><a href="homepage.html">Home</a></li>
-        <li><a href="#">Workouts</a></li>
-        <li class="dropdown">
-          <a href="#">Trainers</a>
-          <div class="dropdown-content">
-            <a href="#">Get a Coach</a>
-            <a href="#">Live Classes</a>
-            <a href="#">Trainer Directory</a>
-          </div>
-        </li>
-        <li><a href="Nutrition.html">Nutrition</a></li>
-        <li><a href="#">Care</a></li>
-        <li><a href="blogs_client_side.html">Blog</a></li>
-      </ul>
-      <a href="Sign_in.html" class="sign-in">Sign In</a>
-    </div>
+    
+    <div id="nav-placeholder"></div>
+
   </nav>
-  <div class="gradient-bar"></div>
   
   <section class="hero">
     <img src="Fitness.jpeg" alt="Gym workout scene" class="hero-background">
@@ -428,5 +472,74 @@
       </div>
     </div>
   </section>
+  <section class="questions-section">
+    <h2>Still have questions?</h2>
+    <p>Please help us understand your doubts and we'll get back to you</p>
+    <a href="contact_us.html" class="contact-button">Contact Us</a>
+  </section>
+  <footer class="footer">
+    <div class="footer-container">
+        <div class="footer-section brand">
+            <div class="logo">
+                <img src="exercise_8407005.png" alt="FitHealth Logo">
+                <h2>RevibeFit</h2>
+            </div>
+            <p>Transform your life through fitness. Join our community and achieve your health goals with expert guidance.</p>
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+            </div>
+        </div>
+        
+        <div class="footer-section links">
+            <h3>Quick Links</h3>
+            <ul>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Our Trainers</a></li>
+                <li><a href="#">Classes & Programs</a></li>
+                <li><a href="#">Success Stories</a></li>
+                <li><a href="#">Blog & News</a></li>
+            </ul>
+        </div>
+        
+        <div class="footer-section services">
+            <h3>Our Services</h3>
+            <ul>
+                <li><a href="#">Personal Training</a></li>
+                <li><a href="#">Group Fitness Classes</a></li>
+                <li><a href="#">Nutrition Planning</a></li>
+                <li><a href="#">Health Assessment</a></li>
+                <li><a href="#">Lab Tests</a></li>
+                <li><a href="#">Online Coaching</a></li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="newsletter">
+        <h3>Subscribe to Our Newsletter</h3>
+        <p>Stay updated with the latest fitness tips and health advice.</p>
+        <form>
+            <input type="email" placeholder="Enter your email">
+            <button type="submit">Subscribe</button>
+        </form>
+    </div>
+    
+    <div class="footer-bottom">
+        <p>&copy; 2025 RevibeFit. All rights reserved.</p>
+        <div class="footer-links">
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Service</a>
+            <a href="#">Cookie Policy</a>
+        </div>
+    </div>
+</footer>
+
+<script>
+  $(function(){
+    $("#nav-placeholder").load("Nav_bar.html");
+  });
+</script>
 </body>
 </html>

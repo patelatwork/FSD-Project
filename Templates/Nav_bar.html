@@ -2,6 +2,7 @@
 <html>
 <head>
   <title>RevibeFit</title>
+  
 <style>
   * {
     margin: 0;
@@ -26,20 +27,28 @@
   .logo {
     display: flex;
     align-items: center;
+    position: relative;
+    right: 30px;
+    top: 3px;
     text-decoration: none;
     color: #333;
     font-size: 1.5rem;
     font-weight: bold;
     margin-right: auto;
   }
-
-  .logo svg {
-    width: 24px;
-    height: 24px;
+  
+  .logo img {
+    width: 34px;
+    height: 34px;
     margin-right: 8px;
-    fill: #4fb16d;
   }
-
+  
+  .nav-group {
+    display: flex;
+    align-items: center;
+    gap: 2rem; 
+    position: relative;
+  }
   .nav-links {
     display: flex;
     align-items: center;
@@ -48,10 +57,14 @@
   }
 
   .dropdown {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    list-style: none;
     position: relative;
-    display: inline-block;
+    bottom: 3.4px;
   }
-
+  
   .dropdown > a {
     display: inline-block;
     padding: 0.5rem 0;
@@ -115,10 +128,33 @@
     color: #666;
     font-size: 1rem;
     transition: color 0.3s ease;
+    position: relative;
+    padding-bottom: 5px;
   }
 
   .nav-links a:hover {
     color: #4fb16d;
+  }
+
+  /* New underline hover effect */
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #4fb16d;
+    transition: width 0.3s ease;
+  }
+
+  .nav-links a:hover::after {
+    width: 100%;
+  }
+
+  /* For dropdown items */
+  .dropdown-content a::after {
+    bottom: -2px;
   }
 
   .sign-in {
@@ -130,53 +166,61 @@
     font-weight: 500;
     transition: background-color 0.3s ease;
     margin-left: 2rem;
+    position: relative;
   }
 
   .sign-in:hover {
     background-color:#12642b;
   }
 
-  .gradient-bar {
-    height: 4px;
-    background: linear-gradient(180deg, #ede8d0, #ede8d0);
-    position: fixed; 
-    top: 71px;       
+  /* Adding hover effect to sign-in button as well */
+  .sign-in::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -3px;
     left: 0;
-    right: 0;
-    z-index: 999;    
+    background-color: #4fb16d;
+    transition: width 0.3s ease;
   }
 
-  .nav-group {
-    display: flex;
-    align-items: center;
-    gap: 2rem; 
+  .sign-in:hover::after {
+    width: 100%;
   }
+
 
   body {
     padding-top: 75px;  
+  }
+  
+  /* Fix for trainers alignment */
+  .nav-links li {
+    display: flex;
+    align-items: center;
   }
 </style>
 </head>
 <body>
   <nav>
-    <a href="#" class="logo">
-      <svg viewBox="0 0 24 24">
-        <path d="M20.57 14.86L22 13.43 20.57 12 17 15.57 8.43 7 12 3.43 10.57 2 9.14 3.43 7.71 2 5.57 4.14 4.14 2.71 2.71 4.14l1.43 1.43L2 7.71l1.43 1.43L2 10.57 3.43 12 7 8.43 15.57 17 12 20.57 13.43 22l1.43-1.43L16.29 22l2.14-2.14 1.43 1.43 1.43-1.43-1.43-1.43L22 16.29z"/>
-      </svg>
+    <a href="homepage.html" class="logo">
+      <img src="exercise_8407005.png" alt="RevibeFit Logo">
       RevibeFit
     </a>
     <div class="nav-group">
       <ul class="nav-links">
-        <li><a href="homepage.html">Home</a></li>
+        <li><a href="homepage.html">Classes</a></li>
         <li><a href="#">Workouts</a></li>
-        <li class="dropdown">
-          <a href="#">Trainers</a>
-          <div class="dropdown-content">
-            <a href="#">Get a Coach</a>
-            <a href="#">Live Classes</a>
-            <a href="#">Trainer Directory</a>
-          </div>
-        </li>
+        
+          
+          <li class="dropdown">
+            <a href="#">Trainers</a>
+            <div class="dropdown-content">
+              <a href="#">Get a Coach</a>
+              <a href="#">Trainer Directory</a>
+            </div>
+          </li>
+  
         <li><a href="Nutrition.html">Nutrition</a></li>
         <li><a href="#">Care</a></li>
         <li><a href="blogs_client_side.html">Blog</a></li>
@@ -184,6 +228,5 @@
       <a href="Sign_in.html" class="sign-in">Sign In</a>
     </div>
   </nav>
-  <div class="gradient-bar"></div>
 </body>
 </html>
