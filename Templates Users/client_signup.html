@@ -23,8 +23,8 @@
 
         .container {
             display: flex;
-            width: 800px;
-            height: 600px;
+            width: 800px; /* Reduced from 1000px */
+            height: 600px; /* Fixed height for equal proportions */
             background: white;
             border-radius: 15px;
             overflow: hidden;
@@ -56,7 +56,7 @@
         }
 
         h2 {
-            font-size: 24px;
+            font-size: 24px; /* Reduced from 32px */
             font-weight: bold;
             margin-bottom: 8px;
         }
@@ -120,7 +120,7 @@
         }
 
         .input-group textarea {
-            height: 60px;
+            height: 60px; /* Reduced height */
             resize: none;
         }
 
@@ -179,7 +179,7 @@
 <body>
     <div class="container">
         <div class="image-section">
-            <img src="Treadmil.avif" alt="Escape Your Limits">
+            <img src="/Assets/Treadmil.avif" alt="Escape Your Limits">
         </div>
         <div class="signup-section">
             <div class="signup-container">
@@ -216,16 +216,7 @@
                         <div class="error" id="passwordError"></div>
                     </div>
 
-                    <div class="input-group trainer-field" style="display: none;">
-                        <label for="specialization">Specialization</label>
-                        <input type="text" id="specialization" placeholder="e.g., Strength Training, Yoga, HIIT">
-                    </div>
-
-                    <div class="input-group trainer-field" style="display: none;">
-                        <label for="certifications">Certifications</label>
-                        <textarea id="certifications" placeholder="List your certifications"></textarea>
-                    </div>
-
+                    <!-- Fitness Enthusiast Fields -->
                     <div class="input-group fitness-field">
                         <label for="goals">Fitness Goals</label>
                         <textarea id="goals" placeholder="What are your fitness goals?"></textarea>
@@ -240,6 +231,17 @@
                         </select>
                     </div>
 
+                    <!-- Trainer Fields (initially hidden) -->
+                    <div class="input-group trainer-field" style="display: none;">
+                        <label for="specialization">Specialization</label>
+                        <input type="text" id="specialization" placeholder="e.g., Strength Training, Yoga, HIIT">
+                    </div>
+
+                    <div class="input-group trainer-field" style="display: none;">
+                        <label for="certifications">Certifications</label>
+                        <textarea id="certifications" placeholder="List your certifications"></textarea>
+                    </div>
+
                     <button type="submit" class="signup-btn">Create Account</button>
                 </form>
             </div>
@@ -247,9 +249,6 @@
     </div>
 
     <script>
-        const phonePattern = /^[0-9]{10}$/;
-        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        
         document.getElementById('fitnessBtn').addEventListener('click', function() {
             this.classList.add('active');
             document.getElementById('trainerBtn').classList.remove('active');
@@ -263,7 +262,7 @@
             document.querySelectorAll('.trainer-field').forEach(field => field.style.display = 'block');
             document.querySelectorAll('.fitness-field').forEach(field => field.style.display = 'none');
         });
-
+        
         document.getElementById('signupForm').addEventListener('submit', function(event) {
             let valid = true;
 
@@ -271,6 +270,9 @@
             const email = document.getElementById('email');
             const phone = document.getElementById('phone');
             const password = document.getElementById('password');
+
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            const phonePattern = /^[0-9]{10}$/;
 
             document.getElementById('fullnameError').textContent = "";
             document.getElementById('emailError').textContent = "";
@@ -300,9 +302,8 @@
             if (!valid) {
                 event.preventDefault();
             }
-            if(valid)
-            {
-                alert("You have been succesfully registered as a Trainer");
+            if (valid) {
+                alert("Account Created successfully!");
             }
         });
     </script>

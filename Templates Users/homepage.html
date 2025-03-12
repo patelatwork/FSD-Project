@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>RevibeFit</title>
+  <link rel="stylesheet" href="style_2.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<style>
+ * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+  }
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; 
+    padding: 1rem 5%;
+    background-color: #fffff0;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #333;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-right: auto;
+  }
+
+  .logo svg {
+    width: 24px;
+    height: 24px;
+    margin-right: 8px;
+    fill: #4fb16d;
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+
+  .dropdown > a {
+    display: inline-block;
+    padding: 0.5rem 0;
+  }
+
+  .dropdown-content {
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    background-color: #fffff0;
+    min-width: 200px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+    border-radius: 4px;
+    padding: 0.5rem 0;
+    z-index: 1001;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 0.5rem;
+    transition: all 0.3s ease;
+  }
+
+  .dropdown-content::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: 0;
+    right: 0;
+    height: 10px;
+    background: transparent;
+  }
+
+  .dropdown:hover .dropdown-content {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  .dropdown-content a {
+    color: #666;
+    padding: 0.75rem 1.5rem;
+    text-decoration: none;
+    display: block;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  .dropdown-content a:hover {
+    background-color: #f5f5f5;
+    color: #4fb16d;
+  }
+
+  .dropdown > a::after {
+    content: '▼';
+    font-size: 0.7em;
+    margin-left: 0.5em;
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  .nav-links a {
+    text-decoration: none;
+    color: #666;
+    font-size: 1rem;
+    transition: color 0.3s ease;
+    position: relative;
+    padding-bottom: 5px;
+  }
+
+  .nav-links a:hover {
+    color: #4fb16d;
+  }
+
+  /* New underline hover effect */
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #4fb16d;
+    transition: width 0.3s ease;
+  }
+
+  .nav-links a:hover::after {
+    width: 100%;
+  }
+
+  /* For dropdown items */
+  .dropdown-content a::after {
+    bottom: -2px;
+  }
+
+  .sign-in {
+    background-color: #3f8554;
+    color: white;
+    padding: 0.5rem 1.5rem;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+    margin-left: 2rem;
+    position: relative;
+  }
+
+  .sign-in:hover {
+    background-color:#12642b;
+  }
+
+  /* Adding hover effect to sign-in button as well */
+  .sign-in::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -3px;
+    left: 0;
+    background-color: #4fb16d;
+    transition: width 0.3s ease;
+  }
+
+  .sign-in:hover::after {
+    width: 100%;
+  }
+
+  .nav-group {
+    display: flex;
+    align-items: center;
+    gap: 2rem; 
+  }
+
+  body {
+    padding-top: 75px;  
+  }
+
+  .hero {
+    position: relative;
+    height: 600px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    padding: 0 5%;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to right, 
+        rgba(217, 217, 182, 0.92) 0%,
+        rgba(217, 217, 182, 0.92) 40%,
+        rgba(255, 255, 255, 0) 100%
+    );
+    z-index: 1;
+  }
+
+  .hero-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+  }
+
+  .hero-content {
+    max-width: 800px;
+    color: rgb(19, 13, 13);
+    z-index: 2;
+    position: relative;
+  }
+
+  .hero h1 {
+    font-size: 4rem;
+    font-weight: bold;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero p {
+    font-size: 1.25rem;
+    margin-bottom: 2rem;
+    line-height: 1.6;
+  }
+
+  .hero-buttons {
+    display: flex;
+    gap: 1rem;
+  }
+
+  .button {
+    padding: 1rem 2rem;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .button.primary {
+    background-color: #3f8554;
+    color: white;
+  }
+
+  .button.primary:hover {
+    background-color: #12642b;
+  }
+
+  .button.secondary {
+    background-color: rgba(238, 238, 228, 0.258);
+    color: #367348;
+    border-color: #000000;  
+  }
+
+  .button.secondary:hover {
+    background-color: #c1953d;
+  }
+
+  .button svg {
+    margin-left: 8px;
+    width: 20px;
+    height: 20px;
+  }
+
+  body {
+    padding-top: 75px;  
+  }
+
+  .features {
+    padding: 5rem 5%;
+    text-align: center;
+    background-color: #f7f7f7;
+  }
+
+  .features h2 {
+    font-size: 2.5rem;
+    color: #333;
+    margin-bottom: 1rem;
+  }
+
+  .features p {
+    font-size: 1.2rem;
+    color: #666;
+    margin-bottom: 3rem;
+  }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .feature-card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    padding: 1.5rem;
+  }
+
+  .feature-icon {
+    width: 64px;
+    height: 64px;
+    background-color: #367348;
+    border-radius: 12px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .feature-icon svg {
+    width: 100%;
+    height: 100%;
+    fill: white;
+  }
+
+  .feature-title {
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 0.5rem;
+  } .feature-description {
+    color: #666;
+    line-height: 1.6;
+  }
+  
+  /* Questions section styles */
+  .questions-section {
+    text-align: center;
+    padding: 4rem 0;
+    background-color: #fff;
+  }
+  
+  .questions-section h2 {
+    font-size: 2.5rem;
+    color: #333;
+    margin-bottom: 1rem;
+  }
+  
+  .questions-section p {
+    font-size: 1.2rem;
+    color: #666;
+    margin-bottom: 2rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .contact-button {
+    display: inline-block;
+    background-color: #3f8554;
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+  }
+  
+  .contact-button:hover {
+    background-color: #12642b;
+  }
+</style>
+</head>
+<body>
+  <nav>
+    
+    <div id="nav-placeholder"></div>
+
+  </nav>
+  
+  <section class="hero">
+    <img src="/Assets/Fitness.jpeg" alt="Gym workout scene" class="hero-background">
+    <div class="hero-content">
+      <h1>Transform Your Life Through Fitness</h1>
+      <p style="color: #367348;">Join RevibeFit and get access to personalized workout plans, expert trainers, and a supportive community to help you achieve your fitness goals.</p>
+      <div class="hero-buttons">
+        <a href="client_signup.html" class="button primary">
+          Get Started
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </a>
+        <a href="#" class="button secondary">
+          Watch Demo
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="5 3 19 12 5 21 5 3"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="features">
+    <h2>Everything you need to achieve your Health goals</h2>
+    <p>Comprehensive tools and resources to support your fitness journey</p>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24">
+            <path d="M20.57 14.86L22 13.43 20.57 12 17 15.57 8.43 7 12 3.43 10.57 2 9.14 3.43 7.71 2 5.57 4.14 4.14 2.71 2.71 4.14l1.43 1.43L2 7.71l1.43 1.43L2 10.57 3.43 12 7 8.43 15.57 17 12 20.57 13.43 22l1.43-1.43L16.29 22l2.14-2.14 1.43 1.43 1.43-1.43-1.43-1.43L22 16.29z"/>
+          </svg>
+        </div>
+        <h3 class="feature-title">Personalized Workout Plans</h3>
+        <p class="feature-description">Get customized workout plans tailored to your fitness goals and experience level.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24">
+            <path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zM5 8V6h14v2H5zm2 4h10v2H7v-2zm0 4h7v2H7v-2z"/>
+          </svg>
+        </div>
+        <h3 class="feature-title">Workout Scheduler</h3>
+        <p class="feature-description">Plan and track your workouts with our intuitive calendar system.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/>
+          </svg>
+        </div>
+        <h3 class="feature-title">Nutrition Planning</h3>
+        <p class="feature-description">Access detailed meal plans and nutritional guidance from certified experts.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24">
+            <path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4zM14 13h-3v3H9v-3H6v-2h3V8h2v3h3v2z"/>
+          </svg>
+        </div>
+        <h3 class="feature-title">Video Library</h3>
+        <p class="feature-description">Stream high-quality workout videos from professional trainers.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24">
+            <path d="M19 3h-4.18C14.4 1.84 13.3 1 12 1c-1.3 0-2.4.84-2.82 2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 0c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm0 4c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm6 12H6v-1.4c0-2 4-3.1 6-3.1s6 1.1 6 3.1V19z"/>
+          </svg>
+        </div>
+        <h3 class="feature-title">Health Monitoring</h3>
+        <p class="feature-description">Get personalized lab test recommendations and health insights.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24">
+            <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
+          </svg>
+        </div>
+        <h3 class="feature-title">Expert Content</h3>
+        <p class="feature-description">Read articles and guides from fitness professionals and health experts.</p>
+      </div>
+    </div>
+  </section>
+  <section class="questions-section">
+    <h2>Still have questions?</h2>
+    <p>Please help us understand your doubts and we'll get back to you</p>
+    <a href="contact_us.html" class="contact-button">Contact Us</a>
+  </section>
+  <footer class="footer">
+    <div class="footer-container">
+        <div class="footer-section brand">
+            <div class="logo">
+                <img src="exercise_8407005.png" alt="FitHealth Logo">
+                <h2>RevibeFit</h2>
+            </div>
+            <p>Transform your life through fitness. Join our community and achieve your health goals with expert guidance.</p>
+           <div class="social-icons">
+    <a href="#">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+            <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"/>
+        </svg>
+    </a>
+    <a href="#">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+            <path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.9 3.9 0 0 0-1.417.923A3.9 3.9 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.9 3.9 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.9 3.9 0 0 0-.923-1.417A3.9 3.9 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599s.453.546.598.92c.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.5 2.5 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.5 2.5 0 0 1-.92-.598 2.5 2.5 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233s.008-2.388.046-3.231c.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92s.546-.453.92-.598c.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92m-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217m0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334"/>
+        </svg>
+    </a>
+    <a href="#">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+            <path d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865z"/>
+        </svg>
+    </a>
+    <a href="#">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+            <path d="M8.051 1.999h.089c.822.003 4.987.033 6.11.335a2.01 2.01 0 0 1 1.415 1.42c.101.38.172.883.22 1.402l.01.104.022.26.008.104c.065.914.073 1.77.074 1.957v.075c-.001.194-.01 1.108-.082 2.06l-.008.105-.009.104c-.05.572-.124 1.14-.235 1.558a2.01 2.01 0 0 1-1.415 1.42c-1.16.312-5.569.334-6.18.335h-.142c-.309 0-1.587-.006-2.927-.052l-.17-.006-.087-.004-.171-.007-.171-.007c-1.11-.049-2.167-.128-2.654-.26a2.01 2.01 0 0 1-1.415-1.419c-.111-.417-.185-.986-.235-1.558L.09 9.82l-.008-.104A31 31 0 0 1 0 7.68v-.123c.002-.215.01-.958.064-1.778l.007-.103.003-.052.008-.104.022-.26.01-.104c.048-.519.119-1.023.22-1.402a2.01 2.01 0 0 1 1.415-1.42c.487-.13 1.544-.21 2.654-.26l.17-.007.172-.006.086-.003.171-.007A100 100 0 0 1 7.858 2zM6.4 5.209v4.818l4.157-2.408z"/>
+        </svg>
+    </a>
+</div>
+
+        </div>
+        
+        <div class="footer-section links">
+            <h3>Quick Links</h3>
+            <ul>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Our Trainers</a></li>
+                <li><a href="#">Classes & Programs</a></li>
+                <li><a href="#">Success Stories</a></li>
+                <li><a href="#">Blog & News</a></li>
+            </ul>
+        </div>
+        
+        <div class="footer-section services">
+            <h3>Our Services</h3>
+            <ul>
+                <li><a href="#">Personal Training</a></li>
+                <li><a href="#">Group Fitness Classes</a></li>
+                <li><a href="#">Nutrition Planning</a></li>
+                <li><a href="#">Health Assessment</a></li>
+                <li><a href="#">Lab Tests</a></li>
+                <li><a href="#">Online Coaching</a></li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="newsletter">
+        <h3>Subscribe to Our Newsletter</h3>
+        <p>Stay updated with the latest fitness tips and health advice.</p>
+        <form>
+            <input type="email" placeholder="Enter your email">
+            <button type="submit">Subscribe</button>
+        </form>
+    </div>
+    
+    <div class="footer-bottom">
+        <p>&copy; 2025 RevibeFit. All rights reserved.</p>
+        <div class="footer-links">
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Service</a>
+            <a href="#">Cookie Policy</a>
+        </div>
+    </div>
+</footer>
+
+<script>
+  $(function(){
+    $("#nav-placeholder").load("Nav_bar.html");
+  });
+</script>
+</body>
+</html>
