@@ -1,241 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Fitness & Wellness Blog</title>
+    <link rel="stylesheet" href="CSS/base.css">
+    <link rel="stylesheet" href="CSS/layout.css">
+    <link rel="stylesheet" href="CSS/components.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <style>
-    * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
-  }
-  nav {
-    display: flex;
-    align-items: center;
-    justify-content: space-between; 
-    padding: 1rem 5%;
-    background-color: #fffff0;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 1000;
-  }
-
-  .logo {
-    display: flex;
-    align-items: center;
-    text-decoration: none;
-    color: #333;
-    font-size: 1.5rem;
-    font-weight: bold;
-    margin-right: auto;
-  }
-
-  .logo svg {
-    width: 24px;
-    height: 24px;
-    margin-right: 8px;
-    fill: #4fb16d;
-  }
-
-  .nav-links {
-    display: flex;
-    align-items: center;
-    gap: 2rem;
-    list-style: none;
-  }
-
-  .dropdown {
-    position: relative;
-    display: inline-block;
-  }
-
-  .dropdown > a {
-    display: inline-block;
-    padding: 0.5rem 0;
-  }
-
-  .dropdown-content {
-    visibility: hidden;
-    opacity: 0;
-    position: absolute;
-    background-color: #fffff0;
-    min-width: 200px;
-    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
-    border-radius: 4px;
-    padding: 0.5rem 0;
-    z-index: 1001;
-    top: 100%;
-    left: 50%;
-    transform: translateX(-50%);
-    margin-top: 0.5rem;
-    transition: all 0.3s ease;
-  }
-
-  .dropdown-content::before {
-    content: '';
-    position: absolute;
-    top: -10px;
-    left: 0;
-    right: 0;
-    height: 10px;
-    background: transparent;
-  }
-
-  .dropdown:hover .dropdown-content {
-    visibility: visible;
-    opacity: 1;
-  }
-
-  .dropdown-content a {
-    color: #666;
-    padding: 0.75rem 1.5rem;
-    text-decoration: none;
-    display: block;
-    transition: background-color 0.3s ease, color 0.3s ease;
-  }
-
-  .dropdown-content a:hover {
-    background-color: #f5f5f5;
-    color: #4fb16d;
-  }
-
-  .dropdown > a::after {
-    content: '▼';
-    font-size: 0.7em;
-    margin-left: 0.5em;
-    display: inline-block;
-    vertical-align: middle;
-  }
-
-  .nav-links a {
-    text-decoration: none;
-    color: #666;
-    font-size: 1rem;
-    transition: color 0.3s ease;
-    position: relative;
-    padding-bottom: 5px;
-  }
-
-  .nav-links a:hover {
-    color: #4fb16d;
-  }
-
-  /* New underline hover effect */
-  .nav-links a::after {
-    content: '';
-    position: absolute;
-    width: 0;
-    height: 2px;
-    bottom: 0;
-    left: 0;
-    background-color: #4fb16d;
-    transition: width 0.3s ease;
-  }
-
-  .nav-links a:hover::after {
-    width: 100%;
-  }
-
-  /* For dropdown items */
-  .dropdown-content a::after {
-    bottom: -2px;
-  }
-
-  .sign-in {
-    background-color: #3f8554;
-    color: white;
-    padding: 0.5rem 1.5rem;
-    border-radius: 4px;
-    text-decoration: none;
-    font-weight: 500;
-    transition: background-color 0.3s ease;
-    margin-left: 2rem;
-    position: relative;
-  }
-
-  .sign-in:hover {
-    background-color:#12642b;
-  }
-
-  /* Adding hover effect to sign-in button as well */
-
-  .nav-group {
-    display: flex;
-    align-items: center;
-    gap: 2rem; 
-  }
-
-  body {
-    padding-top: 75px;  
-  }
-        .logo {
-            display: flex;
-            align-items: center;
-            text-decoration: none;
-            color: #333;
-            font-size: 1.5rem;
-            font-weight: bold;
-            margin-right: auto;
+        body {
+            background-color: white !important;
+            /* Using !important to ensure override */
         }
 
-        .logo svg {
-            width: 24px;
-            height: 24px;
-            margin-right: 8px;
-            fill: #4fb16d;
-        }
-
-        .nav-links {
-       display: flex;
-       align-items: center;
-       gap: 2rem;
-       list-style: none;
-      }
-
-        .nav-links a {
-            text-decoration: none;
-            color: #666;
-            font-size: 1rem;
-            transition: color 0.3s ease;
-        }
-
-        .nav-links a:hover {
-            color: #4fb16d;
-        }
-
-        .sign-in {
-            background-color: #3f8554;
-            color: white;
-            padding: 0.5rem 1.5rem;
-            border-radius: 4px;
-            text-decoration: none;
-            font-weight: 500;
-            transition: background-color 0.3s ease;
-            margin-left: 2rem;
-        }
-
-        .sign-in:hover {
-            background-color: #12642b;
-        }
-
-        .gradient-bar {
-            height: 4px;
-            background: linear-gradient(180deg, #ede8d0, #ede8d0);
-            position: fixed; 
-            top: 71px;       
-            left: 0;
-            right: 0;
-            z-index: 999;    
-        }
-
-       
         .container {
             max-width: 1200px;
             margin: 0 auto;
@@ -350,7 +130,7 @@
         .post-card {
             background-color: white;
             border-radius: 10px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             overflow: hidden;
         }
 
@@ -375,6 +155,7 @@
         .post-card h3 {
             font-size: 1.25rem;
             margin: 1rem 0;
+            font-weight: 700;
         }
 
         .post-card p {
@@ -398,11 +179,11 @@
             .container {
                 padding: 1rem;
             }
-            
+
             .header h1 {
                 font-size: 2rem;
             }
-            
+
             .featured-post h2 {
                 font-size: 1.5rem;
             }
@@ -413,27 +194,28 @@
         }
     </style>
 </head>
+
 <body>
     <nav>
-      <div id="nav-placeholder"></div>
-      </nav>
-      <!-- Removed the gradient-bar div -->
+        <div id="nav-placeholder"></div>
+    </nav>
+    <!-- Removed the gradient-bar div -->
     <div class="container">
-        
+
         <header class="header">
             <h1>Fitness & Wellness Blog</h1>
             <p>Expert insights to support your fitness journey</p>
-            
-                <button class="category-btn active">All</button>
-                <button class="category-btn">Training</button>
-                <button class="category-btn">Nutrition</button>
-                <button class="category-btn">Wellness</button>
-                <button class="category-btn">Success Stories</button>
-                <button class="category-btn">Tips</button>
-            
+
+            <button class="category-btn active">All</button>
+            <button class="category-btn">Training</button>
+            <button class="category-btn">Nutrition</button>
+            <button class="category-btn">Wellness</button>
+            <button class="category-btn">Success Stories</button>
+            <button class="category-btn">Tips</button>
+
         </header>
 
-        
+
         <article class="featured-post">
             <div class="featured-image">
                 <img src="/Assets/Fitness.jpeg">
@@ -449,11 +231,11 @@
             </div>
         </article>
 
-      
+
         <section class="recent-posts">
             <h2>Recent Articles</h2>
             <div class="posts-grid">
-                
+
                 <article class="post-card">
                     <div class="post-image">
                         <img src="/Assets/nutrition.jpeg" alt="Nutrition">
@@ -470,7 +252,7 @@
                     </div>
                 </article>
 
-              
+
                 <article class="post-card">
                     <div class="post-image">
                         <img src="/Assets/wellness.jpg" alt="Wellness">
@@ -490,9 +272,10 @@
         </section>
     </div>
     <script>
-      $(function(){
-        $("#nav-placeholder").load("Nav_bar.html");
-      });
+        $(function () {
+            $("#nav-placeholder").load("Nav_bar.html");
+        });
     </script>
 </body>
+
 </html>
