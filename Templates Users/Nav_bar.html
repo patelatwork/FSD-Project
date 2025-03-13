@@ -114,11 +114,30 @@
       text-decoration: none;
       display: block;
       transition: background-color 0.3s ease, color 0.3s ease;
+      position: relative; /* Add position relative for proper underline positioning */
     }
 
     .dropdown-content a:hover {
       background-color: #f5f5f5;
       color: #4fb16d;
+    }
+
+    /* Fix the dropdown items underline position */
+    .dropdown-content a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: auto; /* Remove fixed bottom positioning */
+      top: calc(100% - 5px); /* Position relative to text bottom */
+      left: 24px; /* Align with the text, not the full width */
+      right: 24px; /* Don't extend past the text */
+      background-color: #4fb16d;
+      transition: width 0.3s ease;
+    }
+
+    .dropdown-content a:hover::after {
+      width: calc(100% - 48px); /* Account for left and right padding */
     }
 
     .dropdown>a::after {
@@ -192,6 +211,32 @@
     .nav-links li {
       display: flex;
       align-items: center;
+    }
+
+    /* Remove the complex animation for dropdown items */
+    .dropdown-content a::after {
+      /* Remove the existing animation setup */
+      content: none; /* This removes the pseudo element completely */
+    }
+    
+    .dropdown-content a:hover::after {
+      /* Remove the width animation */
+      width: auto;
+    }
+    
+    /* Add simple text-decoration underline on hover instead */
+    .dropdown-content a:hover {
+      background-color: #f5f5f5;
+      color: #4fb16d;
+      text-decoration: underline; /* Add a simple underline */
+      text-underline-offset: 4px; /* Space between text and underline */
+      text-decoration-color: #4fb16d; /* Match the color with the hover text */
+      text-decoration-thickness: 2px; /* Control thickness of underline */
+    }
+    
+    /* For dropdown items - remove conflicting definition */
+    .dropdown-content a::after {
+      bottom: auto;
     }
   </style>
 </head>
