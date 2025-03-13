@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -111,8 +112,8 @@
             color: #333;
         }
 
-        .input-group input, 
-        .input-group textarea, 
+        .input-group input,
+        .input-group textarea,
         .input-group select {
             width: 100%;
             padding: 8px 12px;
@@ -180,6 +181,7 @@
         }
     </style>
 </head>
+
 <body>
     <div class="container">
         <div class="image-section">
@@ -189,7 +191,7 @@
             <div class="signup-container">
                 <h2>Create your account</h2>
                 <p>Already have an account? <a href="#">Sign in</a></p>
-                
+
                 <div class="toggle-group">
                     <button class="toggle-btn active" id="fitnessBtn">Fitness Enthusiast</button>
                     <button class="toggle-btn" id="trainerBtn">Trainer</button>
@@ -253,22 +255,22 @@
     <script>
         const phonePattern = /^[0-9]{10}$/;
         const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        
-        document.getElementById('fitnessBtn').addEventListener('click', function() {
+
+        document.getElementById('fitnessBtn').addEventListener('click', function () {
             this.classList.add('active');
             document.getElementById('trainerBtn').classList.remove('active');
             document.querySelectorAll('.trainer-field').forEach(field => field.style.display = 'none');
             document.querySelectorAll('.fitness-field').forEach(field => field.style.display = 'block');
         });
 
-        document.getElementById('trainerBtn').addEventListener('click', function() {
+        document.getElementById('trainerBtn').addEventListener('click', function () {
             this.classList.add('active');
             document.getElementById('fitnessBtn').classList.remove('active');
             document.querySelectorAll('.trainer-field').forEach(field => field.style.display = 'block');
             document.querySelectorAll('.fitness-field').forEach(field => field.style.display = 'none');
         });
 
-        document.getElementById('signupForm').addEventListener('submit', function(event) {
+        document.getElementById('signupForm').addEventListener('submit', function (event) {
             let valid = true;
 
             const fullName = document.getElementById('fullname');
@@ -304,11 +306,19 @@
             if (!valid) {
                 event.preventDefault();
             }
-            if(valid)
-            {
+            if (valid) {
                 alert("You have been succesfully registered as a Trainer");
             }
         });
+        $(function () {
+            $("#nav-placeholder").load("Nav_bar.html", function () {
+                // Load the dynamic navbar script
+                const script = document.createElement('script');
+                script.src = "JS/dynamicNavbar.js";
+                document.body.appendChild(script);
+            });
+        });
     </script>
 </body>
+
 </html>

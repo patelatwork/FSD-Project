@@ -514,7 +514,12 @@
 
 
         $(function () {
-          $("#nav-placeholder").load("Nav_bar.html");
+          $("#nav-placeholder").load("Nav_bar.html", function() {
+            // Load the dynamic navbar script
+            const script = document.createElement('script');
+            script.src = "JS/dynamicNavbar.js";
+            document.body.appendChild(script);
+          });
         });
 
       </script>

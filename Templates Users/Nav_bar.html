@@ -9,24 +9,39 @@
   <link rel="stylesheet" href="CSS/base.css">
   <link rel="stylesheet" href="CSS/layout.css">
   <link rel="stylesheet" href="CSS/components.css">
-  <!-- Page specific CSS if needed -->
-  <link rel="stylesheet" href="/Templates Users/CSS/pages/homepage.css">
-  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <style>
-
     nav {
       display: flex;
       align-items: center;
       justify-content: space-between;
       padding: 1rem 5%;
-      background-color: #fffff0;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      /* Remove fixed background color */
+      background-color: transparent;
+      /* Remove box-shadow initially */
+      box-shadow: none;
       position: fixed;
       top: 0;
       left: 0;
       right: 0;
       z-index: 1000;
+      transition: all 0.3s ease; /* Smooth transition for all properties */
+    }
+    
+    /* Add a before pseudo-element for the background with blur */
+    nav::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(255, 255, 240, 0.7);
+      backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(5px);
+      z-index: -1;
+      transition: background-color 0.3s ease;
     }
 
     .logo {
@@ -60,6 +75,7 @@
       align-items: center;
       gap: 2rem;
       list-style: none;
+      margin-top: 10px;
     }
 
     .dropdown {
@@ -242,7 +258,7 @@
 </head>
 
 <body>
-  <nav>
+  <nav id="dynamicNav">
     <a href="homepage.html" class="logo">
       <img src="/Assets/exercise_8407005.png" alt="RevibeFit Logo">
       RevibeFit
@@ -251,8 +267,6 @@
       <ul class="nav-links">
         <li><a href="homepage.html">Classes</a></li>
         <li><a href="#">Workouts</a></li>
-
-
         <li class="dropdown">
           <a href="#">Trainers</a>
           <div class="dropdown-content">
@@ -260,9 +274,8 @@
             <a href="#">Trainer Directory</a>
           </div>
         </li>
-
         <li><a href="Nutrition.html">Nutrition</a></li>
-        <li><a href="#">Care</a></li>
+        <li><a href="care.html">Care</a></li>
         <li><a href="blogs_client_side.html">Blog</a></li>
       </ul>
       <a href="Sign_in.html" class="sign-in">Sign In</a>
