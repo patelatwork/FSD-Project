@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Get A Coach - RevibeFit</title>
+
+  <link rel="stylesheet" href="CSS/base.css">
+  <link rel="stylesheet" href="CSS/layout.css">
+  <link rel="stylesheet" href="CSS/components.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <style>
+    /* Page-specific styles */
+    .hero-coaching {
+      position: relative;
+      padding: 6rem 5% 5rem;
+      background-color: #f7f9f5;
+      text-align: center;
+    }
+
+    .hero-coaching h1 {
+      font-size: 3.5rem;
+      margin-bottom: 1.5rem;
+      color: #333;
+    }
+
+    .hero-coaching p {
+      max-width: 700px;
+      margin: 0 auto 2rem;
+      font-size: 1.25rem;
+      color: #666;
+    }
+
+    .coach-highlights {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 2.5rem;
+      max-width: 1000px;
+      margin: 0 auto 3rem;
+    }
+
+    .highlight {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 190px;
+    }
+
+    .highlight .icon {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      background-color: rgba(79, 177, 109, 0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+      color: #3f8554;
+      font-size: 1.8rem;
+    }
+
+    .highlight h3 {
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+      text-align: center;
+    }
+
+    .highlight p {
+      font-size: 0.95rem;
+      text-align: center;
+      color: #666;
+    }
+
+    .how-it-works {
+      padding: 5rem 5%;
+      background-color: white;
+      text-align: center;
+    }
+
+    .how-it-works h2 {
+      font-size: 2.5rem;
+      margin-bottom: 3rem;
+      color: #333;
+    }
+
+    .steps {
+      display: flex;
+      justify-content: space-between;
+      max-width: 1200px;
+      margin: 0 auto;
+      flex-wrap: wrap;
+    }
+
+    .step {
+      flex-basis: 23%;
+      min-width: 240px;
+      position: relative;
+      margin-bottom: 2rem;
+    }
+
+    .step-number {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: #3f8554;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      font-weight: bold;
+      margin: 0 auto 1.5rem;
+    }
+
+    .step h3 {
+      font-size: 1.25rem;
+      margin-bottom: 1rem;
+      color: #333;
+    }
+
+    .step p {
+      font-size: 1rem;
+      color: #666;
+    }
+
+    .step-arrow {
+      position: absolute;
+      top: 25px;
+      right: -30px;
+      width: 60px;
+      height: 2px;
+      background-color: #e0e0e0;
+      display: none;
+    }
+
+    .meet-coaches {
+      padding: 5rem 5% 6rem;
+      background-color: #f7f9f5;
+    }
+
+    .meet-coaches h2 {
+      font-size: 2.5rem;
+      text-align: center;
+      margin-bottom: 1rem;
+      color: #333;
+    }
+
+    .meet-coaches p.subtitle {
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto 3rem;
+      font-size: 1.1rem;
+      color: #666;
+    }
+
+    .coaches-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .coach-card {
+      background-color: white;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .coach-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    }
+
+    .coach-image {
+      height: 300px;
+      background-position: center;
+      background-size: cover;
+    }
+
+    .coach-details {
+      padding: 1.5rem;
+    }
+
+    .coach-details h3 {
+      font-size: 1.3rem;
+      margin-bottom: 0.3rem;
+      color: #333;
+    }
+
+    .coach-specialties {
+      color: #3f8554;
+      font-size: 0.95rem;
+      margin-bottom: 0.8rem;
+      font-weight: 500;
+    }
+
+    .coach-rating {
+      display: flex;
+      align-items: center;
+      margin-bottom: 1rem;
+      color: #ffc107;
+    }
+
+    .coach-rating span {
+      margin-left: 0.5rem;
+      color: #666;
+      font-size: 0.95rem;
+    }
+
+    .coach-card .button {
+      width: 100%;
+      text-align: center;
+      justify-content: center;
+    }
+
+    .testimonials {
+      padding: 5rem 5%;
+      background-color: white;
+      text-align: center;
+    }
+
+    .testimonials h2 {
+      font-size: 2.5rem;
+      margin-bottom: 3rem;
+      color: #333;
+    }
+
+    .testimonial-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .testimonial-card {
+      background-color: #f7f9f5;
+      border-radius: 10px;
+      padding: 2rem;
+      text-align: left;
+      position: relative;
+    }
+
+    .testimonial-card::before {
+      content: '"';
+      position: absolute;
+      top: -15px;
+      left: 20px;
+      font-size: 60px;
+      color: #3f8554;
+      opacity: 0.2;
+      line-height: 1;
+    }
+
+    .testimonial-text {
+      font-size: 1rem;
+      line-height: 1.7;
+      color: #444;
+      margin-bottom: 1.5rem;
+    }
+
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+    }
+
+    .testimonial-avatar {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-right: 1rem;
+    }
+
+    .testimonial-name {
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 0.2rem;
+    }
+
+    .testimonial-role {
+      font-size: 0.9rem;
+      color: #666;
+    }
+
+    .plans {
+      padding: 5rem 5%;
+      background-color: #f7f9f5;
+      text-align: center;
+    }
+
+    .plans h2 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: #333;
+    }
+
+    .plans p.subtitle {
+      max-width: 700px;
+      margin: 0 auto 3rem;
+      font-size: 1.1rem;
+      color: #666;
+    }
+
+    .plan-cards {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      flex-wrap: wrap;
+    }
+
+    .plan-card {
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      padding: 2.5rem;
+      width: 320px;
+      text-align: left;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .plan-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    }
+
+    .plan-card.featured {
+      border: 2px solid #3f8554;
+      position: relative;
+    }
+
+    .featured-tag {
+      position: absolute;
+      top: -15px;
+      right: 20px;
+      background: #3f8554;
+      color: white;
+      padding: 0.3rem 1rem;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 500;
+    }
+
+    .plan-name {
+      font-size: 1.4rem;
+      margin-bottom: 0.5rem;
+      color: #333;
+    }
+
+    .plan-duration {
+      color: #666;
+      margin-bottom: 1.5rem;
+      font-size: 0.95rem;
+    }
+
+    .plan-price {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      color: #3f8554;
+    }
+
+    .plan-features {
+      list-style: none;
+      margin-bottom: 2rem;
+    }
+
+    .plan-features li {
+      margin-bottom: 0.8rem;
+      padding-left: 25px;
+      position: relative;
+      font-size: 0.95rem;
+      color: #555;
+    }
+
+    .plan-features li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: #3f8554;
+      font-weight: bold;
+    }
+
+    .faq-section {
+      padding: 5rem 5%;
+      background-color: white;
+    }
+
+    .faq-section h2 {
+      font-size: 2.5rem;
+      text-align: center;
+      margin-bottom: 3rem;
+      color: #333;
+    }
+
+    .faq-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .faq-item {
+      border-bottom: 1px solid #e0e0e0;
+      padding-bottom: 1.5rem;
+    }
+
+    .faq-question {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 0.8rem;
+      color: #333;
+    }
+
+    .faq-answer {
+      font-size: 1rem;
+      line-height: 1.6;
+      color: #666;
+    }
+
+    .cta-section {
+      padding: 5rem 5%;
+      background-color: #3f8554;
+      color: white;
+      text-align: center;
+    }
+
+    .cta-section h2 {
+      font-size: 2.5rem;
+      margin-bottom: 1.5rem;
+      color: white;
+    }
+
+    .cta-section p {
+      max-width: 700px;
+      margin: 0 auto 2rem;
+      font-size: 1.1rem;
+      opacity: 0.9;
+    }
+
+    /* Responsive adjustments */
+    @media (min-width: 768px) {
+      .step-arrow {
+        display: block;
+      }
+      
+      .step:last-child .step-arrow {
+        display: none;
+      }
+    }
+
+    @media (max-width: 992px) {
+      .steps {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .step {
+        flex-basis: 100%;
+        max-width: 400px;
+        margin-bottom: 3rem;
+      }
+      
+      .step-arrow {
+        display: none;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .hero-coaching h1 {
+        font-size: 2.5rem;
+      }
+      
+      .testimonial-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <nav>
+    <div id="nav-placeholder"></div>
+  </nav>
+
+  <section class="hero-coaching">
+    <h1>Transform Your Fitness Journey with Expert Guidance</h1>
+    <p>Our certified coaches will create personalized workout and nutrition plans to help you achieve your fitness goals faster and more efficiently</p>
+    
+    <div class="coach-highlights">
+      <div class="highlight">
+        <div class="icon">
+          <i class="fas fa-certificate"></i>
+        </div>
+        <h3>Certified Experts</h3>
+        <p>All coaches are certified professionals with years of experience</p>
+      </div>
+      <div class="highlight">
+        <div class="icon">
+          <i class="fas fa-users"></i>
+        </div>
+        <h3>Personal Attention</h3>
+        <p>Get daily feedback and adjustments to your program</p>
+      </div>
+      <div class="highlight">
+        <div class="icon">
+          <i class="fas fa-chart-line"></i>
+        </div>
+        <h3>Proven Results</h3>
+        <p>Over 10,000 successful transformations</p>
+      </div>
+      <div class="highlight">
+        <div class="icon">
+          <i class="fas fa-mobile-alt"></i>
+        </div>
+        <h3>Always Connected</h3>
+        <p>Chat with your coach anytime through our app</p>
+      </div>
+    </div>
+    
+    <a href="#plans" class="button primary">
+      Find Your Perfect Coach
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M5 12h14M12 5l7 7-7 7" />
+      </svg>
+    </a>
+  </section>
+
+  <section class="how-it-works">
+    <h2>How It Works</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="step-number">1</div>
+        <h3>Choose Your Plan</h3>
+        <p>Select a coaching plan that fits your goals and budget</p>
+        <div class="step-arrow"></div>
+      </div>
+      <div class="step">
+        <div class="step-number">2</div>
+        <h3>Get Matched</h3>
+        <p>We'll pair you with a coach specialized in your fitness goals</p>
+        <div class="step-arrow"></div>
+      </div>
+      <div class="step">
+        <div class="step-number">3</div>
+        <h3>Personalized Program</h3>
+        <p>Receive tailored workout and nutrition plans</p>
+        <div class="step-arrow"></div>
+      </div>
+      <div class="step">
+        <div class="step-number">4</div>
+        <h3>Track & Adjust</h3>
+        <p>Regular check-ins and plan adjustments for optimal results</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="meet-coaches">
+    <h2>Meet Our Expert Coaches</h2>
+    <p class="subtitle">Our team of certified fitness professionals are dedicated to helping you achieve your goals</p>
+    
+    <div class="coaches-grid">
+      <div class="coach-card">
+        <div class="coach-image" style="background-image: url('https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80')"></div>
+        <div class="coach-details">
+          <h3>Alex Johnson</h3>
+          <div class="coach-specialties">Weight Loss, HIIT, Strength Training</div>
+          <div class="coach-rating">
+            ★★★★★ <span>(48 reviews)</span>
+          </div>
+          <a href="#" class="button primary">View Profile</a>
+        </div>
+      </div>
+      
+      <div class="coach-card">
+        <div class="coach-image" style="background-image: url('https://images.unsplash.com/photo-1581009137042-c552e485697a?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80')"></div>
+        <div class="coach-details">
+          <h3>Sarah Williams</h3>
+          <div class="coach-specialties">Nutrition, Women's Fitness, Post-natal</div>
+          <div class="coach-rating">
+            ★★★★★ <span>(62 reviews)</span>
+          </div>
+          <a href="#" class="button primary">View Profile</a>
+        </div>
+      </div>
+      
+      <div class="coach-card">
+        <div class="coach-image" style="background-image: url('https://images.unsplash.com/photo-1594381898411-846e7d193883?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80')"></div>
+        <div class="coach-details">
+          <h3>Marcus Chen</h3>
+          <div class="coach-specialties">Bodybuilding, Muscle Gain, Competition Prep</div>
+          <div class="coach-rating">
+            ★★★★★ <span>(37 reviews)</span>
+          </div>
+          <a href="#" class="button primary">View Profile</a>
+        </div>
+      </div>
+      
+      <div class="coach-card">
+        <div class="coach-image" style="background-image: url('https://images.unsplash.com/photo-1548690312-e3b507d8c110?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80')"></div>
+        <div class="coach-details">
+          <h3>Priya Sharma</h3>
+          <div class="coach-specialties">Yoga, Flexibility, Mindfulness</div>
+          <div class="coach-rating">
+            ★★★★★ <span>(53 reviews)</span>
+          </div>
+          <a href="#" class="button primary">View Profile</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="testimonials">
+    <h2>Success Stories</h2>
+    <div class="testimonial-grid">
+      <div class="testimonial-card">
+        <p class="testimonial-text">Working with my RevibeFit coach completely changed my approach to fitness. I've lost 35 pounds and have more energy than ever before. The personalized attention really makes the difference.</p>
+        <div class="testimonial-author">
+          <img src="https://randomuser.me/api/portraits/women/33.jpg" alt="Emily Rodriguez" class="testimonial-avatar">
+          <div>
+            <div class="testimonial-name">Emily Rodriguez</div>
+            <div class="testimonial-role">Lost 35 pounds in 6 months</div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="testimonial-card">
+        <p class="testimonial-text">After trying multiple fitness programs with no success, my RevibeFit coach designed a plan that actually fits my busy schedule. The nutrition guidance was exactly what I needed to finally see results.</p>
+        <div class="testimonial-author">
+          <img src="https://randomuser.me/api/portraits/men/52.jpg" alt="Jason Kim" class="testimonial-avatar">
+          <div>
+            <div class="testimonial-name">Jason Kim</div>
+            <div class="testimonial-role">Gained 12lbs of muscle in 4 months</div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="testimonial-card">
+        <p class="testimonial-text">As someone with specific health concerns, I needed specialized guidance. My coach understood my limitations and created a plan that has significantly improved my strength and mobility.</p>
+        <div class="testimonial-author">
+          <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Linda Thompson" class="testimonial-avatar">
+          <div>
+            <div class="testimonial-name">Linda Thompson</div>
+            <div class="testimonial-role">Improved mobility & strength at 58</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="plans" class="plans">
+    <h2>Coaching Plans</h2>
+    <p class="subtitle">Choose the plan that best fits your goals and lifestyle</p>
+    <div class="plan-cards">
+      <div class="plan-card">
+        <h3 class="plan-name">Basic Plan</h3>
+        <div class="plan-duration">3 months</div>
+        <div class="plan-price">$99/month</div>
+        <ul class="plan-features">
+          <li>Custom workout plan</li>
+          <li>Basic nutrition guidance</li>
+          <li>Weekly check-ins</li>
+          <li>Email support</li>
+          <li>Access to workout library</li>
+        </ul>
+        <a href="#" class="button primary">Get Started</a>
+      </div>
+      
+      <div class="plan-card featured">
+        <div class="featured-tag">Most Popular</div>
+        <h3 class="plan-name">Premium Plan</h3>
+        <div class="plan-duration">6 months</div>
+        <div class="plan-price">$149/month</div>
+        <ul class="plan-features">
+          <li>Advanced workout programming</li>
+          <li>Detailed nutrition plan</li>
+          <li>Bi-weekly video calls</li>
+          <li>24/7 messaging support</li>
+          <li>Progress tracking tools</li>
+          <li>Monthly plan adjustments</li>
+          <li>Recipe library access</li>
+        </ul>
+        <a href="#" class="button primary">Get Started</a>
+      </div>
+      
+      <div class="plan-card">
+        <h3 class="plan-name">Elite Plan</h3>
+        <div class="plan-duration">12 months</div>
+        <div class="plan-price">$199/month</div>
+        <ul class="plan-features">
+          <li>Advanced periodized programming</li>
+          <li>Custom meal planning</li>
+          <li>Weekly video calls</li>
+          <li>Priority support</li>
+          <li>Body composition analysis</li>
+          <li>Weekly plan adjustments</li>
+          <li>Blood work analysis</li>
+          <li>Supplement guidance</li>
+        </ul>
+        <a href="#" class="button primary">Get Started</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="faq-section">
+    <h2>Frequently Asked Questions</h2>
+    <div class="faq-grid">
+      <div class="faq-item">
+        <h3 class="faq-question">How are coaches matched with clients?</h3>
+        <p class="faq-answer">We match coaches based on your specific goals, experience level, and personal preferences. You'll be paired with a coach who specializes in the areas that align with your fitness journey.</p>
+      </div>
+      
+      <div class="faq-item">
+        <h3 class="faq-question">How often will I communicate with my coach?</h3>
+        <p class="faq-answer">Communication frequency depends on your plan. Basic plans include weekly check-ins, Premium plans include bi-weekly video calls and messaging support, and Elite plans feature weekly video calls and priority support.</p>
+      </div>
+      
+      <div class="faq-item">
+        <h3 class="faq-question">Can I switch coaches if we're not a good fit?</h3>
+        <p class="faq-answer">Absolutely. If you feel your coach isn't the right match within the first 14 days, we'll happily pair you with a different coach at no additional cost.</p>
+      </div>
+      
+      <div class="faq-item">
+        <h3 class="faq-question">Do I need special equipment for the workouts?</h3>
+        <p class="faq-answer">Not necessarily. Your coach will design your program based on the equipment you have access to, whether it's a fully equipped gym or minimal home equipment.</p>
+      </div>
+      
+      <div class="faq-item">
+        <h3 class="faq-question">Are the nutrition plans customizable for dietary restrictions?</h3>
+        <p class="faq-answer">Yes, all nutrition plans are fully customizable to accommodate allergies, intolerances, preferences, and dietary restrictions such as vegetarian, vegan, keto, etc.</p>
+      </div>
+      
+      <div class="faq-item">
+        <h3 class="faq-question">Can I pause my coaching plan?</h3>
+        <p class="faq-answer">Yes, you can pause your plan for up to 30 days per year without losing any coaching time. This is particularly helpful during vacations or busy periods.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-section">
+    <h2>Ready to Transform Your Fitness Journey?</h2>
+    <p>Join thousands of clients who have achieved their fitness goals with RevibeFit coaching</p>
+    <a href="#plans" class="button secondary">Find Your Coach Today</a>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-section brand">
+        <div class="logo">
+          <img src="/Assets/exercise_8407005.png" alt="RevibeFit Logo">
+          <h2>RevibeFit</h2>
+        </div>
+        <p>Transform your life through fitness. Join our community and achieve your health goals with expert guidance.</p>
+        <div class="social-icons">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+
+      <div class="footer-section links">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Our Trainers</a></li>
+          <li><a href="#">Classes & Programs</a></li>
+          <li><a href="#">Success Stories</a></li>
+          <li><a href="#">Blog & News</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-section services">
+        <h3>Our Services</h3>
+        <ul>
+          <li><a href="#">Personal Training</a></li>
+          <li><a href="#">Group Fitness Classes</a></li>
+          <li><a href="#">Nutrition Planning</a></li>
+          <li><a href="#">Health Assessment</a></li>
+          <li><a href="#">Lab Tests</a></li>
+          <li><a href="#">Online Coaching</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="newsletter">
+      <h3>Subscribe to Our Newsletter</h3>
+      <p>Stay updated with the latest fitness tips and health advice.</p>
+      <form>
+        <input type="email" placeholder="Enter your email">
+        <button type="submit">Subscribe</button>
+      </form>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; 2025 RevibeFit. All rights reserved.</p>
+      <div class="footer-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Cookie Policy</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    $(function() {
+      $("#nav-placeholder").load("Nav_bar.html", function() {
+        // Load the dynamic navbar script
+        const script = document.createElement('script');
+        script.src = "JS/dynamicNavbar.js";
+        document.body.appendChild(script);
+      });
+    });
+  </script>
+</body>
+
+</html>
