@@ -1,202 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
-    <!-- GSAP CDN -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <style>
-     * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
-  }
-  nav {
-    display: flex;
-    align-items: center;
-    justify-content: space-between; 
-    padding: 1rem 5%;
-    background-color: #fffff0;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 1000;
-  }
-
-  .logo {
-    display: flex;
-    align-items: center;
-    text-decoration: none;
-    color: #333;
-    font-size: 1.5rem;
-    font-weight: bold;
-    margin-right: auto;
-  }
-
-  .logo svg {
-    width: 24px;
-    height: 24px;
-    margin-right: 8px;
-    fill: #4fb16d;
-  }
-
-  .nav-links {
-    display: flex;
-    align-items: center;
-    gap: 2rem;
-    list-style: none;
-  }
-
-  .dropdown {
-    position: relative;
-    display: inline-block;
-  }
-
-  .dropdown > a {
-    display: inline-block;
-    padding: 0.5rem 0;
-  }
-
-  .dropdown-content {
-    visibility: hidden;
-    opacity: 0;
-    position: absolute;
-    background-color: #fffff0;
-    min-width: 200px;
-    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
-    border-radius: 4px;
-    padding: 0.5rem 0;
-    z-index: 1001;
-    top: 100%;
-    left: 50%;
-    transform: translateX(-50%);
-    margin-top: 0.5rem;
-    transition: all 0.3s ease;
-  }
-
-  .dropdown-content::before {
-    content: '';
-    position: absolute;
-    top: -10px;
-    left: 0;
-    right: 0;
-    height: 10px;
-    background: transparent;
-  }
-
-  .dropdown:hover .dropdown-content {
-    visibility: visible;
-    opacity: 1;
-  }
-
-  .dropdown-content a {
-    color: #666;
-    padding: 0.75rem 1.5rem;
-    text-decoration: none;
-    display: block;
-    transition: background-color 0.3s ease, color 0.3s ease;
-  }
-
-  .dropdown-content a:hover {
-    background-color: #f5f5f5;
-    color: #4fb16d;
-  }
-
-  .dropdown > a::after {
-    content: '▼';
-    font-size: 0.7em;
-    margin-left: 0.5em;
-    display: inline-block;
-    vertical-align: middle;
-  }
-
-  .nav-links a {
-    text-decoration: none;
-    color: #666;
-    font-size: 1rem;
-    transition: color 0.3s ease;
-    position: relative;
-    padding-bottom: 5px;
-  }
-
-  .nav-links a:hover {
-    color: #4fb16d;
-  }
-
-  /* New underline hover effect */
-  .nav-links a::after {
-    content: '';
-    position: absolute;
-    width: 0;
-    height: 2px;
-    bottom: 0;
-    left: 0;
-    background-color: #4fb16d;
-    transition: width 0.3s ease;
-  }
-
-  .nav-links a:hover::after {
-    width: 100%;
-  }
-
-  /* For dropdown items */
-  .dropdown-content a::after {
-    bottom: -2px;
-  }
-
-  .sign-in {
-    background-color: #3f8554;
-    color: white;
-    padding: 0.5rem 1.5rem;
-    border-radius: 4px;
-    text-decoration: none;
-    font-weight: 500;
-    transition: background-color 0.3s ease;
-    margin-left: 2rem;
-    position: relative;
-  }
-
-  .sign-in:hover {
-    background-color:#12642b;
-  }
-
-  .nav-group {
-    display: flex;
-    align-items: center;
-    gap: 2rem; 
-  }
-
-  body {
-    padding-top: 75px;  
-  }
-
-.hero-section {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 4rem 8rem;
-    background: linear-gradient(135deg, #ffffff 0%, #f5f9f7 100%), 
-               url('path/to/your/background-image.jpg') no-repeat center / cover;
-    min-height: 100vh;
-    position: relative;
-    overflow: hidden;
-}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
+  <!-- GSAP CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <style>
 
 
-  .hero-content {
+    .hero-section {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 4rem 8rem;
+      background: linear-gradient(135deg, #ffffff 0%, #f5f9f7 100%),
+        url('path/to/your/background-image.jpg') no-repeat center / cover;
+      min-height: 100vh;
+      position: relative;
+      overflow: hidden;
+    }
+
+
+    .hero-content {
       flex: 1;
       max-width: 500px;
       position: relative;
       z-index: 2;
-  }
+    }
 
-  .hero-content h1 {
+    .hero-content h1 {
       font-size: 4rem;
       font-weight: 800;
       line-height: 1.2;
@@ -207,9 +44,9 @@
       font-family: 'Montserrat', sans-serif;
       opacity: 0;
       transform: translateY(30px);
-  }
+    }
 
-  .hero-content p {
+    .hero-content p {
       font-size: 1.25rem;
       color: #4a4a4a;
       margin-bottom: 2rem;
@@ -217,138 +54,138 @@
       font-weight: 500;
       opacity: 0;
       transform: translateY(30px);
-  }
+    }
 
-  .hero-images {
+    .hero-images {
       flex: 1;
       position: relative;
       display: flex;
       justify-content: center;
       z-index: 1;
-  }
+    }
 
-  .food-bowl {
+    .food-bowl {
       width: 400px;
       height: 400px;
       position: relative;
       filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.1));
       opacity: 0;
       transform: scale(0.8);
-  }
+    }
 
-  .food-bowl img {
+    .food-bowl img {
       width: 100%;
       height: 100%;
       object-fit: contain;
-  }
+    }
 
-  .decorative-shape {
+    .decorative-shape {
       position: absolute;
       border-radius: 50%;
       background: rgba(79, 177, 109, 0.1);
       z-index: 0;
-  }
+    }
 
-  .shape-1 {
+    .shape-1 {
       width: 300px;
       height: 300px;
       top: -100px;
       right: -100px;
       opacity: 0;
-  }
+    }
 
-  .shape-2 {
+    .shape-2 {
       width: 200px;
       height: 200px;
       bottom: 100px;
       left: -50px;
       opacity: 0;
-  }
+    }
 
-  .shape-3 {
+    .shape-3 {
       width: 150px;
       height: 150px;
       top: 200px;
       right: 150px;
       opacity: 0;
-  }
+    }
 
-  .nutritional-elements {
+    .nutritional-elements {
       position: absolute;
       border-radius: 50%;
       z-index: 1;
       opacity: 0;
-  }
+    }
 
-  .element-1 {
+    .element-1 {
       width: 40px;
       height: 40px;
       background-color: #ff7f50;
       top: 40%;
       left: 10%;
-  }
+    }
 
-  .element-2 {
+    .element-2 {
       width: 25px;
       height: 25px;
       background-color: #9370db;
       top: 30%;
       right: 15%;
-  }
+    }
 
-  .element-3 {
+    .element-3 {
       width: 35px;
       height: 35px;
       background-color: #20b2aa;
       bottom: 25%;
       right: 30%;
-  }
+    }
 
-  .element-4 {
+    .element-4 {
       width: 20px;
       height: 20px;
       background-color: #ffd700;
       bottom: 40%;
       left: 20%;
-  }
+    }
 
-  @media (max-width: 768px) {
+    @media (max-width: 768px) {
       .hero-section {
-          flex-direction: column;
-          padding: 2rem;
-          text-align: center;
+        flex-direction: column;
+        padding: 2rem;
+        text-align: center;
       }
 
       .hero-content {
-          margin-bottom: 2rem;
+        margin-bottom: 2rem;
       }
 
       .hero-content h1 {
-          font-size: 2.5rem;
+        font-size: 2.5rem;
       }
 
       .food-bowl {
-          width: 300px;
-          height: 300px;
+        width: 300px;
+        height: 300px;
       }
-  }
-  
-  /* Updated Meal Plans Section for 3 cards per row */
-  .meal-plans-section {
+    }
+
+    /* Updated Meal Plans Section for 3 cards per row */
+    .meal-plans-section {
       padding: 4rem 5%;
       background-color: #fafafa;
       width: 100%;
-  }
+    }
 
-  .section-title {
+    .section-title {
       font-size: 32px;
       margin-bottom: 40px;
       text-align: center;
       font-weight: 700;
       color: #333;
-  }
+    }
 
-  .meal-plans-container {
+    .meal-plans-container {
       display: flex;
       flex-wrap: wrap;
       gap: 30px;
@@ -356,9 +193,9 @@
       width: 100%;
       max-width: 1400px;
       margin: 0 auto;
-  }
+    }
 
-  .meal-plan-card {
+    .meal-plan-card {
       width: calc(33.333% - 20px);
       min-width: 300px;
       border-radius: 12px;
@@ -368,76 +205,77 @@
       transition: transform 0.3s ease, box-shadow 0.3s ease;
       margin-bottom: 30px;
       flex-grow: 1;
-  }
+    }
 
-  .meal-plan-card:hover {
+    .meal-plan-card:hover {
       transform: translateY(-5px);
       box-shadow: 0 6px 25px rgba(0, 0, 0, 0.12);
-  }
+    }
 
-  .meal-plan-image {
+    .meal-plan-image {
       width: 100%;
       height: 260px;
       object-fit: cover;
-  }
+    }
 
-  .meal-plan-content {
+    .meal-plan-content {
       padding: 30px;
       position: relative;
-  }
+    }
 
-  .meal-plan-title {
+    .meal-plan-title {
       font-size: 24px;
       font-weight: 700;
       margin: 0 0 16px 0;
       color: #333;
-  }
+    }
 
-  .meal-plan-description {
+    .meal-plan-description {
       font-size: 16px;
       color: #666;
       margin-bottom: 28px;
       line-height: 1.6;
-  }
+    }
 
-  .meal-plan-details {
+    .meal-plan-details {
       display: flex;
       justify-content: space-between;
       align-items: center;
       margin-bottom: 24px;
-  }
+    }
 
-  .calories, .meals-per-day {
+    .calories,
+    .meals-per-day {
       display: flex;
       align-items: center;
       font-size: 16px;
       color: #555;
       font-weight: 500;
-  }
+    }
 
-  .calories:before {
+    .calories:before {
       content: "⚡";
       margin-right: 5px;
-  }
+    }
 
-  .meals-per-day:before {
+    .meals-per-day:before {
       content: "🍽️";
       margin-right: 5px;
-  }
+    }
 
-  .meal-plan-bottom {
+    .meal-plan-bottom {
       display: flex;
       justify-content: space-between;
       align-items: center;
-  }
+    }
 
-  .meal-plan-price {
+    .meal-plan-price {
       font-size: 28px;
       font-weight: 700;
       color: #27ae60;
-  }
+    }
 
-  .get-plan-button {
+    .get-plan-button {
       background-color: #27ae60;
       color: white;
       border: none;
@@ -447,48 +285,49 @@
       font-weight: 500;
       cursor: pointer;
       transition: background-color 0.3s ease, transform 0.2s ease;
-  }
+    }
 
-  .get-plan-button:hover {
+    .get-plan-button:hover {
       background-color: #219653;
       transform: translateY(-2px);
-  }
+    }
 
-  /* Responsive adjustments */
-  @media (max-width: 1200px) {
+    /* Responsive adjustments */
+    @media (max-width: 1200px) {
       .meal-plan-card {
-          width: calc(33.333% - 20px);
+        width: calc(33.333% - 20px);
       }
-  }
+    }
 
-  @media (max-width: 992px) {
+    @media (max-width: 992px) {
       .meal-plan-card {
-          width: calc(50% - 15px);
+        width: calc(50% - 15px);
       }
-  }
+    }
 
-  @media (max-width: 768px) {
+    @media (max-width: 768px) {
       .meal-plans-section {
-          padding: 3rem 20px;
+        padding: 3rem 20px;
       }
-      
+
       .meal-plans-container {
-          gap: 20px;
-          justify-content: center;
+        gap: 20px;
+        justify-content: center;
       }
-      
+
       .meal-plan-card {
-          width: 100%;
-          max-width: 450px;
+        width: 100%;
+        max-width: 450px;
       }
-  }
-    </style>
+    }
+  </style>
 </head>
+
 <body>
   <nav>
     <div id="nav-placeholder"></div>
   </nav>
-  
+
   <section class="hero-section">
     <div class="decorative-shape shape-1"></div>
     <div class="decorative-shape shape-2"></div>
@@ -498,7 +337,7 @@
       <h1>Fitness starts with what you eat.</h1>
       <p>Take control of your goals. Track calories, break down ingredients, and know your true diet with RevibeFit.</p>
     </div>
-    
+
     <div class="hero-images">
       <div class="nutritional-elements element-1"></div>
       <div class="nutritional-elements element-2"></div>
@@ -506,14 +345,16 @@
       <div class="nutritional-elements element-4"></div>
     </div>
   </section>
-  
+
   <section class="meal-plans-section">
     <h2 class="section-title">Customized Meal Plans</h2>
-    
+
     <div class="meal-plans-container">
       <!-- Weight Loss Meal Plan -->
       <div class="meal-plan-card">
-        <img src="https://images.unsplash.com/photo-1511690656952-34342bb7c2f2?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Weight Loss Meal" class="meal-plan-image">
+        <img
+          src="https://images.unsplash.com/photo-1511690656952-34342bb7c2f2?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+          alt="Weight Loss Meal" class="meal-plan-image">
         <div class="meal-plan-content">
           <h2 class="meal-plan-title">Weight Loss Meal Plan</h2>
           <p class="meal-plan-description">Calorie-controlled meals designed for sustainable weight loss</p>
@@ -527,10 +368,12 @@
           </div>
         </div>
       </div>
-      
+
       <!-- Muscle Gain Plan -->
       <div class="meal-plan-card">
-        <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Muscle Gain Meal" class="meal-plan-image">
+        <img
+          src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+          alt="Muscle Gain Meal" class="meal-plan-image">
         <div class="meal-plan-content">
           <h2 class="meal-plan-title">Muscle Gain Plan</h2>
           <p class="meal-plan-description">High-protein meals to support muscle growth and recovery</p>
@@ -544,10 +387,12 @@
           </div>
         </div>
       </div>
-      
+
       <!-- Balanced Nutrition -->
       <div class="meal-plan-card">
-        <img src="https://images.unsplash.com/photo-1540420773420-3366772f4999?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Balanced Nutrition Meal" class="meal-plan-image">
+        <img
+          src="https://images.unsplash.com/photo-1540420773420-3366772f4999?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+          alt="Balanced Nutrition Meal" class="meal-plan-image">
         <div class="meal-plan-content">
           <h2 class="meal-plan-title">Balanced Nutrition</h2>
           <p class="meal-plan-description">Well-rounded meals for overall health and wellness</p>
@@ -562,113 +407,114 @@
         </div>
       </div>
 
-  
-  
-  <script>
-    // Initialize GSAP
-    gsap.registerPlugin(ScrollTrigger);
 
-    // Navbar Animation
-    const navTimeline = gsap.timeline({ defaults: { ease: "power2.out" } });
-    
-    navTimeline
-      .to("#logo", { opacity: 1, duration: 0.8, y: 0 })
-      .to(".nav-links li", { 
-        opacity: 1, 
-        y: 0, 
-        duration: 0.5, 
-        stagger: 0.1 
-      }, "-=0.5")
-      .to("#sign-in", { opacity: 1, y: 0, duration: 0.5 }, "-=0.3");
 
-    // Hero Section Animation
-    const heroTimeline = gsap.timeline({ 
-      defaults: { ease: "power3.out" },
-      delay: 0.5
-    });
+      <script>
+        // Initialize GSAP
+        gsap.registerPlugin(ScrollTrigger);
 
-    heroTimeline
-      .to(".hero-content h1", { 
-        opacity: 1, 
-        y: 0, 
-        duration: 1 
-      })
-      .to(".hero-content p", { 
-        opacity: 1, 
-        y: 0, 
-        duration: 0.8 
-      }, "-=0.6")
-      .to(".food-bowl", { 
-        opacity: 1, 
-        scale: 1, 
-        duration: 1.2, 
-        ease: "elastic.out(1, 0.5)" 
-      }, "-=0.8")
-      .to(".decorative-shape", { 
-        opacity: 1, 
-        stagger: 0.2, 
-        duration: 1 
-      }, "-=1");
+        // Navbar Animation
+        const navTimeline = gsap.timeline({ defaults: { ease: "power2.out" } });
 
-    // Floating Nutritional Elements Animation
-    gsap.to(".element-1", {
-      opacity: 0.8,
-      y: -15,
-      duration: 2,
-      repeat: -1,
-      yoyo: true,
-      ease: "sine.inOut",
-      delay: 1
-    });
+        navTimeline
+          .to("#logo", { opacity: 1, duration: 0.8, y: 0 })
+          .to(".nav-links li", {
+            opacity: 1,
+            y: 0,
+            duration: 0.5,
+            stagger: 0.1
+          }, "-=0.5")
+          .to("#sign-in", { opacity: 1, y: 0, duration: 0.5 }, "-=0.3");
 
-    gsap.to(".element-2", {
-      opacity: 0.8,
-      y: -20,
-      duration: 2.5,
-      repeat: -1,
-      yoyo: true,
-      ease: "sine.inOut",
-      delay: 1.2
-    });
+        // Hero Section Animation
+        const heroTimeline = gsap.timeline({
+          defaults: { ease: "power3.out" },
+          delay: 0.5
+        });
 
-    gsap.to(".element-3", {
-      opacity: 0.8,
-      y: -18,
-      duration: 2.3,
-      repeat: -1,
-      yoyo: true,
-      ease: "sine.inOut",
-      delay: 0.8
-    });
+        heroTimeline
+          .to(".hero-content h1", {
+            opacity: 1,
+            y: 0,
+            duration: 1
+          })
+          .to(".hero-content p", {
+            opacity: 1,
+            y: 0,
+            duration: 0.8
+          }, "-=0.6")
+          .to(".food-bowl", {
+            opacity: 1,
+            scale: 1,
+            duration: 1.2,
+            ease: "elastic.out(1, 0.5)"
+          }, "-=0.8")
+          .to(".decorative-shape", {
+            opacity: 1,
+            stagger: 0.2,
+            duration: 1
+          }, "-=1");
 
-    gsap.to(".element-4", {
-      opacity: 0.8,
-      y: -12,
-      duration: 1.8,
-      repeat: -1,
-      yoyo: true,
-      ease: "sine.inOut",
-      delay: 1.5
-    });
+        // Floating Nutritional Elements Animation
+        gsap.to(".element-1", {
+          opacity: 0.8,
+          y: -15,
+          duration: 2,
+          repeat: -1,
+          yoyo: true,
+          ease: "sine.inOut",
+          delay: 1
+        });
 
-    // Meal plan cards animation
-    gsap.from(".meal-plan-card", {
-      y: 50,
-      opacity: 0,
-      duration: 0.8,
-      stagger: 0.2,
-      ease: "power2.out",
-      scrollTrigger: {
-        trigger: ".meal-plans-section",
-        start: "top 80%"
-      }
-    });
-    
+        gsap.to(".element-2", {
+          opacity: 0.8,
+          y: -20,
+          duration: 2.5,
+          repeat: -1,
+          yoyo: true,
+          ease: "sine.inOut",
+          delay: 1.2
+        });
 
-  $(function(){
-    $("#nav-placeholder").load("Nav_bar.html");
-  });
+        gsap.to(".element-3", {
+          opacity: 0.8,
+          y: -18,
+          duration: 2.3,
+          repeat: -1,
+          yoyo: true,
+          ease: "sine.inOut",
+          delay: 0.8
+        });
 
-  </script>
+        gsap.to(".element-4", {
+          opacity: 0.8,
+          y: -12,
+          duration: 1.8,
+          repeat: -1,
+          yoyo: true,
+          ease: "sine.inOut",
+          delay: 1.5
+        });
+
+        // Meal plan cards animation
+        gsap.from(".meal-plan-card", {
+          y: 50,
+          opacity: 0,
+          duration: 0.8,
+          stagger: 0.2,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: ".meal-plans-section",
+            start: "top 80%"
+          }
+        });
+
+
+        $(function () {
+          $("#nav-placeholder").load("Nav_bar.html");
+        });
+
+      </script>
 </body>
+
 </html>

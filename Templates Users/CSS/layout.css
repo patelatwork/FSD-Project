@@ -1,0 +1,139 @@
+/* Navigation Bar Layout */
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; 
+    padding: 1rem 5%;
+    background-color: #fffff0;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #333;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-right: auto;
+}
+
+.logo img, .logo svg {
+    width: 34px;
+    height: 34px;
+    margin-right: 8px;
+    fill: #4fb16d;
+}
+
+.nav-group {
+    display: flex;
+    align-items: center;
+    gap: 2rem; 
+}
+
+/* Hero Section Layout */
+.hero {
+    position: relative;
+    height: 600px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    padding: 0 5%;
+}
+
+.hero-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+}
+
+.hero-content {
+    max-width: 800px;
+    z-index: 2;
+    position: relative;
+}
+
+/* Features Grid Layout */
+.features {
+    padding: 5rem 5%;
+    text-align: center;
+    background-color: #f7f7f7;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Footer Layout */
+.footer {
+    background-color: #fffff0;
+    color: #4a6741;
+    padding: 50px 0 20px;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px;
+    flex-wrap: wrap;
+}
+
+.footer-section {
+    margin-bottom: 30px;
+}
+
+.brand {
+    flex-basis: 30%;
+}
+
+.links, .services {
+    flex-basis: 20%;
+}
+
+.newsletter {
+    max-width: 1200px;
+    margin: 40px auto;
+    text-align: center;
+    padding: 0 20px;
+    border-top: 1px solid #e0e0e0;
+    padding-top: 40px;
+}
+
+.footer-bottom {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    border-top: 1px solid #e0e0e0;
+}
+
+/* Responsive layouts */
+@media (max-width: 768px) {
+    .features-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .footer-container {
+        flex-direction: column;
+    }
+    
+    .brand, .links, .services {
+        flex-basis: 100%;
+    }
+}
