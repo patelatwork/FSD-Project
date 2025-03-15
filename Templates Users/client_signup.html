@@ -306,6 +306,133 @@
                 alert("Account Created successfully!");
             }
         });
+        // signup.js - Connect the HTML form to the backend
+document.addEventListener('DOMContentLoaded', function() {
+    const API_BASE_URL = 'http://localhost:3001'; // Change this to your actual backend URL
+    let userType = 'fitness'; // Default user type
+    
+    // Event listeners for toggle buttons
+    document.getElementById('fitnessBtn').addEventListener('click', function() {
+        userType = 'fitness';
+    });
+
+    document.getElementById('trainerBtn').addEventListener('click', function() {
+        userType = 'trainer';
+    });
+    
+    // Form submission handling
+    document.getElementById('signupForm').addEventListener('submit', async function(event) {
+        event.preventDefault();
+        
+        // Client-side validation
+        if (!validateForm()) {
+            return;
+        }
+        
+        // Collect form data
+        const formData = {
+            fullname: document.getElementById('fullname').value.trim(),
+            email: document.getElementById('email').value.trim(),
+            phone: document.getElementById('phone').value.trim(),
+            password: document.getElementById('password').value,
+            userType: userType
+        };
+        
+        // Add specific fields based on user type
+        if (userType === 'fitness') {
+            formData.goals = document.getElementById('goals').value.trim();
+            formData.level = document.getElementById('level').value;
+        } else {
+            formData.specialization = document.getElementById('specialization').value.trim();
+            formData.certifications = document.getElementById('certifications').value.trim();
+        }
+        
+        try {
+            // Send data to backend
+            const response = await fetch(`${API_BASE_URL}/signup/user`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData)
+            });
+            
+            const data = await response.json();
+            
+            if (!response.ok) {
+                throw new Error(data.error || 'Signup failed');
+            }
+            
+            // Success - show message and redirect
+            alert('Account created successfully!');
+            
+            // Redirect to login page or dashboard
+            // window.location.href = 'login.html';
+            
+        } catch (error) {
+            // Show error message
+            alert(`Error: ${error.message}`);
+            console.error('Signup error:', error);
+        }
+    });
+    
+    // Form validation function
+    function validateForm() {
+        let valid = true;
+        
+        const fullName = document.getElementById('fullname');
+        const email = document.getElementById('email');
+        const phone = document.getElementById('phone');
+        const password = document.getElementById('password');
+
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        const phonePattern = /^[0-9]{10}$/;
+
+        document.getElementById('fullnameError').textContent = "";
+        document.getElementById('emailError').textContent = "";
+        document.getElementById('phoneError').textContent = "";
+        document.getElementById('passwordError').textContent = "";
+
+        if (fullName.value.trim() === '') {
+            document.getElementById('fullnameError').textContent = "Full name is required.";
+            valid = false;
+        }
+
+        if (!emailPattern.test(email.value)) {
+            document.getElementById('emailError').textContent = "Enter a valid email address.";
+            valid = false;
+        }
+
+        if (!phonePattern.test(phone.value)) {
+            document.getElementById('phoneError').textContent = "Enter a valid 10-digit phone number.";
+            valid = false;
+        }
+
+        if (password.value.length < 6) {
+            document.getElementById('passwordError').textContent = "Password must be at least 6 characters long.";
+            valid = false;
+        }
+        
+        // Additional validation for trainer fields
+        if (userType === 'trainer') {
+            const specialization = document.getElementById('specialization');
+            if (specialization.value.trim() === '') {
+                // Create error element if it doesn't exist
+                if (!document.getElementById('specializationError')) {
+                    const errorDiv = document.createElement('div');
+                    errorDiv.id = 'specializationError';
+                    errorDiv.className = 'error';
+                    specialization.after(errorDiv);
+                }
+                document.getElementById('specializationError').textContent = "Specialization is required for trainers.";
+                valid = false;
+            }
+        }
+        
+        return valid;
+    }
+});
     </script>
+
 </body>
 </html>

@@ -7,6 +7,8 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="/Templates Trainer/CSS/trainer.css">
     <link rel="stylesheet" href="/Templates Trainer/CSS/upload_content.css">
+    <!-- Add a rich text editor library -->
+    <script src="https://cdn.ckeditor.com/ckeditor5/35.0.1/classic/ckeditor.js"></script>
 </head>
 <body>
     <div class="dashboard-container">
@@ -91,16 +93,24 @@
                         </div>
                         <div class="form-group">
                             <label>Featured Image</label>
-                            <label for="blog-image" class="file-input-label">
+                            <label for="video-image" class="file-input-label">
                                 <i class="upload-icon">📁</i>
                                 Choose Image
                             </label>
-                            <input type="file" id="blog-image" accept="image/*">
+                            <input type="file" id="video-image" accept="image/*">
                             <div class="file-name-display"></div>
                         </div>
-                            <div class="upload-preview">
-                                <video id="video-preview" controls style="display: none;"></video>
-                            </div>
+                        <div class="form-group">
+                            <label>Video File</label>
+                            <label for="video-file" class="file-input-label">
+                                <i class="upload-icon">📽️</i>
+                                Choose Video
+                            </label>
+                            <input type="file" id="video-file" accept="video/*">
+                            <div class="file-name-display"></div>
+                        </div>
+                        <div class="upload-preview">
+                            <video id="video-preview" controls style="display: none;"></video>
                         </div>
                         <button class="upload-btn">Upload Video</button>
                     </div>
@@ -128,7 +138,12 @@
                         </div>
                         <div class="form-group">
                             <label>Featured Image</label>
-                            <input type="file" accept="image/*">
+                            <label for="blog-image" class="file-input-label">
+                                <i class="upload-icon">📁</i>
+                                Choose Image
+                            </label>
+                            <input type="file" id="blog-image" accept="image/*">
+                            <div class="file-name-display"></div>
                         </div>
                         <div class="form-group">
                             <label>Content</label>
@@ -151,12 +166,85 @@
                 </div>
 
                 <div class="content-grid">
-                    <!-- Content cards will be dynamically loaded here -->
+                    <!-- Sample content cards for the library -->
+                    <div class="content-card">
+                        <div class="content-thumbnail">
+                            <img src="/Assets/hiit.jpg" alt="Full Body HIIT">
+                            <div class="content-type">Video</div>
+                        </div>
+                        <div class="content-info">
+                            <h3 class="content-title">Full Body HIIT Workout</h3>
+                            <div class="content-meta">HIIT • 15 minutes</div>
+                        </div>
+                    </div>
+                    
+                    <div class="content-card">
+                        <div class="content-thumbnail">
+                            <img src="/Assets/nutrition.jpeg" alt="Nutrition Blog">
+                            <div class="content-type">Blog</div>
+                        </div>
+                        <div class="content-info">
+                            <h3 class="content-title">5 Essential Post-Workout Nutrition Tips</h3>
+                            <div class="content-meta">Nutrition • Mar 10, 2025</div>
+                        </div>
+                    </div>
+                    
+                    <div class="content-card">
+                        <div class="content-thumbnail">
+                            <img src="/Assets/yog.jpg" alt="Yoga Flow">
+                            <div class="content-type">Video</div>
+                        </div>
+                        <div class="content-info">
+                            <h3 class="content-title">Morning Yoga Flow</h3>
+                            <div class="content-meta">Yoga • 20 minutes</div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <script src="/Templates Trainer/JS/upload_content.js"></script>
+    <script>
+    $(document).ready(function() {
+        // Tab functionality
+        $('.tab-btn').click(function() {
+            var tabId = $(this).data('tab');
+            
+            // Remove active class from all buttons and content
+            $('.tab-btn').removeClass('active');
+            $('.tab-content').removeClass('active');
+            
+            // Add active class to clicked button and corresponding content
+            $(this).addClass('active');
+            $('#' + tabId).addClass('active');
+        });
+        
+        // File input handling
+        $('input[type="file"]').change(function() {
+            var fileName = $(this).val().split('\\').pop();
+            if (fileName) {
+                $(this).siblings('.file-name-display').text(fileName);
+            } else {
+                $(this).siblings('.file-name-display').text('');
+            }
+            
+            // Show video preview if it's a video file
+            if (this.id === 'video-file' && this.files && this.files[0]) {
+                var videoPreview = document.getElementById('video-preview');
+                videoPreview.src = URL.createObjectURL(this.files[0]);
+                videoPreview.style.display = 'block';
+            }
+        });
+        
+        // Initialize rich text editor for blog content
+        if (document.getElementById('editor')) {
+            ClassicEditor
+                .create(document.getElementById('editor'))
+                .catch(error => {
+                    console.error(error);
+                });
+        }
+    });
+    </script>
 </body>
 </html>

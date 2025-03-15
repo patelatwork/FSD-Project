@@ -5,200 +5,10 @@
   <link rel="stylesheet" href="/Templates Users/CSS/footer.css">
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="/Templates Users/CSS/homepage.css">
 <style>
 
-  .hero {
-    position: relative;
-    height: 600px;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    padding: 0 5%;
-  }
-
-  .hero::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(to right, 
-        rgba(217, 217, 182, 0.92) 0%,
-        rgba(217, 217, 182, 0.92) 40%,
-        rgba(255, 255, 255, 0) 100%
-    );
-    z-index: 1;
-  }
-
-  .hero-background {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    z-index: 0;
-  }
-
-  .hero-content {
-    max-width: 800px;
-    color: rgb(19, 13, 13);
-    z-index: 2;
-    position: relative;
-  }
-
-  .hero h1 {
-    font-size: 4rem;
-    font-weight: bold;
-    line-height: 1.2;
-    margin-bottom: 1.5rem;
-  }
-
-  .hero p {
-    font-size: 1.25rem;
-    margin-bottom: 2rem;
-    line-height: 1.6;
-  }
-
-  .hero-buttons {
-    display: flex;
-    gap: 1rem;
-  }
-
-  .button {
-    padding: 1rem 2rem;
-    border-radius: 4px;
-    text-decoration: none;
-    font-weight: 500;
-    transition: all 0.3s ease;
-    display: inline-flex;
-    align-items: center;
-  }
-
-  .button.primary {
-    background-color: #3f8554;
-    color: white;
-  }
-
-  .button.primary:hover {
-    background-color: #12642b;
-  }
-
-  .button.secondary {
-    background-color: rgba(238, 238, 228, 0.258);
-    color: #367348;
-    border-color: #000000;  
-  }
-
-  .button.secondary:hover {
-    background-color: #c1953d;
-  }
-
-  .button svg {
-    margin-left: 8px;
-    width: 20px;
-    height: 20px;
-  }
-
-  body {
-    padding-top: 75px;  
-  }
-
-  .features {
-    padding: 5rem 5%;
-    text-align: center;
-    background-color: #f7f7f7;
-  }
-
-  .features h2 {
-    font-size: 2.5rem;
-    color: #333;
-    margin-bottom: 1rem;
-  }
-
-  .features p {
-    font-size: 1.2rem;
-    color: #666;
-    margin-bottom: 3rem;
-  }
-
-  .features-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-
-  .feature-card {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    text-align: left;
-    padding: 1.5rem;
-  }
-
-  .feature-icon {
-    width: 64px;
-    height: 64px;
-    background-color: #367348;
-    border-radius: 12px;
-    padding: 1rem;
-    margin-bottom: 1rem;
-  }
-
-  .feature-icon svg {
-    width: 100%;
-    height: 100%;
-    fill: white;
-  }
-
-  .feature-title {
-    font-size: 1.5rem;
-    color: #333;
-    margin-bottom: 0.5rem;
-  } .feature-description {
-    color: #666;
-    line-height: 1.6;
-  }
   
-  /* Questions section styles */
-  .questions-section {
-    text-align: center;
-    padding: 4rem 0;
-    background-color: #fff;
-  }
-  
-  .questions-section h2 {
-    font-size: 2.5rem;
-    color: #333;
-    margin-bottom: 1rem;
-  }
-  
-  .questions-section p {
-    font-size: 1.2rem;
-    color: #666;
-    margin-bottom: 2rem;
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  
-  .contact-button {
-    display: inline-block;
-    background-color: #3f8554;
-    color: white;
-    padding: 0.75rem 1.5rem;
-    border-radius: 4px;
-    text-decoration: none;
-    font-weight: 500;
-    transition: background-color 0.3s ease;
-  }
-  
-  .contact-button:hover {
-    background-color: #12642b;
-  }
 </style>
 </head>
 <body>
@@ -214,7 +24,7 @@
       <h1>Transform Your Life Through Fitness</h1>
       <p style="color: #367348;">Join RevibeFit and get access to personalized workout plans, expert trainers, and a supportive community to help you achieve your fitness goals.</p>
       <div class="hero-buttons">
-        <a href="client_signup.html" class="button primary">
+        <a href="trainer_singup.html" class="button primary">
           Get Started
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M5 12h14M12 5l7 7-7 7"/>
@@ -290,6 +100,52 @@
       </div>
     </div>
   </section>
+  <!-- Add this section before the questions-section -->
+<section class="testimonials" id="success-stories">
+  <h2>Success Stories</h2>
+  <p class="subtitle">Real transformations from our community members</p>
+  
+  <div class="testimonials-grid">
+      <div class="testimonial-card">
+          <div class="testimonial-image">
+              <img src="/Assets/male-body-transformation-london-1-1.webp" alt="Transformation">
+          </div>
+          <div class="testimonial-content">
+              <div class="quote">"RevibeFit changed my life! Lost 25kgs in 6 months with personalized training and <br>following the Zumba Classes"</div>
+              <div class="author">
+                  <strong>Sarah Mitchell</strong>
+                  <span>Lost 25 KG</span>
+              </div>
+          </div>
+      </div>
+
+      <div class="testimonial-card">
+          <div class="testimonial-image">
+              <img src="/Assets/journey.png" alt="Transformation">
+          </div>
+          <div class="testimonial-content">
+              <div class="quote">"The trainers here are exceptional. Achieved my fitness goals in just 4 months!"</div>
+              <div class="author">
+                  <strong>John Davis</strong>
+                  <span>Gained Muscle Mass</span>
+              </div>
+          </div>
+      </div>
+
+      <div class="testimonial-card">
+          <div class="testimonial-image">
+              <img src="/Assets/shutterstock_1240081561.webp" alt="Transformation">
+          </div>
+          <div class="testimonial-content">
+              <div class="quote">"Perfect blend of nutrition and workout guidance. My diabetes is now under control."</div>
+              <div class="author">
+                  <strong>Mike Wilson</strong>
+                  <span>Health Transformation</span>
+              </div>
+          </div>
+      </div>
+  </div>
+</section>
   <section class="questions-section">
     <h2>Still have questions?</h2>
     <p>Please help us understand your doubts and we'll get back to you</p>
