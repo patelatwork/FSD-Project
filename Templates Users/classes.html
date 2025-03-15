@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Live Classes - RevibeFit</title>
+    <link rel="stylesheet" href="/Templates Users/CSS/footer.css">
+    <link rel="stylesheet" href="/Templates Users/CSS/classes.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <nav>
+        <div id="nav-placeholder"></div>
+    </nav>
+
+    <!-- Hero Banner -->
+    <section class="hero-banner">
+        <h1>Transform Your Fitness Journey</h1>
+        <p>Join live classes with expert trainers and experience the power of group fitness from anywhere in the world</p>
+        <a href="#classes" class="cta-button">Explore Classes</a>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="benefits">
+        <h2>Why Choose RevibeFit Classes?</h2>
+        <div class="benefits-grid">
+            <div class="benefit-card">
+                <div class="benefit-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <h3>Expert Trainers</h3>
+                <p>Learn from certified professionals with years of experience</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon">
+                    <i class="fas fa-clock"></i>
+                </div>
+                <h3>Flexible Schedule</h3>
+                <p>Choose from multiple time slots that fit your schedule</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon">
+                    <i class="fas fa-dumbbell"></i>
+                </div>
+                <h3>Varied Workouts</h3>
+                <p>Access diverse workout styles for complete fitness</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon">
+                    <i class="fas fa-heart"></i>
+                </div>
+                <h3>Community Support</h3>
+                <p>Join a motivated community of fitness enthusiasts</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="how-it-works">
+        <h2>How It Works</h2>
+        <div class="steps-container">
+            <div class="step">
+                <div class="step-number">1</div>
+                <h3>Choose Your Class</h3>
+                <p>Browse our schedule and pick classes that match your goals</p>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <h3>Book Your Spot</h3>
+                <p>Reserve your place in upcoming live sessions</p>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <h3>Join Live</h3>
+                <p>Connect with your trainer and classmates in real-time</p>
+            </div>
+            <div class="step">
+                <div class="step-number">4</div>
+                <h3>Notification</h3>
+                <p>Don't Miss the classes and stay motivated</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Classes Section -->
+    <section id="classes" class="classes-section">
+        <h2>Upcoming Live Classes</h2>
+        
+            <div class="filters">
+                <button class="filter-btn active">All Classes</button>
+                <button class="filter-btn">Cycling</button>
+                <button class="filter-btn">Strength</button>
+                <button class="filter-btn">Running</button>
+                <button class="filter-btn">Yoga</button>
+                <button class="filter-btn">Meditation</button>
+                <button class="filter-btn">Rowing</button>
+                <button class="filter-btn">Stretching</button>
+                <button class="filter-btn">Outdoor</button>
+                <button class="filter-btn">Cardio</button>
+                <button class="filter-btn">HIIT</button>
+            </div>
+        
+
+        <!-- Include your existing classes grid here -->
+        <div class="classes-grid">
+            <!-- ...existing class cards... -->
+             <!-- Modified class card structure -->
+<div class="class-card">
+    <div class="class-image">
+        <img src="/Assets/strength-training.jpg" alt="Strength Training">
+        <span class="class-duration">45 min</span>
+    </div>
+    <div class="class-content">
+        <div class="class-header">
+            <span class="class-type">Strength</span>
+            <span class="class-level">Intermediate</span>
+        </div>
+        <h3 class="class-title">Full Body Strength</h3>
+        <div class="class-meta">
+            <span class="class-intensity">High Intensity</span>
+            <span class="class-equipment">Dumbbells Required</span>
+        </div>
+        <a href="select-trainer.html?class=strength" class="join-class-btn">Join Class</a>
+    </div>
+</div>
+            <!-- HIIT Class -->
+            <div class="class-card">
+                <div class="class-image">
+                    <img src="/Assets/hiit.jpg" alt="HIIT Training">
+                    <span class="class-duration">30 min</span>
+                </div>
+                <div class="class-content">
+                    <div class="class-header">
+                        <span class="class-type">HIIT</span>
+                        <span class="class-level">Advanced</span>
+                    </div>
+                    <h3 class="class-title">Total Body HIIT</h3>
+                    <a href="select-trainer.html?class=hiit" class="join-class-btn">Join Class</a>
+                </div>
+            </div>
+        
+            <!-- Running Class -->
+            <div class="class-card">
+                <div class="class-image">
+                    <img src="/Assets/running.jpg" alt="Treadmill Running">
+                    <span class="class-duration">45 min</span>
+                </div>
+                <div class="class-content">
+                    <div class="class-header">
+                        <span class="class-type">Running</span>
+                        <span class="class-level">Intermediate</span>
+                    </div>
+                    <h3 class="class-title">Endurance Run</h3>
+                    <a href="select-trainer.html?class=running" class="join-class-btn">Join Class</a>
+                </div>
+            </div>
+        
+            <!-- Rowing Class -->
+            <div class="class-card">
+                <div class="class-image">
+                    <img src="/Assets/rowing.jpg" alt="Rowing">
+                    <span class="class-duration">40 min</span>
+                </div>
+                <div class="class-content">
+                    <div class="class-header">
+                        <span class="class-type">Rowing</span>
+                        <span class="class-level">All Levels</span>
+                    </div>
+                    <h3 class="class-title">Power Row</h3>
+                    <a href="select-trainer.html?class=rowing" class="join-class-btn">Join Class</a>
+                </div>
+            </div>
+        
+            <!-- Outdoor Class -->
+            <div class="class-card">
+                <div class="class-image">
+                    <img src="/Assets/outdoor.jpg" alt="Outdoor Training">
+                    <span class="class-duration">60 min</span>
+                </div>
+                <div class="class-content">
+                    <div class="class-header">
+                        <span class="class-type">Outdoor</span>
+                        <span class="class-level">Intermediate</span>
+                    </div>
+                    <h3 class="class-title">Trail Adventure</h3>
+                    <a href="select-trainer.html?class=outdoor" class="join-class-btn">Join Class</a>
+                </div>
+            </div>
+        
+            <!-- Stretching Class -->
+            <div class="class-card">
+                <div class="class-image">
+                    <img src="/Assets/streching.jpg" alt="Stretching">
+                    <span class="class-duration">30 min</span>
+                </div>
+                <div class="class-content">
+                    <div class="class-header">
+                        <span class="class-type">Stretching</span>
+                        <span class="class-level">All Levels</span>
+                    </div>
+                    <h3 class="class-title">Full Body Flexibility</h3>
+                    <a href="select-trainer.html?class=stretching" class="join-class-btn">Join Class</a>
+                </div>
+            </div>
+        
+            <!-- Cardio Dance Class -->
+            <div class="class-card">
+                <div class="class-image">
+                    <img src="/Assets/coredance.jpg" alt="Cardio Dance">
+                    <span class="class-duration">45 min</span>
+                </div>
+                <div class="class-content">
+                    <div class="class-header">
+                        <span class="class-type">Cardio</span>
+                        <span class="class-level">All Levels</span>
+                    </div>
+                    <h3 class="class-title">Dance Cardio Party</h3>
+                    <a href="select-trainer.html?class=cardio-dance" class="join-class-btn">Join Class</a>
+                </div>
+            </div>
+        
+            <!-- Core Strength Class -->
+            <div class="class-card">
+                <div class="class-image">
+                    <img src="/Assets/corestr.jpg" alt="Core Training">
+                    <span class="class-duration">30 min</span>
+                </div>
+                <div class="class-content">
+                    <div class="class-header">
+                        <span class="class-type">Strength</span>
+                        <span class="class-level">Intermediate</span>
+                    </div>
+                    <h3 class="class-title">Core Power</h3>
+                    <a href="select-trainer.html?class=core" class="join-class-btn">Join Class</a>
+                </div>
+            </div>
+        
+            <!-- Boxing Class -->
+            <div class="class-card">
+                <div class="class-image">
+                    <img src="/Assets/boxing.jpg" alt="Boxing">
+                    <span class="class-duration">45 min</span>
+                </div>
+                <div class="class-content">
+                    <div class="class-header">
+                        <span class="class-type">Boxing</span>
+                        <span class="class-level">Beginner</span>
+                    </div>
+                    <h3 class="class-title">Boxing Basics</h3>
+                    <a href="select-trainer.html?class=boxing" class="join-class-btn">Join Class</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <h2>Frequently Asked Questions</h2>
+        <div class="faq-grid">
+            <div class="faq-item">
+                <h3 class="faq-question">What equipment do I need?</h3>
+                <p class="faq-answer">Equipment requirements vary by class. Basic classes need minimal equipment, while specific classes might require dumbbells, yoga mats, or other gear. Check class descriptions for details.</p>
+            </div>
+            <div class="faq-item">
+                <h3 class="faq-question">How do I join a live class?</h3>
+                <p class="faq-answer">Simply book your spot, and we'll send you a link 15 minutes before class starts. Click the link to join the live session through our platform.</p>
+            </div>
+            <div class="faq-item">
+                <h3 class="faq-question">What if I miss a class?</h3>
+                <p class="faq-answer">Don't worry! All live classes are recorded and available for 24 hours after the session ends.</p>
+            </div>
+            <div class="faq-item">
+                <h3 class="faq-question">Can I interact with the trainer?</h3>
+                <p class="faq-answer">Yes! Our platform allows real-time interaction with trainers during live sessions for form corrections and motivation.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <h2>Ready to Transform Your Fitness Journey?</h2>
+        <p>Join thousands of members who are already crushing their fitness goals with RevibeFit</p>
+        <a href="#" class="cta-button">Start Your Free Trial</a>
+    </section>
+
+    <footer>
+        <div id="footer"></div>
+    </footer>
+
+    <script>
+        $(function(){
+            $("#nav-placeholder").load("Nav_bar.html");
+        });
+        
+        fetch("footer.html")
+            .then(response => response.text())
+            .then(data => document.getElementById("footer").innerHTML = data);
+
+        // Filter functionality
+        document.querySelectorAll('.filter-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                // Add filter logic here
+            });
+        });
+    </script>
+</body>
+</html>
