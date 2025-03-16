@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Proactive Health Monitoring</title>
+    <link rel="stylesheet" href="/CSS/footer.css" />
+    <link rel="stylesheet" href="/CSS/care.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="/JS/care.js"></script>
+  </head>
+  <body>
+    <!-- <nav>
+      <div id="nav-placeholder"></div>
+    </nav> -->
+    <%- include('nav_bar') %>
+    <header class="hero-section">
+      <div class="hero-content">
+        <h1>Proactive Health Monitoring</h1>
+        <p>
+          Get personalized lab test recommendations based on your fitness goals,
+          health history, and performance needs.
+        </p>
+        <div class="buttons">
+          <a href="#lab-tests" class="btn btn-primary"
+            >Lab Tests <span class="arrow">→</span></a
+          >
+          <a href="#lab-tests" class="btn btn-secondary"
+            >Lab Centers <span class="play-icon">▶</span></a
+          >
+        </div>
+      </div>
+    </header>
+    <main>
+      <section class="features">
+        <div class="feature">
+          <div class="icon-wrapper">
+            <span class="feature-icon">⏱️</span>
+          </div>
+          <h3>Quick Results</h3>
+          <p>Get your test results within 24-48 hours of sample collection.</p>
+        </div>
+        <div class="feature">
+          <div class="icon-wrapper">
+            <span class="feature-icon">🛡️</span>
+          </div>
+          <h3>Expert Analysis</h3>
+          <p>Detailed interpretation by certified health professionals.</p>
+        </div>
+        <div class="feature">
+          <div class="icon-wrapper">
+            <span class="feature-icon">🏅</span>
+          </div>
+          <h3>Accredited Labs</h3>
+          <p>All partner labs meet the highest quality standards.</p>
+        </div>
+      </section>
+      <section class="search-section" id="lab-tests">
+        <div class="tabs">
+          <button class="active">Recommended Tests</button>
+          <button>Lab Centers</button>
+        </div>
+        <div class="search-container">
+          <input type="text" placeholder="Search for health tests..." />
+        </div>
+
+        <!-- Recommend button -->
+        <div class="recommend-btn-container">
+          <button id="recommendBtn" class="btn btn-primary">
+            Recommend Me
+          </button>
+        </div>
+
+        <!-- Health inputs section (initially hidden) -->
+        <div id="healthInputs" class="health-inputs">
+          <h3>Tell us about your health</h3>
+
+          <div class="input-row">
+            <div class="input-group">
+              <label for="age">Age</label>
+              <input type="number" id="age" min="1" max="120" />
+            </div>
+            <div class="input-group">
+              <label for="gender">Gender</label>
+              <select id="gender">
+                <option value="">Select</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="input-row">
+            <div class="input-group">
+              <label for="height">Height (cm)</label>
+              <input type="number" id="height" min="0" step="0.1" />
+            </div>
+            <div class="input-group">
+              <label for="weight">Weight (kg)</label>
+              <input type="number" id="weight" min="0" step="0.1" />
+            </div>
+          </div>
+
+          <div class="input-group">
+            <label for="smoking">Smoking Habits</label>
+            <select id="smoking">
+              <option value="">Select</option>
+              <option value="non-smoker">Non-smoker</option>
+              <option value="occasional">Occasional smoker</option>
+              <option value="regular">Regular smoker</option>
+              <option value="former">Former smoker</option>
+            </select>
+          </div>
+
+          <div class="input-row">
+            <div class="input-group">
+              <label for="sleep-duration">Sleep Duration (hours)</label>
+              <input
+                type="number"
+                id="sleep-duration"
+                min="0"
+                max="24"
+                step="0.5"
+              />
+            </div>
+            <div class="input-group">
+              <label for="sleep-quality">Sleep Quality</label>
+              <select id="sleep-quality">
+                <option value="">Select</option>
+                <option value="poor">Poor</option>
+                <option value="fair">Fair</option>
+                <option value="good">Good</option>
+                <option value="excellent">Excellent</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="input-group">
+            <label for="water-intake">Water Intake (liters per day)</label>
+            <input type="number" id="water-intake" min="0" step="0.1" />
+          </div>
+
+          <div class="input-group">
+            <label for="pre-existing">Pre-existing Conditions</label>
+            <select id="pre-existing">
+              <option value="">Select</option>
+              <option value="none">None</option>
+              <option value="diabetes">Diabetes</option>
+              <option value="hypertension">Hypertension</option>
+              <option value="thyroid">Thyroid Disorders</option>
+              <option value="pcos">PCOS</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+
+          <div class="input-group">
+            <label for="family-history">Family Medical History</label>
+            <select id="family-history">
+              <option value="">Select</option>
+              <option value="none">None</option>
+              <option value="heart-disease">Heart Disease</option>
+              <option value="diabetes">Diabetes</option>
+              <option value="cancer">Cancer</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+
+          <div class="input-group">
+            <label for="health-goals">Health Goals</label>
+            <select id="health-goals">
+              <option value="">Select your primary goal</option>
+              <option value="weight-management">Weight Management</option>
+              <option value="fitness">Fitness & Performance</option>
+              <option value="chronic">Chronic Disease Management</option>
+              <option value="general">General Wellness</option>
+              <option value="nutrition">Nutritional Optimization</option>
+            </select>
+          </div>
+
+          <div class="input-group">
+            <label for="health-concerns">Health Concerns (if any)</label>
+            <input
+              type="text"
+              id="health-concerns"
+              placeholder="E.g., fatigue, joint pain, etc."
+            />
+          </div>
+
+          <div class="done-btn-container">
+            <button id="doneBtn" class="btn btn-primary">Done</button>
+          </div>
+        </div>
+
+        <!-- Recommendations section (initially hidden) -->
+        <div id="recommendations" class="recommendations">
+          <h1>Recommended Health Tests</h1>
+
+          <div class="test-cards">
+            <!-- Comprehensive Health Checkup -->
+            <div class="test-card">
+              <img
+                src="/Resize-vitamin-b12.webp"
+                alt="Comprehensive Health Checkup"
+                class="test-card-img"
+              />
+              <div class="test-card-content">
+                <h3>Comprehensive Health Checkup</h3>
+                <p>
+                  Complete blood work, vitamin levels, and organ function tests
+                </p>
+                <div class="test-meta">
+                  <svg viewBox="0 0 24 24">
+                    <path
+                      d="M12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22C6.47,22 2,17.5 2,12A10,10 0 0,1 12,2M12.5,7V12.25L17,14.92L16.25,16.15L11,13V7H12.5Z"
+                    ></path>
+                  </svg>
+                  <span>60 mins</span>
+                  <span>85 parameters</span>
+                </div>
+                <div class="test-price">$149.99</div>
+                <a href="#" class="book-now"
+                  >About it
+                  <svg viewBox="0 0 24 24">
+                    <path
+                      d="M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z"
+                    ></path></svg
+                ></a>
+              </div>
+            </div>
+
+            <!-- Fitness Assessment Panel -->
+            <div class="test-card">
+              <img
+                src="/xray.jpg"
+                alt="Fitness Assessment Panel"
+                class="test-card-img"
+              />
+              <div class="test-card-content">
+                <h3>
+                  Fitness Assessment<br />
+                  Panel
+                </h3>
+                <p>
+                  Tests focused on athletic performance and recovery markers
+                </p>
+                <div class="test-meta">
+                  <svg viewBox="0 0 24 24">
+                    <path
+                      d="M12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22C6.47,22 2,17.5 2,12A10,10 0 0,1 12,2M12.5,7V12.25L17,14.92L16.25,16.15L11,13V7H12.5Z"
+                    ></path>
+                  </svg>
+                  <span>45 mins</span>
+                  <span>42 parameters</span>
+                </div>
+                <div class="test-price">$99.99</div>
+                <a href="#" class="book-now"
+                  >About it
+                  <svg viewBox="0 0 24 24">
+                    <path
+                      d="M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z"
+                    ></path></svg
+                ></a>
+              </div>
+            </div>
+
+            <!-- Nutrition & Metabolism Profile -->
+            <div class="test-card">
+              <img
+                src="/cell.jpg"
+                alt="Nutrition & Metabolism Profile"
+                class="test-card-img"
+              />
+              <div class="test-card-content">
+                <h3>Nutrition & Metabolism Profile</h3>
+                <p>
+                  Detailed analysis of nutritional markers and metabolic health
+                </p>
+                <div class="test-meta">
+                  <svg viewBox="0 0 24 24">
+                    <path
+                      d="M12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22C6.47,22 2,17.5 2,12A10,10 0 0,1 12,2M12.5,7V12.25L17,14.92L16.25,16.15L11,13V7H12.5Z"
+                    ></path>
+                  </svg>
+                  <span>50 mins</span>
+                  <span>63 parameters</span>
+                </div>
+                <div class="test-price">$129.99</div>
+                <a href="#" class="book-now"
+                  >About it
+                  <svg viewBox="0 0 24 24">
+                    <path
+                      d="M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z"
+                    ></path></svg
+                ></a>
+              </div>
+            </div>
+
+            <!-- Hormone Balance Test -->
+            <div class="test-card">
+              <img
+                src="/h.webp"
+                alt="Hormone Balance Test"
+                class="test-card-img"
+              />
+              <div class="test-card-content">
+                <h3>
+                  Hormone Balance<br />
+                  Test
+                </h3>
+                <p>
+                  Comprehensive hormone panel for optimal health and performance
+                </p>
+                <div class="test-meta">
+                  <svg viewBox="0 0 24 24">
+                    <path
+                      d="M12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22C6.47,22 2,17.5 2,12A10,10 0 0,1 12,2M12.5,7V12.25L17,14.92L16.25,16.15L11,13V7H12.5Z"
+                    ></path>
+                  </svg>
+                  <span>40 mins</span>
+                  <span>28 parameters</span>
+                </div>
+                <div class="test-price">$159.99</div>
+                <a href="#" class="book-now"
+                  >About it
+                  <svg viewBox="0 0 24 24">
+                    <path
+                      d="M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z"
+                    ></path></svg
+                ></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <script>
+      $(function () {
+        $("#nav-placeholder").load("Nav_bar.html");
+      });
+    </script>
+    <section class="faq-section">
+      <h2>Frequently Asked Questions</h2>
+
+      <div class="faq-container">
+        <div class="faq-card">
+          <h3>How often should I get tested?</h3>
+          <p>
+            We recommend comprehensive testing every 3-6 months for active
+            individuals. Specific tests may be recommended more frequently based
+            on your training program and goals.
+          </p>
+        </div>
+
+        <div class="faq-card">
+          <h3>Do I need to fast before tests?</h3>
+          <p>
+            Most tests require 8-12 hours of fasting for accurate results.
+            Specific instructions will be provided when you book your
+            appointment.
+          </p>
+        </div>
+
+        <div class="faq-card">
+          <h3>How do I interpret my results?</h3>
+          <p>
+            All test results include detailed explanations. Additionally, you
+            can schedule a consultation with our health experts to review your
+            results and get personalized recommendations.
+          </p>
+        </div>
+
+        <div class="faq-card">
+          <h3>Are the tests covered by insurance?</h3>
+          <p>
+            Many of our tests are eligible for insurance coverage. We recommend
+            checking with your provider before booking. We also offer flexible
+            payment options for all our services.
+          </p>
+        </div>
+      </div>
+    </section>
+    <footer>
+      <div id="footer"></div>
+    </footer>
+  </body>
+</html>

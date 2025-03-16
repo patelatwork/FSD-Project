@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>RevibeFit</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          Arial, sans-serif;
+      }
+      nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1rem 5%;
+        background-color: #fffff0;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1000;
+      }
+      .logo {
+        display: flex;
+        align-items: center;
+        position: relative;
+        right: 30px;
+        top: 3px;
+        text-decoration: none;
+        color: #333;
+        font-size: 1.5rem;
+        font-weight: bold;
+        margin-right: auto;
+      }
+      .logo img {
+        width: 34px;
+        height: 34px;
+        margin-right: 8px;
+      }
+      .nav-group {
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+        position: relative;
+      }
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+        list-style: none;
+      }
+      .dropdown {
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+        list-style: none;
+        position: relative;
+        bottom: 3.4px;
+      }
+      .dropdown > a {
+        display: inline-block;
+        padding: 0.5rem 0;
+      }
+      .dropdown-content {
+        visibility: hidden;
+        opacity: 0;
+        position: absolute;
+        background-color: #fffff0;
+        min-width: 200px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        border-radius: 4px;
+        padding: 0.5rem 0;
+        z-index: 1001;
+        top: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        margin-top: 0.5rem;
+        transition: all 0.3s ease;
+      }
+      .dropdown-content::before {
+        content: "";
+        position: absolute;
+        top: -10px;
+        left: 0;
+        right: 0;
+        height: 10px;
+        background: transparent;
+      }
+      .dropdown:hover .dropdown-content {
+        visibility: visible;
+        opacity: 1;
+      }
+      .dropdown-content a {
+        color: #666;
+        padding: 0.75rem 1.5rem;
+        text-decoration: none;
+        display: block;
+        transition: background-color 0.3s ease, color 0.3s ease;
+      }
+      .dropdown-content a:hover {
+        background-color: #f5f5f5;
+        color: #4fb16d;
+      }
+      .dropdown > a::after {
+        content: "▼";
+        font-size: 0.7em;
+        margin-left: 0.5em;
+        display: inline-block;
+        vertical-align: middle;
+      }
+      .nav-links a {
+        text-decoration: none;
+        color: #666;
+        font-size: 1rem;
+        transition: color 0.3s ease;
+        position: relative;
+        padding-bottom: 5px;
+      }
+      .nav-links a:hover {
+        color: #4fb16d;
+      }
+      .nav-links a::after {
+        content: "";
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: 0;
+        left: 0;
+        background-color: #4fb16d;
+        transition: width 0.3s ease;
+      }
+      .nav-links a:hover::after {
+        width: 100%;
+      }
+      .sign-in,
+      .welcome-message,
+      .logout {
+        background-color: #3f8554;
+        color: white;
+        padding: 0.5rem 1.5rem;
+        border-radius: 4px;
+        text-decoration: none;
+        font-weight: 500;
+        transition: background-color 0.3s ease;
+        margin-left: 2rem;
+        position: relative;
+      }
+      .sign-in:hover,
+      .welcome-message:hover,
+      .logout:hover {
+        background-color: #12642b;
+      }
+      .sign-in::after,
+      .welcome-message::after,
+      .logout::after {
+        content: "";
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: -3px;
+        left: 0;
+        background-color: #4fb16d;
+        transition: width 0.3s ease;
+      }
+      .sign-in:hover::after,
+      .welcome-message:hover::after,
+      .logout:hover::after {
+        width: 100%;
+      }
+      body {
+        padding-top: 75px;
+      }
+      .nav-links li {
+        display: flex;
+        align-items: center;
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <a href="http://localhost:3001/userhome" class="logo">
+        <img src="/exercise_8407005.png" alt="RevibeFit Logo" />
+        RevibeFit
+      </a>
+      <div class="nav-group">
+        <ul class="nav-links">
+          <li><a href="classes.html">Classes</a></li>
+          <li><a href="workout.html">Workouts</a></li>
+          <li class="dropdown">
+            <a href="#">Trainers</a>
+            <div class="dropdown-content">
+              <a href="get_coach.html">Get a Coach</a>
+              <a href="directory.html">Trainer Directory</a>
+            </div>
+          </li>
+          <li><a href="Nutrition.html">Nutrition</a></li>
+          <li><a href="http://localhost:3001/cares">Care</a></li>
+          <li><a href="http://localhost:3001/blogs_client">Blog</a></li>
+        </ul>
+        <% if (user) { %>
+        <span class="welcome-message">Welcome, <%= user.name %>!</span>
+        <a href="/logout" class="logout">Logout</a>
+        <% } else { %>
+        <a href="trainer_singup.html" class="sign-in">Sign Up</a>
+        <% } %>
+      </div>
+    </nav>
+  </body>
+</html>

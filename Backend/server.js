@@ -6,7 +6,7 @@ const { verbose } = pkg;
 import dotenv from "dotenv";
 import path from "path";
 import { fileURLToPath } from "url";
-
+import session from "express-session";
 // Import controllers
 import userController from "./Controllers/user.controller.js";
 import trainerController from "./Controllers/trainer.controller.js";
@@ -18,16 +18,34 @@ const sqlite3 = verbose();
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-app.use(cors());
+app.use(
+  cors({
+    origin: "http://localhost:3000", // Adjust this if your front-end runs on a different origin
+    credentials: true,
+  })
+);
 app.use(express.json());
-
+app.use(
+  session({
+    secret: "some-secret-key", // replace with a secure key in production
+    resave: false,
+    saveUninitialized: false,
+  })
+);
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+app.use(express.static(path.join(__dirname, "..", "Templates Users")));
+app.use(express.static(path.join(__dirname, "..", "Assets")));
+app.set("view engine", "ejs");
+// The path points one level up to your "Templates Users" folder
+app.set("views", path.join(__dirname, "..", "Templates Users"));
 // Create SQLite in-memory database
 const db = new sqlite3.Database(":memory:", (err) => {
   if (err) {
     console.error("Error opening database:", err.message);
   } else {
     console.log("Connected to SQLite in-memory database.");
-    
+
     // Create users table
     db.run(
       `CREATE TABLE users (
@@ -44,24 +62,33 @@ const db = new sqlite3.Database(":memory:", (err) => {
           console.error("Error creating users table:", err.message);
         } else {
           console.log("Users table created successfully.");
-          
+
           // Insert a default user record
           db.run(
             `INSERT INTO users (name, email, phone, password, userType) VALUES (?, ?, ?, ?, ?)`,
-            ["Dhruv", "dhruv@gmail.com", "1234567890", "123334", "fitness_enthusiast"],
+            [
+              "Dhruv",
+              "dhruv@gmail.com",
+              "1234567890",
+              "123334",
+              "fitness_enthusiast",
+            ],
             function (err) {
               if (err) {
                 console.error("Error inserting default user:", err.message);
               } else {
                 console.log("Default user record inserted");
-                
+
                 // Insert default user's fitness data
                 db.run(
                   `INSERT INTO fitness_enthusiasts (user_id, goals, fitness_level) VALUES (?, ?, ?)`,
                   [this.lastID, "Get fit and healthy", "Beginner"],
                   (err) => {
                     if (err) {
-                      console.error("Error inserting default fitness data:", err.message);
+                      console.error(
+                        "Error inserting default fitness data:",
+                        err.message
+                      );
                     } else {
                       console.log("Default fitness data inserted");
                     }
@@ -73,7 +100,7 @@ const db = new sqlite3.Database(":memory:", (err) => {
         }
       }
     );
-    
+
     // Create fitness_enthusiasts table
     db.run(
       `CREATE TABLE fitness_enthusiasts (
@@ -86,13 +113,16 @@ const db = new sqlite3.Database(":memory:", (err) => {
       )`,
       (err) => {
         if (err) {
-          console.error("Error creating fitness_enthusiasts table:", err.message);
+          console.error(
+            "Error creating fitness_enthusiasts table:",
+            err.message
+          );
         } else {
           console.log("Fitness enthusiasts table created successfully.");
         }
       }
     );
-    
+
     // Create trainers table
     db.run(
       `CREATE TABLE trainers (
@@ -111,7 +141,7 @@ const db = new sqlite3.Database(":memory:", (err) => {
         }
       }
     );
-    
+
     // Create lab_partners table
     db.run(
       `CREATE TABLE lab_partners (
@@ -131,7 +161,7 @@ const db = new sqlite3.Database(":memory:", (err) => {
         }
       }
     );
-    
+
     // Create sessions table for workout sessions
     db.run(
       `CREATE TABLE sessions (
@@ -153,7 +183,7 @@ const db = new sqlite3.Database(":memory:", (err) => {
         }
       }
     );
-    
+
     // Create bookings table for session enrollments
     db.run(
       `CREATE TABLE bookings (
@@ -173,7 +203,7 @@ const db = new sqlite3.Database(":memory:", (err) => {
         }
       }
     );
-    
+
     // Create tests table for lab tests
     db.run(
       `CREATE TABLE tests (
@@ -193,7 +223,7 @@ const db = new sqlite3.Database(":memory:", (err) => {
         }
       }
     );
-    
+
     // Create test_bookings table for lab test bookings
     db.run(
       `CREATE TABLE test_bookings (
@@ -214,7 +244,7 @@ const db = new sqlite3.Database(":memory:", (err) => {
         }
       }
     );
-    
+
     // Create requests table as in your original code
     db.run(
       `CREATE TABLE IF NOT EXISTS requests (
@@ -251,36 +281,48 @@ app.get("/", (req, res) => {
 // Frontend form processing endpoint
 app.post("/api/signup", (req, res) => {
   const { fullname, email, phone, password, userType } = req.body;
-  
+
   // Redirect to appropriate controller based on user type
   if (userType === "fitness") {
     const { goals, level } = req.body;
-    
+
     // Forward request to user controller
     req.body = { fullname, email, phone, password, goals, level };
     app._router.handle(req, res, () => {
       console.log("Request forwarded to /signup/user endpoint");
     });
-    
   } else if (userType === "trainer") {
     const { specialization, certifications } = req.body;
-    
+
     // Forward request to trainer controller
-    req.body = { fullname, email, phone, password, specialization, certifications };
+    req.body = {
+      fullname,
+      email,
+      phone,
+      password,
+      specialization,
+      certifications,
+    };
     app._router.handle(req, res, () => {
       console.log("Request forwarded to /signup/trainer endpoint");
     });
-    
   } else if (userType === "labpartner") {
     const { labName, labAddress, licenseNumber } = req.body;
-    
+
     // Forward request to lab controller
-    req.body = { fullname, email, phone, password, labName, labAddress, licenseNumber };
+    req.body = {
+      fullname,
+      email,
+      phone,
+      password,
+      labName,
+      labAddress,
+      licenseNumber,
+    };
     req.url = "/signup/lab";
     app._router.handle(req, res, () => {
       console.log("Request forwarded to /signup/lab endpoint");
     });
-    
   } else {
     res.status(400).json({ error: "Invalid user type" });
   }
@@ -291,7 +333,40 @@ app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).json({ error: "Something went wrong!" });
 });
+app.get("/userhome", (req, res) => {
+  // If session user not set, redirect to sign in
 
+  // Otherwise, render homepage.ejs with the user’s data
+  res.render("homepage", { user: req.session.user });
+});
+app.get("/blogs_client", (req, res) => {
+  // If session user not set, redirect to sign in
+
+  // Otherwise, render homepage.ejs with the user’s data
+  res.render("blogs_client_side", { user: req.session.user });
+});
+app.get("/cares", (req, res) => {
+  // If session user not set, redirect to sign in
+
+  // Otherwise, render homepage.ejs with the user’s data
+  res.render("care", { user: req.session.user });
+});
+
+// Error handling middleware
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).json({ error: "Something went wrong!" });
+});
+app.get("/logout", (req, res) => {
+  req.session.destroy((err) => {
+    if (err) {
+      console.error("Error destroying session:", err.message);
+      return res.status(500).send("Error logging out");
+    }
+    console.log("User logged out successfully");
+    res.redirect("/userhome");
+  });
+});
 // Start the server
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 

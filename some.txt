@@ -1,0 +1,9 @@
+ <nav>
+      <div class="nav-container">
+        <% if (user) { %>
+        <span class="welcome-message">Welcome, <%= user.name %>!</span>
+        <% } else { %>
+        <a href="/signup" class="signup-button">Sign Up</a>
+        <% } %>
+      </div>
+    </nav>

@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', function() {
             <h3>Lab Centers Near You</h3>
             <div class="lab-cards">
                 <div class="lab-card">
-                    <img src="/Assets/lab1.jpg" alt="City Health Labs" class="lab-img">
+                    <img src="/lab1.jpg" alt="City Health Labs" class="lab-img">
                     <div class="lab-content">
                         <h3>City Health Labs</h3>
                         <p class="lab-address">123 Medical Plaza, Suite 101</p>
@@ -39,11 +39,11 @@ document.addEventListener('DOMContentLoaded', function() {
                             <span>⭐ 4.8 (120 reviews)</span>
                             <span>Open until 6:00 PM</span>
                         </div>
-                        <a href="/Templates Users/payment.html" class="book-now">Book Appointment</a>
+                        <a href="/payment.html" class="book-now">Book Appointment</a>
                     </div>
                 </div>
                 <div class="lab-card">
-                    <img src="/Assets/lab2.jpg" alt="Metro Diagnostics" class="lab-img">
+                    <img src="/lab2.jpg" alt="Metro Diagnostics" class="lab-img">
                     <div class="lab-content">
                         <h3>Metro Diagnostics</h3>
                         <p class="lab-address">456 Health Avenue</p>
@@ -52,11 +52,11 @@ document.addEventListener('DOMContentLoaded', function() {
                             <span>⭐ 4.6 (85 reviews)</span>
                             <span>Open until 8:00 PM</span>
                         </div>
-                        <a href="/Templates Users/payment.html" class="book-now">Book Appointment</a>
+                        <a href="/payment.html" class="book-now">Book Appointment</a>
                     </div>
                 </div>
                 <div class="lab-card">
-                    <img src="/Assets/lab3.webp" alt="Wellness Testing Center" class="lab-img">
+                    <img src="/lab3.webp" alt="Wellness Testing Center" class="lab-img">
                     <div class="lab-content">
                         <h3>Wellness Testing Center</h3>
                         <p class="lab-address">789 Wellness Blvd</p>
@@ -65,7 +65,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             <span>⭐ 4.9 (210 reviews)</span>
                             <span>Open until 5:30 PM</span>
                         </div>
-                        <a href="/Templates Users/payment.html" class="book-now">Book Appointment</a>
+                        <a href="/payment.html" class="book-now">Book Appointment</a>
                     </div>
                 </div>
             </div>
