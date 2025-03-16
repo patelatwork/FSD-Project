@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function() {
             
             if (confirmed) {
                 // Redirect to contact form or booking page
-                window.location.href = "contact_us.html";
+                window.location.href = "payment.html";
             }
         });
     });

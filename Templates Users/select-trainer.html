@@ -62,5 +62,19 @@
     </footer>
 
     <script src="/Templates Users/JS/select-trainer.js"></script>
+    <script > document.addEventListener('DOMContentLoaded', function() {
+        // Get all book class buttons
+        const bookButtons = document.querySelectorAll('.book-class-btn');
+    
+        // Add click event listener to each button
+        bookButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                // Redirect to signup page
+                window.location.href = 'trainer_singup.html';
+            });
+        });
+    
+       
+    });</script>
 </body>
 </html>
