@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reports - RevibeFit Admin</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="/Templates Admin/CSS/reports.css">
+    <link rel="stylesheet" href="/Templates Admin/CSS/admin.css">
+    
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Import sidebar here -->
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <img src="/Assets/exercise_8407005.png" alt="RevibeFit Logo">
+                <h2>RevibeFit</h2>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="admin.html" class="nav-link">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/>
+                        </svg>
+                        Dashboard
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="users.html" class="nav-link">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/>
+                        </svg>
+                        Users
+                    </a>
+                </li>
+               
+                <li class="nav-item">
+                    <a href="reports.html" class="nav-link active">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M19 3h-4.18C14.4 1.84 13.3 1 12 1c-1.3 0-2.4.84-2.82 2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 0c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm2 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
+                        </svg>
+                        Reports
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="settings.html" class="nav-link">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M19.43 12.98c.04-.32.07-.64.07-.98s-.03-.66-.07-.98l2.11-1.65c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.3-.61-.22l-2.49 1c-.52-.4-1.08-.73-1.69-.98l-.38-2.65C14.46 2.18 14.25 2 14 2h-4c-.25 0-.46.18-.49.42l-.38 2.65c-.61.25-1.17.59-1.69.98l-2.49-1c-.23-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64l2.11 1.65c-.04.32-.07.65-.07.98s.03.66.07.98l-2.11 1.65c-.19.15-.24.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1c.52.4 1.08.73 1.69.98l.38 2.65c.03.24.24.42.49.42h4c.25 0 .46-.18.49-.42l.38-2.65c.61-.25 1.17-.59 1.69-.98l2.49 1c.23.09.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64l-2.11-1.65zM12 15.5c-1.93 0-3.5-1.57-3.5-3.5s1.57-3.5 3.5-3.5 3.5 1.57 3.5 3.5-1.57 3.5-3.5 3.5z"/>
+                        </svg>
+                        Settings
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="main-content">
+            <div class="dashboard-header">
+                <h1>Reports</h1>
+                <div class="date-range">
+                    <input type="date" id="start-date">
+                    <input type="date" id="end-date">
+                    <button class="generate-report">Generate Report</button>
+                </div>
+            </div>
+
+            <div class="reports-grid">
+                <div class="chart-container">
+                    <canvas id="revenue-chart"></canvas>
+                </div>
+                <div class="chart-container">
+                    <canvas id="users-chart"></canvas>
+                </div>
+            </div>
+
+            <div class="report-summary">
+                <h2>Summary</h2>
+                <div class="summary-grid">
+                    <div class="summary-card">
+                        <h3>Total Revenue</h3>
+                        <p>$52,389</p>
+                    </div>
+                    <div class="summary-card">
+                        <h3>New Users</h3>
+                        <p>234</p>
+                    </div>
+                    <div class="summary-card">
+                        <h3>Active Programs</h3>
+                        <p>28</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Revenue Chart
+        new Chart(document.getElementById('revenue-chart'), {
+            type: 'bar',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                datasets: [{
+                    label: 'Monthly Revenue',
+                    data: [4200, 5500, 4800, 6000, 5300, 5800],
+                    backgroundColor: '#3f8554'
+                }]
+            }
+        });
+
+        // Users Chart
+        new Chart(document.getElementById('users-chart'), {
+            type: 'line',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                datasets: [{
+                    label: 'New Users',
+                    data: [65, 59, 80, 81, 56, 55],
+                    borderColor: '#3f8554'
+                }]
+            }
+        });
+    </script>
+</body>
+</html>

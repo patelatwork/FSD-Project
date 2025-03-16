@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab Records - RevibeFit</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="/Templates LabPartners/CSS/lab.css">
+    <style>
+        .records-container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+
+        .records-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .search-box {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .search-box input {
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 0.9rem;
+        }
+
+        .date-filter {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .records-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .records-table th,
+        .records-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+
+        .records-table th {
+            font-weight: 600;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+
+        .status-badge {
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.875rem;
+        }
+
+        .status-completed {
+            background-color: #e8f5e9;
+            color: #2e7d32;
+        }
+
+        .status-pending {
+            background-color: #fff3e0;
+            color: #ef6c00;
+        }
+
+        .view-btn {
+            padding: 6px 12px;
+            border: none;
+            border-radius: 4px;
+            background-color: #3f8554;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .view-btn:hover {
+            background-color: #2d633e;
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <img src="/Assets/Lab-Tech.jpg" alt="Lab Logo">
+                <h2>Lab Dashboard</h2>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="lab_part.html" class="nav-link">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/>
+                        </svg>
+                        Dashboard
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="upload.html" class="nav-link">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M19 3h-4.18C14.4 1.84 13.3 1 12 1c-1.3 0-2.4.84-2.82 2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 0c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm2 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
+                        </svg>
+                        Upload Tests
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="records.html" class="nav-link active">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                        </svg>
+                        Records
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="settings.html" class="nav-link">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M19.43 12.98c.04-.32.07-.64.07-.98s-.03-.66-.07-.98l2.11-1.65c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.3-.61-.22l-2.49 1c-.52-.4-1.08-.73-1.69-.98l-.38-2.65C14.46 2.18 14.25 2 14 2h-4c-.25 0-.46.18-.49.42l-.38 2.65c-.61.25-1.17.59-1.69.98l-2.49-1c-.23-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64l2.11 1.65c-.04.32-.07.65-.07.98s.03.66.07.98l-2.11 1.65c-.19.15-.24.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1c.52.4 1.08.73 1.69.98l.38 2.65c.03.24.24.42.49.42h4c.25 0 .46-.18.49-.42l.38-2.65c.61-.25 1.17-.59 1.69-.98l2.49 1c.23.09.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64l-2.11-1.65zm-7.43 2.52c-1.93 0-3.5-1.57-3.5-3.5s1.57-3.5 3.5-3.5 3.5 1.57 3.5 3.5-1.57 3.5-3.5 3.5z"/>
+                        </svg>
+                        Settings
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+
+        <div class="main-content">
+            <div class="dashboard-header">
+                <h1>Test Records</h1>
+                <div class="header-actions">
+                    <div class="search-box">
+                        <input type="text" placeholder="Search records...">
+                    </div>
+                    <div class="date-filter">
+                        <input type="date" id="start-date">
+                        <span>to</span>
+                        <input type="date" id="end-date">
+                    </div>
+                </div>
+            </div>
+
+            <div class="records-container">
+                <table class="records-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Patient Name</th>
+                            <th>Test Type</th>
+                            <th>Date & Time</th>
+                            <th>Contact</th>
+                            <th>Status</th>
+                            <th>Amount</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>#LT001</td>
+                            <td>Sarah Johnson</td>
+                            <td>Comprehensive Health Checkup</td>
+                            <td>2024-03-15 09:30 AM</td>
+                            <td>+1234567890</td>
+                            <td><span class="status-badge status-completed">Completed</span></td>
+                            <td>$149.99</td>
+                            <td><button class="view-btn">View Report</button></td>
+                        </tr>
+                        <tr>
+                            <td>#LT002</td>
+                            <td>Michael Brown</td>
+                            <td>Fitness Assessment Panel</td>
+                            <td>2024-03-14 02:15 PM</td>
+                            <td>+1234567891</td>
+                            <td><span class="status-badge status-completed">Completed</span></td>
+                            <td>$199.99</td>
+                            <td><button class="view-btn">View Report</button></td>
+                        </tr>
+                        <tr>
+                            <td>#LT003</td>
+                            <td>Emily Davis</td>
+                            <td>Hormone Profile</td>
+                            <td>2024-03-15 11:00 AM</td>
+                            <td>+1234567892</td>
+                            <td><span class="status-badge status-pending">Pending</span></td>
+                            <td>$179.99</td>
+                            <td><button class="view-btn">View Report</button></td>
+                        </tr>
+                        <tr>
+                            <td>#LT004</td>
+                            <td>James Wilson</td>
+                            <td>Nutrition Panel</td>
+                            <td>2024-03-13 10:45 AM</td>
+                            <td>+1234567893</td>
+                            <td><span class="status-badge status-completed">Completed</span></td>
+                            <td>$129.99</td>
+                            <td><button class="view-btn">View Report</button></td>
+                        </tr>
+                        <tr>
+                            <td>#LT005</td>
+                            <td>Emma Thompson</td>
+                            <td>Performance Profile</td>
+                            <td>2024-03-15 03:30 PM</td>
+                            <td>+1234567894</td>
+                            <td><span class="status-badge status-pending">Pending</span></td>
+                            <td>$169.99</td>
+                            <td><button class="view-btn">View Report</button></td>
+                        </tr>
+                        <tr>
+                            <td>#LT006</td>
+                            <td>David Miller</td>
+                            <td>Comprehensive Health Checkup</td>
+                            <td>2024-03-12 01:00 PM</td>
+                            <td>+1234567895</td>
+                            <td><span class="status-badge status-completed">Completed</span></td>
+                            <td>$149.99</td>
+                            <td><button class="view-btn">View Report</button></td>
+                        </tr>
+                        <tr>
+                            <td>#LT007</td>
+                            <td>Sophia Garcia</td>
+                            <td>Hormone Profile</td>
+                            <td>2024-03-15 09:00 AM</td>
+                            <td>+1234567896</td>
+                            <td><span class="status-badge status-pending">Pending</span></td>
+                            <td>$179.99</td>
+                            <td><button class="view-btn">View Report</button></td>
+                        </tr>
+                        <tr>
+                            <td>#LT008</td>
+                            <td>Oliver Taylor</td>
+                            <td>Fitness Assessment Panel</td>
+                            <td>2024-03-11 11:30 AM</td>
+                            <td>+1234567897</td>
+                            <td><span class="status-badge status-completed">Completed</span></td>
+                            <td>$199.99</td>
+                            <td><button class="view-btn">View Report</button></td>
+                        </tr>
+                        <tr>
+                            <td>#LT009</td>
+                            <td>Ava Martinez</td>
+                            <td>Nutrition Panel</td>
+                            <td>2024-03-15 02:00 PM</td>
+                            <td>+1234567898</td>
+                            <td><span class="status-badge status-pending">Pending</span></td>
+                            <td>$129.99</td>
+                            <td><button class="view-btn">View Report</button></td>
+                        </tr>
+                        <tr>
+                            <td>#LT010</td>
+                            <td>William Anderson</td>
+                            <td>Performance Profile</td>
+                            <td>2024-03-10 10:00 AM</td>
+                            <td>+1234567899</td>
+                            <td><span class="status-badge status-completed">Completed</span></td>
+                            <td>$169.99</td>
+                            <td><button class="view-btn">View Report</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Search functionality
+        const searchInput = document.querySelector('.search-box input');
+        searchInput.addEventListener('input', function(e) {
+            const searchTerm = e.target.value.toLowerCase();
+            const rows = document.querySelectorAll('.records-table tbody tr');
+            
+            rows.forEach(row => {
+                const text = row.textContent.toLowerCase();
+                row.style.display = text.includes(searchTerm) ? '' : 'none';
+            });
+        });
+
+        // Date filter functionality
+        const startDate = document.getElementById('start-date');
+        const endDate = document.getElementById('end-date');
+
+        [startDate, endDate].forEach(input => {
+            input.addEventListener('change', filterByDate);
+        });
+
+        function filterByDate() {
+            if (!startDate.value || !endDate.value) return;
+
+            const start = new Date(startDate.value);
+            const end = new Date(endDate.value);
+            const rows = document.querySelectorAll('.records-table tbody tr');
+
+            rows.forEach(row => {
+                const dateCell = row.children[3].textContent;
+                const recordDate = new Date(dateCell.split(' ')[0]);
+                row.style.display = (recordDate >= start && recordDate <= end) ? '' : 'none';
+            });
+        }
+    </script>
+</body>
+</html>

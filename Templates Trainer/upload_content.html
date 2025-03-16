@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Content - RevibeFit</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="/Templates Trainer/CSS/trainer.css">
+    <link rel="stylesheet" href="/Templates Trainer/CSS/upload_content.css">
+    <!-- Add a rich text editor library -->
+    <script src="https://cdn.ckeditor.com/ckeditor5/35.0.1/classic/ckeditor.js"></script>
+</head>
+<body>
+    <div class="dashboard-container">
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <img src="/Assets/trainer1.jpg" alt="Trainer Profile" class="trainer-avatar">
+                <h2>Alex Wilson</h2>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="trainer.html" class="nav-link">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/>
+                        </svg>
+                        Dashboard
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="upload_content.html" class="nav-link active">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
+                        </svg>
+                        Upload Content
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="take_classes.html" class="nav-link">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M18 4l2 4h-3l-2-4h-2l2 4h-3l-2-4H8l2 4H7L5 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V4h-4z"/>
+                        </svg>
+                        Take Classes
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="challenges.html" class="nav-link">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
+                        </svg>
+                        Challenges & Programs
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="trainer_settings.html" class="nav-link">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M19.43 12.98c.04-.32.07-.64.07-.98s-.03-.66-.07-.98l2.11-1.65c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.3-.61-.22l-2.49 1c-.52-.4-1.08-.73-1.69-.98l-.38-2.65C14.46 2.18 14.25 2 14 2h-4c-.25 0-.46.18-.49.42l-.38 2.65c-.61.25-1.17.59-1.69.98l-2.49-1c-.23-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64l2.11 1.65c-.04.32-.07.65-.07.98s.03.66.07.98l-2.11 1.65c-.19.15-.24.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1c.52.4 1.08.73 1.69.98l.38 2.65c.03.24.24.42.49.42h4c.25 0 .46-.18.49-.42l.38-2.65c.61-.25 1.17-.59 1.69-.98l2.49 1c.23.09.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64l-2.11-1.65zm-7.43 2.52c-1.93 0-3.5-1.57-3.5-3.5s1.57-3.5 3.5-3.5 3.5 1.57 3.5 3.5-1.57 3.5-3.5 3.5z"/>
+                        </svg>
+                        Settings
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="main-content">
+            <div class="dashboard-header">
+                <h1>Content Management</h1>
+            </div>
+
+            <div class="content-tabs">
+                <button class="tab-btn active" data-tab="videos">Videos</button>
+                <button class="tab-btn" data-tab="blogs">Blogs</button>
+                <button class="tab-btn" data-tab="library">My Library</button>
+            </div>
+
+            <!-- Videos Upload Section -->
+            <div class="tab-content active" id="videos">
+                <div class="upload-section">
+                    <h2>Upload New Video</h2>
+                    <div class="upload-form">
+                        <div class="form-group">
+                            <label>Video Title</label>
+                            <input type="text" placeholder="Enter video title">
+                        </div>
+                        <div class="form-group">
+                            <label>Category</label>
+                            <select>
+                                <option>Select Category</option>
+                                <option>HIIT</option>
+                                <option>Strength Training</option>
+                                <option>Yoga</option>
+                                <option>Cardio</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Featured Image</label>
+                            <label for="video-image" class="file-input-label">
+                                <i class="upload-icon">📁</i>
+                                Choose Image
+                            </label>
+                            <input type="file" id="video-image" accept="image/*">
+                            <div class="file-name-display"></div>
+                        </div>
+                        <div class="form-group">
+                            <label>Video File</label>
+                            <label for="video-file" class="file-input-label">
+                                <i class="upload-icon">📽️</i>
+                                Choose Video
+                            </label>
+                            <input type="file" id="video-file" accept="video/*">
+                            <div class="file-name-display"></div>
+                        </div>
+                        <div class="upload-preview">
+                            <video id="video-preview" controls style="display: none;"></video>
+                        </div>
+                        <button class="upload-btn">Upload Video</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Blogs Upload Section -->
+            <div class="tab-content" id="blogs">
+                <div class="upload-section">
+                    <h2>Write New Blog</h2>
+                    <div class="blog-form">
+                        <div class="form-group">
+                            <label>Blog Title</label>
+                            <input type="text" placeholder="Enter blog title">
+                        </div>
+                        <div class="form-group">
+                            <label>Category</label>
+                            <select>
+                                <option>Select Category</option>
+                                <option>Fitness Tips</option>
+                                <option>Nutrition</option>
+                                <option>Wellness</option>
+                                <option>Training</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Featured Image</label>
+                            <label for="blog-image" class="file-input-label">
+                                <i class="upload-icon">📁</i>
+                                Choose Image
+                            </label>
+                            <input type="file" id="blog-image" accept="image/*">
+                            <div class="file-name-display"></div>
+                        </div>
+                        <div class="form-group">
+                            <label>Content</label>
+                            <div id="editor"></div>
+                        </div>
+                        <button class="publish-btn">Publish Blog</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Content Library Section -->
+            <div class="tab-content" id="library">
+                <div class="library-filters">
+                    <select class="filter-select">
+                        <option>All Content</option>
+                        <option>Videos</option>
+                        <option>Blogs</option>
+                    </select>
+                    <input type="text" placeholder="Search content..." class="search-input">
+                </div>
+
+                <div class="content-grid">
+                    <!-- Sample content cards for the library -->
+                    <div class="content-card">
+                        <div class="content-thumbnail">
+                            <img src="/Assets/hiit.jpg" alt="Full Body HIIT">
+                            <div class="content-type">Video</div>
+                        </div>
+                        <div class="content-info">
+                            <h3 class="content-title">Full Body HIIT Workout</h3>
+                            <div class="content-meta">HIIT • 15 minutes</div>
+                        </div>
+                    </div>
+                    
+                    <div class="content-card">
+                        <div class="content-thumbnail">
+                            <img src="/Assets/nutrition.jpeg" alt="Nutrition Blog">
+                            <div class="content-type">Blog</div>
+                        </div>
+                        <div class="content-info">
+                            <h3 class="content-title">5 Essential Post-Workout Nutrition Tips</h3>
+                            <div class="content-meta">Nutrition • Mar 10, 2025</div>
+                        </div>
+                    </div>
+                    
+                    <div class="content-card">
+                        <div class="content-thumbnail">
+                            <img src="/Assets/yog.jpg" alt="Yoga Flow">
+                            <div class="content-type">Video</div>
+                        </div>
+                        <div class="content-info">
+                            <h3 class="content-title">Morning Yoga Flow</h3>
+                            <div class="content-meta">Yoga • 20 minutes</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    $(document).ready(function() {
+        // Tab functionality
+        $('.tab-btn').click(function() {
+            var tabId = $(this).data('tab');
+            
+            // Remove active class from all buttons and content
+            $('.tab-btn').removeClass('active');
+            $('.tab-content').removeClass('active');
+            
+            // Add active class to clicked button and corresponding content
+            $(this).addClass('active');
+            $('#' + tabId).addClass('active');
+        });
+        
+        // File input handling
+        $('input[type="file"]').change(function() {
+            var fileName = $(this).val().split('\\').pop();
+            if (fileName) {
+                $(this).siblings('.file-name-display').text(fileName);
+            } else {
+                $(this).siblings('.file-name-display').text('');
+            }
+            
+            // Show video preview if it's a video file
+            if (this.id === 'video-file' && this.files && this.files[0]) {
+                var videoPreview = document.getElementById('video-preview');
+                videoPreview.src = URL.createObjectURL(this.files[0]);
+                videoPreview.style.display = 'block';
+            }
+        });
+        
+        // Initialize rich text editor for blog content
+        if (document.getElementById('editor')) {
+            ClassicEditor
+                .create(document.getElementById('editor'))
+                .catch(error => {
+                    console.error(error);
+                });
+        }
+    });
+    </script>
+</body>
+</html>

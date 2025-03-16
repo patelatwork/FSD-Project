@@ -1,0 +1,195 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment - RevibeFit</title>
+    <link rel="stylesheet" href="/CSS/sign_in.css">
+    <style>
+        .payment-box {
+            width: 320px;
+            text-align: center;
+        }
+
+        .plan-details {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 15px 0;
+            text-align: left;
+        }
+
+        .plan-details h3 {
+            color: #3f8554;
+            margin-bottom: 10px;
+        }
+
+        .plan-price {
+            font-size: 24px;
+            font-weight: 600;
+            color: #333;
+            margin: 10px 0;
+        }
+
+        .payment-btn {
+            width: 100%;
+            background: #3f8554;
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 15px;
+            transition: background-color 0.3s;
+        }
+
+        .payment-btn:hover {
+            background: #2d633e;
+        }
+
+        .card-icon {
+            margin-right: 8px;
+            color: #666;
+        }
+
+        .secure-badge {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            color: #666;
+            font-size: 12px;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="container">
+            <!-- Left Side (Image) -->
+            <div class="image-container"></div>
+
+            <!-- Right Side (Payment Form) -->
+            <div class="login-container">
+                <div class="payment-box">
+                    <h2>Complete Your Payment</h2>
+                    <p>Enter your Card Details</p>
+                 
+
+                    <form id="paymentForm">
+                        <div class="input-group">
+                            <label for="cardName">Name on Card</label>
+                            <input type="text" id="cardName" placeholder="Enter name as on card">
+                            <div class="error" id="cardNameError"></div>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="cardNumber">Card Number</label>
+                            <input type="text" id="cardNumber" placeholder="1234 5678 9012 3456" maxlength="16">
+                            <div class="error" id="cardNumberError"></div>
+                        </div>
+
+                        <div style="display: flex; gap: 10px;">
+                            <div class="input-group" style="flex: 1;">
+                                <label for="expiryDate">Expiry Date</label>
+                                <input type="text" id="expiryDate" placeholder="MM/YY" maxlength="5">
+                                <div class="error" id="expiryError"></div>
+                            </div>
+
+                            <div class="input-group" style="flex: 1;">
+                                <label for="cvv">CVV</label>
+                                <input type="password" id="cvv" placeholder="123" maxlength="3">
+                                <div class="error" id="cvvError"></div>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="payment-btn">Pay Money</button>
+
+                        <div class="secure-badge">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="#666">
+                                <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 6c1.4 0 2.5 1.1 2.5 2.5V13c.6 0 1 .4 1 1v4c0 .6-.4 1-1 1h-5c-.6 0-1-.4-1-1v-4c0-.6.4-1 1-1V9.5C9.5 8.1 10.6 7 12 7zm0 2c-.3 0-.5.2-.5.5V13h1V9.5c0-.3-.2-.5-.5-.5z"/>
+                            </svg>
+                            Secure Payment
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const paymentForm = document.getElementById('paymentForm');
+
+            // Format card number with spaces
+            document.getElementById('cardNumber').addEventListener('input', function(e) {
+                this.value = this.value.replace(/\D/g, '');
+            });
+
+            // Format expiry date
+            document.getElementById('expiryDate').addEventListener('input', function(e) {
+                this.value = this.value
+                    .replace(/\D/g, '')
+                    .replace(/^(\d{2})/, '$1/')
+                    .substr(0, 5);
+            });
+
+            // Format CVV
+            document.getElementById('cvv').addEventListener('input', function(e) {
+                this.value = this.value.replace(/\D/g, '');
+            });
+
+            paymentForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                let isValid = true;
+
+                // Clear previous errors
+                document.querySelectorAll('.error').forEach(error => {
+                    error.style.display = 'none';
+                });
+
+                // Validate card name
+                const cardName = document.getElementById('cardName').value.trim();
+                if (cardName === '') {
+                    document.getElementById('cardNameError').textContent = 'Please enter the name on card';
+                    document.getElementById('cardNameError').style.display = 'block';
+                    isValid = false;
+                }
+
+                // Validate card number
+                const cardNumber = document.getElementById('cardNumber').value.replace(/\s/g, '');
+                if (cardNumber.length !== 16) {
+                    document.getElementById('cardNumberError').textContent = 'Please enter a valid 16-digit card number';
+                    document.getElementById('cardNumberError').style.display = 'block';
+                    isValid = false;
+                }
+
+                // Validate expiry date
+                const expiry = document.getElementById('expiryDate').value;
+                if (!expiry.match(/^(0[1-9]|1[0-2])\/([0-9]{2})$/)) {
+                    document.getElementById('expiryError').textContent = 'Please enter a valid expiry date (MM/YY)';
+                    document.getElementById('expiryError').style.display = 'block';
+                    isValid = false;
+                }
+
+                // Validate CVV
+                const cvv = document.getElementById('cvv').value;
+                if (cvv.length !== 3) {
+                    document.getElementById('cvvError').textContent = 'Please enter a valid 3-digit CVV';
+                    document.getElementById('cvvError').style.display = 'block';
+                    isValid = false;
+                }
+
+                if (isValid) {
+                    // Show success message and redirect
+                    alert('Payment successful! Welcome to RevibeFit Premium.');
+                    window.location.href = 'homepage.html';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

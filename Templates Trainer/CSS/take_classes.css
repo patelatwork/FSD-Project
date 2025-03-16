@@ -1,0 +1,155 @@
+.schedule-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+.calendar-section,
+.class-setup {
+    background: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.calendar-header {
+    margin-bottom: 20px;
+}
+
+.calendar-header h2 {
+    color: #333;
+    font-size: 1.5rem;
+}
+
+/* Flatpickr Calendar Customization */
+.flatpickr-calendar {
+    width: 100% !important;
+    max-width: none;
+    box-shadow: none !important;
+}
+
+.flatpickr-day.selected {
+    background: #3f8554 !important;
+    border-color: #3f8554 !important;
+}
+
+/* Class Setup Form */
+.setup-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #555;
+    font-weight: 500;
+}
+
+.form-group select,
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 0.95rem;
+}
+
+.form-group textarea {
+    height: 100px;
+    resize: vertical;
+}
+
+.schedule-btn {
+    background-color: #3f8554;
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.schedule-btn:hover {
+    background-color: #2d633e;
+    transform: translateY(-2px);
+}
+
+/* Upcoming Classes */
+.upcoming-classes {
+    margin-top: 40px;
+}
+
+.upcoming-classes h2 {
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.classes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.class-card {
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+.class-card:hover {
+    transform: translateY(-5px);
+}
+
+.class-info {
+    padding: 20px;
+}
+
+.class-type {
+    color: #3f8554;
+    font-weight: 500;
+    margin-bottom: 8px;
+}
+
+.class-title {
+    font-size: 1.2rem;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.class-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.meta-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .schedule-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .classes-grid {
+        grid-template-columns: 1fr;
+    }
+}

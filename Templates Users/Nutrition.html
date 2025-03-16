@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
+    <!-- GSAP CDN -->
+    <link rel="stylesheet" href="/CSS/footer.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+    
+.hero-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 4rem 8rem;
+    background: linear-gradient(135deg, #ffffff 0%, #f5f9f7 100%), 
+               url('path/to/your/background-image.jpg') no-repeat center / cover;
+    min-height: 100vh;
+    position: relative;
+    overflow: hidden;
+}
+
+
+  .hero-content {
+      flex: 1;
+      max-width: 500px;
+      position: relative;
+      z-index: 2;
+  }
+
+  .hero-content h1 {
+      font-size: 4rem;
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 1.5rem;
+      color: #1a1a1a;
+      letter-spacing: -0.5px;
+      text-transform: none;
+      font-family: 'Montserrat', sans-serif;
+      opacity: 0;
+      transform: translateY(30px);
+  }
+
+  .hero-content p {
+      font-size: 1.25rem;
+      color: #4a4a4a;
+      margin-bottom: 2rem;
+      line-height: 1.8;
+      font-weight: 500;
+      opacity: 0;
+      transform: translateY(30px);
+  }
+
+  .hero-images {
+      flex: 1;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      z-index: 1;
+  }
+
+  .food-bowl {
+      width: 400px;
+      height: 400px;
+      position: relative;
+      filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.1));
+      opacity: 0;
+      transform: scale(0.8);
+  }
+
+  .food-bowl img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+  }
+
+  .decorative-shape {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(79, 177, 109, 0.1);
+      z-index: 0;
+  }
+
+  .shape-1 {
+      width: 300px;
+      height: 300px;
+      top: -100px;
+      right: -100px;
+      opacity: 0;
+  }
+
+  .shape-2 {
+      width: 200px;
+      height: 200px;
+      bottom: 100px;
+      left: -50px;
+      opacity: 0;
+  }
+
+  .shape-3 {
+      width: 150px;
+      height: 150px;
+      top: 200px;
+      right: 150px;
+      opacity: 0;
+  }
+
+  .nutritional-elements {
+      position: absolute;
+      border-radius: 50%;
+      z-index: 1;
+      opacity: 0;
+  }
+
+  .element-1 {
+      width: 40px;
+      height: 40px;
+      background-color: #ff7f50;
+      top: 40%;
+      left: 10%;
+  }
+
+  .element-2 {
+      width: 25px;
+      height: 25px;
+      background-color: #9370db;
+      top: 30%;
+      right: 15%;
+  }
+
+  .element-3 {
+      width: 35px;
+      height: 35px;
+      background-color: #20b2aa;
+      bottom: 25%;
+      right: 30%;
+  }
+
+  .element-4 {
+      width: 20px;
+      height: 20px;
+      background-color: #ffd700;
+      bottom: 40%;
+      left: 20%;
+  }
+
+  @media (max-width: 768px) {
+      .hero-section {
+          flex-direction: column;
+          padding: 2rem;
+          text-align: center;
+      }
+
+      .hero-content {
+          margin-bottom: 2rem;
+      }
+
+      .hero-content h1 {
+          font-size: 2.5rem;
+      }
+
+      .food-bowl {
+          width: 300px;
+          height: 300px;
+      }
+  }
+  
+  /* Updated Meal Plans Section for 3 cards per row */
+  .meal-plans-section {
+      padding: 4rem 5%;
+      background-color: #fafafa;
+      width: 100%;
+  }
+
+  .section-title {
+      font-size: 32px;
+      margin-bottom: 40px;
+      text-align: center;
+      font-weight: 700;
+      color: #333;
+  }
+
+  .meal-plans-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+      justify-content: space-between;
+      width: 100%;
+      max-width: 1400px;
+      margin: 0 auto;
+  }
+
+  .meal-plan-card {
+      width: calc(33.333% - 20px);
+      min-width: 300px;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      background-color: white;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      margin-bottom: 30px;
+      flex-grow: 1;
+  }
+
+  .meal-plan-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 25px rgba(0, 0, 0, 0.12);
+  }
+
+  .meal-plan-image {
+      width: 100%;
+      height: 260px;
+      object-fit: cover;
+  }
+
+  .meal-plan-content {
+      padding: 30px;
+      position: relative;
+  }
+
+  .meal-plan-title {
+      font-size: 24px;
+      font-weight: 700;
+      margin: 0 0 16px 0;
+      color: #333;
+  }
+
+  .meal-plan-description {
+      font-size: 16px;
+      color: #666;
+      margin-bottom: 28px;
+      line-height: 1.6;
+  }
+
+  .meal-plan-details {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+  }
+
+  .calories, .meals-per-day {
+      display: flex;
+      align-items: center;
+      font-size: 16px;
+      color: #555;
+      font-weight: 500;
+  }
+
+  .calories:before {
+      content: "⚡";
+      margin-right: 5px;
+  }
+
+  .meals-per-day:before {
+      content: "🍽️";
+      margin-right: 5px;
+  }
+
+  .meal-plan-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+  }
+
+  .meal-plan-price {
+      font-size: 28px;
+      font-weight: 700;
+      color: #27ae60;
+  }
+
+  .get-plan-button {
+      background-color: #27ae60;
+      color: white;
+      border: none;
+      border-radius: 25px;
+      padding: 12px 24px;
+      font-size: 16px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+
+  .get-plan-button:hover {
+      background-color: #219653;
+      transform: translateY(-2px);
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 1200px) {
+      .meal-plan-card {
+          width: calc(33.333% - 20px);
+      }
+  }
+
+  @media (max-width: 992px) {
+      .meal-plan-card {
+          width: calc(50% - 15px);
+      }
+  }
+
+  @media (max-width: 768px) {
+      .meal-plans-section {
+          padding: 3rem 20px;
+      }
+      
+      .meal-plans-container {
+          gap: 20px;
+          justify-content: center;
+      }
+      
+      .meal-plan-card {
+          width: 100%;
+          max-width: 450px;
+      }
+  }
+    </style>
+</head>
+<body>
+  <nav>
+    <div id="nav-placeholder"></div>
+  </nav>
+  
+  <section class="hero-section">
+    <div class="decorative-shape shape-1"></div>
+    <div class="decorative-shape shape-2"></div>
+    <div class="decorative-shape shape-3"></div>
+
+    <div class="hero-content">
+      <h1>Fitness starts with what you eat.</h1>
+      <p>Take control of your goals. Track calories, break down ingredients, and know your true diet with RevibeFit.</p>
+    </div>
+    
+    <div class="hero-images">
+      <div class="nutritional-elements element-1"></div>
+      <div class="nutritional-elements element-2"></div>
+      <div class="nutritional-elements element-3"></div>
+      <div class="nutritional-elements element-4"></div>
+    </div>
+  </section>
+  
+  <section class="meal-plans-section">
+    <h2 class="section-title">Customized Meal Plans</h2>
+    
+    <div class="meal-plans-container">
+      <!-- Weight Loss Meal Plan -->
+      <div class="meal-plan-card">
+        <img src="https://images.unsplash.com/photo-1511690656952-34342bb7c2f2?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Weight Loss Meal" class="meal-plan-image">
+        <div class="meal-plan-content">
+          <h2 class="meal-plan-title">Weight Loss Meal Plan</h2>
+          <p class="meal-plan-description">Calorie-controlled meals designed for sustainable weight loss</p>
+          <div class="meal-plan-details">
+            <span class="calories">1500-1800 cal</span>
+            <span class="meals-per-day">5 meals/day</span>
+          </div>
+          <div class="meal-plan-bottom">
+            <div class="meal-plan-price">$49.99</div>
+            <button class="get-plan-button">Get Plan</button>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Muscle Gain Plan -->
+      <div class="meal-plan-card">
+        <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Muscle Gain Meal" class="meal-plan-image">
+        <div class="meal-plan-content">
+          <h2 class="meal-plan-title">Muscle Gain Plan</h2>
+          <p class="meal-plan-description">High-protein meals to support muscle growth and recovery</p>
+          <div class="meal-plan-details">
+            <span class="calories">2500-3000 cal</span>
+            <span class="meals-per-day">6 meals/day</span>
+          </div>
+          <div class="meal-plan-bottom">
+            <div class="meal-plan-price">$59.99</div>
+            <button class="get-plan-button">Get Plan</button>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Balanced Nutrition -->
+      <div class="meal-plan-card">
+        <img src="https://images.unsplash.com/photo-1540420773420-3366772f4999?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Balanced Nutrition Meal" class="meal-plan-image">
+        <div class="meal-plan-content">
+          <h2 class="meal-plan-title">Balanced Nutrition</h2>
+          <p class="meal-plan-description">Well-rounded meals for overall health and wellness</p>
+          <div class="meal-plan-details">
+            <span class="calories">2000-2200 cal</span>
+            <span class="meals-per-day">4 meals/day</span>
+          </div>
+          <div class="meal-plan-bottom">
+            <div class="meal-plan-price">$44.99</div>
+            <button class="get-plan-button">Get Plan</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  <footer>
+    <div id="footer"></div>
+  </footer>
+  
+  <script>
+    // Initialize GSAP
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Navbar Animation
+    const navTimeline = gsap.timeline({ defaults: { ease: "power2.out" } });
+    
+    navTimeline
+      .to("#logo", { opacity: 1, duration: 0.8, y: 0 })
+      .to(".nav-links li", { 
+        opacity: 1, 
+        y: 0, 
+        duration: 0.5, 
+        stagger: 0.1 
+      }, "-=0.5")
+      .to("#sign-in", { opacity: 1, y: 0, duration: 0.5 }, "-=0.3");
+
+    // Hero Section Animation
+    const heroTimeline = gsap.timeline({ 
+      defaults: { ease: "power3.out" },
+      delay: 0.5
+    });
+
+    heroTimeline
+      .to(".hero-content h1", { 
+        opacity: 1, 
+        y: 0, 
+        duration: 1 
+      })
+      .to(".hero-content p", { 
+        opacity: 1, 
+        y: 0, 
+        duration: 0.8 
+      }, "-=0.6")
+      .to(".food-bowl", { 
+        opacity: 1, 
+        scale: 1, 
+        duration: 1.2, 
+        ease: "elastic.out(1, 0.5)" 
+      }, "-=0.8")
+      .to(".decorative-shape", { 
+        opacity: 1, 
+        stagger: 0.2, 
+        duration: 1 
+      }, "-=1");
+
+    // Floating Nutritional Elements Animation
+    gsap.to(".element-1", {
+      opacity: 0.8,
+      y: -15,
+      duration: 2,
+      repeat: -1,
+      yoyo: true,
+      ease: "sine.inOut",
+      delay: 1
+    });
+
+    gsap.to(".element-2", {
+      opacity: 0.8,
+      y: -20,
+      duration: 2.5,
+      repeat: -1,
+      yoyo: true,
+      ease: "sine.inOut",
+      delay: 1.2
+    });
+
+    gsap.to(".element-3", {
+      opacity: 0.8,
+      y: -18,
+      duration: 2.3,
+      repeat: -1,
+      yoyo: true,
+      ease: "sine.inOut",
+      delay: 0.8
+    });
+
+    gsap.to(".element-4", {
+      opacity: 0.8,
+      y: -12,
+      duration: 1.8,
+      repeat: -1,
+      yoyo: true,
+      ease: "sine.inOut",
+      delay: 1.5
+    });
+
+    // Meal plan cards animation
+    gsap.from(".meal-plan-card", {
+      y: 50,
+      opacity: 0,
+      duration: 0.8,
+      stagger: 0.2,
+      ease: "power2.out",
+      scrollTrigger: {
+        trigger: ".meal-plans-section",
+        start: "top 80%"
+      }
+    });
+    
+    document.addEventListener('DOMContentLoaded', function() {
+    // Get all book class buttons
+    const bookButtons = document.querySelectorAll('.get-plan-button');
+
+    // Add click event listener to each button
+    bookButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            // Redirect to signup page
+            window.location.href = 'trainer_singup.html';
+        });
+    });
+
+    // Load nav and footer
+    $(function(){
+        $("#nav-placeholder").load("Nav_bar.html");
+    });
+    
+    fetch("footer.html")
+        .then(response => response.text())
+        .then(data => document.getElementById("footer").innerHTML = data);
+});
+  </script>
+  
+</body>
+</html>

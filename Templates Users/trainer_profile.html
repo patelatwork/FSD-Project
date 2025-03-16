@@ -1,0 +1,131 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trainer Profile - RevibeFit</title>
+    <link rel="stylesheet" href="/CSS/footer.css">
+    <link rel="stylesheet" href="/CSS/trainer_profile.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <nav>
+        <div id="nav-placeholder"></div>
+    </nav>
+
+    <div class="profile-container">
+        <!-- Trainer Header Section -->
+        <div class="trainer-header">
+            <div class="trainer-info">
+                <img src="/trainer1.jpg" alt="Mike Chen" class="trainer-photo">
+                <div class="trainer-details">
+                    <h1>Mike Chen</h1>
+                    <p class="specialty">Core & Functional Training Specialist</p>
+                    <div class="trainer-stats">
+                        <div class="stat">
+                            <span class="stat-number">41</span>
+                            <span class="stat-label">Classes</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">4.7</span>
+                            <span class="stat-label">Rating</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">800+</span>
+                            <span class="stat-label">Students</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- About Section -->
+        <section class="about-section">
+            <h2>About Me</h2>
+            <p>Certified fitness trainer with over 5 years of experience specializing in functional training and core strength development. Passionate about helping clients achieve their fitness goals through personalized training programs.</p>
+            
+            <div class="certifications">
+                <h3>Certifications</h3>
+                <ul>
+                    <li>NASM Certified Personal Trainer</li>
+                    <li>Functional Training Specialist</li>
+                    <li>TRX Suspension Training Certified</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Reviews Section -->
+        <section class="reviews-section">
+            <h2>Client Reviews</h2>
+            <div class="overall-rating">
+                <div class="rating-number">4.7</div>
+                <div class="rating-stars">★★★★★</div>
+                <div class="rating-count">Based on 150 reviews</div>
+            </div>
+
+            <!-- Add Review Form -->
+            <div class="add-review-form">
+                <h3>Leave a Review</h3>
+                <div class="rating-input">
+                    <span>Your Rating:</span>
+                    <div class="star-rating">
+                        <i class="fas fa-star" data-rating="1"></i>
+                        <i class="fas fa-star" data-rating="2"></i>
+                        <i class="fas fa-star" data-rating="3"></i>
+                        <i class="fas fa-star" data-rating="4"></i>
+                        <i class="fas fa-star" data-rating="5"></i>
+                    </div>
+                </div>
+                <textarea placeholder="Share your experience with this trainer..."></textarea>
+                <button class="submit-review-btn">Submit Review</button>
+            </div>
+
+            <!-- Review List -->
+            <div class="reviews-list">
+                <div class="review-card">
+                    <div class="review-header">
+                        <img src="/dhruv.jpg" alt="User" class="user-avatar">
+                        <div class="review-info">
+                            <h4>Dhruv Patel</h4>
+                            <div class="review-rating">★★★★★</div>
+                            <span class="review-date">2 weeks ago</span>
+                        </div>
+                    </div>
+                    <p class="review-text">Amazing trainer! Mike really understands how to push you while keeping the workouts safe and effective.</p>
+                </div>
+                <!-- Add more review cards as needed -->
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <div id="footer"></div>
+    </footer>
+
+    <script>
+        $(function(){
+            $("#nav-placeholder").load("Nav_bar.html");
+        });
+        
+        fetch("footer.html")
+            .then(response => response.text())
+            .then(data => document.getElementById("footer").innerHTML = data);
+
+        // Star rating functionality
+        const stars = document.querySelectorAll('.star-rating i');
+        stars.forEach(star => {
+            star.addEventListener('click', () => {
+                const rating = star.getAttribute('data-rating');
+                stars.forEach(s => {
+                    s.classList.remove('active');
+                    if (s.getAttribute('data-rating') <= rating) {
+                        s.classList.add('active');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
