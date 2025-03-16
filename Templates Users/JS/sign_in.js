@@ -60,13 +60,13 @@ document.addEventListener("DOMContentLoaded", function () {
                 window.location.href = "http://localhost:3001/userhome";
                 break;
               case "trainer":
-                window.location.href = "/Templates Trainer/trainer.html";
+                window.location.href = "/trainer.html";
                 break;
               case "admin":
-                window.location.href = "/Templates Admin/admin.html";
+                window.location.href = "/admin.html";
                 break;
               case "lab_partner":
-                window.location.href = "/Templates LabPartners/lab_part.html";
+                window.location.href = "/lab_part.html";
                 break;
               default:
                 alert("Unknown user type");

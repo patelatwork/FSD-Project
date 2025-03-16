@@ -35,6 +35,9 @@ app.use(
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 app.use(express.static(path.join(__dirname, "..", "Templates Users")));
+app.use(express.static(path.join(__dirname, "..", "Templates Trainer")));
+app.use(express.static(path.join(__dirname, "..", "Templates Admin")));
+app.use(express.static(path.join(__dirname, "..", "Templates LabPartners")));
 app.use(express.static(path.join(__dirname, "..", "Assets")));
 app.set("view engine", "ejs");
 // The path points one level up to your "Templates Users" folder
@@ -71,7 +74,7 @@ const db = new sqlite3.Database(":memory:", (err) => {
               "dhruv@gmail.com",
               "1234567890",
               "123334",
-              "fitness_enthusiast",
+              "admin",
             ],
             function (err) {
               if (err) {
@@ -351,7 +354,54 @@ app.get("/cares", (req, res) => {
   // Otherwise, render homepage.ejs with the user’s data
   res.render("care", { user: req.session.user });
 });
+app.get("/class", (req, res) => {
+  // If session user not set, redirect to sign in
 
+  // Otherwise, render homepage.ejs with the user’s data
+  res.render("classes", { user: req.session.user });
+});
+app.get("/direct", (req, res) => {
+  // If session user not set, redirect to sign in
+
+  // Otherwise, render homepage.ejs with the user’s data
+  res.render("directory", { user: req.session.user });
+});
+app.get("/get", (req, res) => {
+  // If session user not set, redirect to sign in
+
+  // Otherwise, render homepage.ejs with the user’s data
+  res.render("get_coach", { user: req.session.user });
+});
+app.get("/nutri", (req, res) => {
+  // If session user not set, redirect to sign in
+
+  // Otherwise, render homepage.ejs with the user’s data
+  res.render("Nutrition", { user: req.session.user });
+});
+app.get("/work", (req, res) => {
+  // If session user not set, redirect to sign in
+
+  // Otherwise, render homepage.ejs with the user’s data
+  res.render("workout", { user: req.session.user });
+});
+app.get("/selecttrainer", (req, res) => {
+  // If session user not set, redirect to sign in
+
+  // Otherwise, render homepage.ejs with the user’s data
+  res.render("select-trainer", { user: req.session.user });
+});
+app.get("/profile", (req, res) => {
+  // If session user not set, redirect to sign in
+
+  // Otherwise, render homepage.ejs with the user’s data
+  res.render("trainer_profile", { user: req.session.user });
+});
+app.get("/viewcoach", (req, res) => {
+  // If session user not set, redirect to sign in
+
+  // Otherwise, render homepage.ejs with the user’s data
+  res.render("view_coaches", { user: req.session.user });
+});
 // Error handling middleware
 app.use((err, req, res, next) => {
   console.error(err.stack);
