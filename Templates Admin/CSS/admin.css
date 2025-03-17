@@ -148,7 +148,9 @@
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    margin-bottom: 30px;
+    margin: 20px 0;
+    height: 400px;
+    position: relative;
 }
 
 .chart-header {
@@ -156,4 +158,41 @@
     justify-content: space-between;
     align-items: center;
     margin-bottom: 20px;
+}
+
+.chart-filter {
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: white;
+    font-size: 14px;
+}
+
+canvas#chart {
+    width: 100% !important;
+    height: 90% !important;
+}
+.save-settings {
+    background-color: #3f8554;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 30px;
+    display: block;
+    width: 100%;
+    max-width: 200px;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    overflow: hidden;
+}
+.save-settings:hover {
+    background-color: #2d633e;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(63, 133, 84, 0.2);
 }
